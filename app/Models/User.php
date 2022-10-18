@@ -137,9 +137,5 @@
         public function getDateCreationUserAttribute(){
             return $this->attributes['date_creation'];
         }
-
-        public function setDateCreationUserAttribute($value){
-            $this->attributes['date_creation'] = $value;
-        }
     }
 ?>

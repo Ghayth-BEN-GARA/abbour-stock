@@ -14,8 +14,8 @@
                 $table->collation = 'utf8_general_ci';
                 $table->charset = 'utf8';
                 $table->id('id_journal');
-                $table->string('tache',500);
-                $table->string('description',999);
+                $table->string('tache',500)->default('Aucun');
+                $table->string('description',999)->default('Aucun');
                 $table->datetime('date_time_tache')->default(DB::raw('CURRENT_TIMESTAMP'))->setTimezone('GMT');
                 $table->bigInteger('id_user')->unsigned()->nullable();
                 $table->foreign('id_user')->references('id_user')->on('users')->onDelete('cascade')->onUpdate('cascade');

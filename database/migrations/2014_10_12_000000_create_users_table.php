@@ -17,14 +17,14 @@
                 $table->string('email', 999);
                 $table->string('password', 999);
                 $table->integer('cin', false, false)->default(0);
-                $table->string('nom',500)->defaul('Aucun');
-                $table->string('prenom',500)->defaul('Aucun');
-                $table->string('genre',150)->defaul('Non spécifié');
+                $table->string('nom',500)->default('Aucun');
+                $table->string('prenom',500)->default('Aucun');
+                $table->string('genre',150)->default('Non spécifié');
                 $table->date('naissance')->default(DB::raw('CURRENT_TIMESTAMP'))->setTimezone('GMT');
                 $table->integer('mobile', false, false)->default(0);
-                $table->string('adresse',500)->defaul('Aucun');
-                $table->string('image',800)->defaul('Aucun');
-                $table->string('type',150)->defaul('Utilisateur');
+                $table->string('adresse',500)->default('Aucun');
+                $table->string('image',999)->default('images/user.png');
+                $table->string('type',150)->default('Utilisateur');
                 $table->date('date_creation')->default(DB::raw('CURRENT_TIMESTAMP'))->setTimezone('GMT');
             });
         }
