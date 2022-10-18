@@ -10431,7 +10431,7 @@ a {
     text-decoration: none;
 }
 a:hover {
-    color: #128c54;
+    color: #F7941E;
 }
 hr {
     background: #adb4c0;
@@ -10493,9 +10493,9 @@ a.app-link {
     text-decoration-color: rgba(37, 41, 48, 0.3);
 }
 a.app-link:hover {
-    color: #15a362;
-    -webkit-text-decoration-color: rgba(21, 163, 98, 0.8);
-    text-decoration-color: rgba(21, 163, 98, 0.8);
+    color: #F7941E;
+    -webkit-text-decoration-color: rgba(247, 148, 30, 0.8);
+    text-decoration-color: rgba(247, 148, 30, 0.8);
 }
 button.close:focus {
     outline: none;

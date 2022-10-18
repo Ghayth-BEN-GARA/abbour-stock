@@ -1,14 +1,8 @@
 <!DOCTYPE html>
 <html lang = "en"> 
     <head>
-        <title>Abbour'Stock Dépôt | Connexion</title>
-        <meta charset = "utf-8">
-        <meta http-equiv = "X-UA-Compatible" content = "IE=edge">
-        <meta name = "viewport" content = "width=device-width, initial-scale=1.0">
-        <meta name = "description" content = "Abbour'Stock Dépôt - Application web pour la gestion de stock">
-        <meta name = "author" content = "Ghayth Ben Gara">    
-        <link rel = "shortcut icon" href = "{{asset('images/favicon.png')}}"> 
-        <link rel = "stylesheet" href = "{{asset('css/style1.css')}}">
+        <title>Abbour'Stock Dépôt | Connexion</title> 
+        @include('Layout.head_app')
     </head> 
     <body class = "app app-login p-0">
         <div class = "row g-0 app-auth-wrapper">
@@ -50,24 +44,13 @@
                                 </div>
                             </form>
                             <div class = "auth-option text-center pt-5">Pas de compte? S'inscrire
-                                <a class = "text-link" href = "#" >içi</a>
+                                <a class = "text-link" href = "{{url('/signup')}}" >içi</a>
                                 .
                             </div>
                         </div>
                     </div>
                     <footer class = "app-auth-footer">
-                        <div class = "container text-center py-3">
-                            <small class = "copyright">
-                                Développé avec
-                                <span class = "sr-only">
-                                    love
-                                </span>
-                                <i class = "fas fa-heart" style = "color: #fb866a;"></i>
-                                par
-                                <a class = "app-link" href = "https://www.facebook.com/profile.php?id=100075317294165" target = "_blank">Ghayth Ben Gara</a>
-                                pour Abbour'Stock Dépôt
-                            </small>
-                        </div>
+                        @include('Layout.footer')
                     </footer>
                 </div>
             </div>
@@ -87,6 +70,6 @@
                 </div>
             </div>
         </div>
-        <script src = "{{asset('plugins/fontawesome/js/all.min.js')}}"></script>
+        @include('Layout.script')
     </body>
 </html>

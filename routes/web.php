@@ -14,4 +14,5 @@
     */
 
     Route::get('/', [AuthentificationUserController::class, 'ouvrirSignin'])->middleware('session_exist');
+    Route::get('/signup', [AuthentificationUserController::class, 'ouvrirNotExist']);
 ?>

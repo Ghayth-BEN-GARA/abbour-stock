@@ -7,5 +7,9 @@
         public function ouvrirSignin(){
             return view('Authentification.signin');
         }
+
+        public function ouvrirNotExist(){
+            return view('Errors.not_exist');
+        }
     }
 ?>
