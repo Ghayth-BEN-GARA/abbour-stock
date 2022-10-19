@@ -107,7 +107,7 @@
                                                 </div>
                                             </div>
                                             <div class = "col text-end">
-										        <a class = "btn-sm app-btn-secondary" href = "#">Modifier</a>
+										        <a class = "btn-sm app-btn-secondary" href = "{{url('/edit-adresse')}}">Modifier</a>
 									        </div>
                                         </div>
                                     </div>
@@ -122,7 +122,7 @@
                                                 </div>
                                             </div>
                                             <div class = "col text-end">
-										        <a class = "btn-sm app-btn-secondary" href = "#">Modifier</a>
+										        <a class = "btn-sm app-btn-secondary" href = "{{url('/edit-mobile')}}">Modifier</a>
 									        </div>
                                         </div>
                                     </div>
@@ -137,7 +137,7 @@
                                                 </div>
                                             </div>
                                             <div class = "col text-end">
-										        <a class = "btn-sm app-btn-secondary" href = "#">Modifier</a>
+										        <a class = "btn-sm app-btn-secondary" href = "{{url('/edit-cin')}}">Modifier</a>
 									        </div>
                                         </div>
                                     </div>

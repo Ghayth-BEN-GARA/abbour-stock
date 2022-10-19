@@ -32,5 +32,11 @@
     Route::post('/update-genre', [UserController::class, 'gestionUpdateGenre']);
     Route::get('/edit-date-naissance', [UserController::class, 'ouvrirEditDateNaissance'])->middleware('session_not_exist');
     Route::post('/update-date-naissance', [UserController::class, 'gestionUpdateDateNaissance']);
+    Route::get('/edit-adresse', [UserController::class, 'ouvrirEditAdresse'])->middleware('session_not_exist');
+    Route::post('/update-adresse', [UserController::class, 'gestionUpdateAdresse']);
+    Route::get('/edit-mobile', [UserController::class, 'ouvrirEditMobile'])->middleware('session_not_exist');
+    Route::post('/update-mobile', [UserController::class, 'gestionUpdateMobile']);
+    Route::get('/edit-cin', [UserController::class, 'ouvrirEditCin'])->middleware('session_not_exist');
+    Route::post('/update-cin', [UserController::class, 'gestionUpdateCin']);
 ?>
 

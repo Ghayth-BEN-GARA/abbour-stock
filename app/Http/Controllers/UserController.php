@@ -3,6 +3,7 @@
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\File;
+    use Illuminate\Support\Str;
     use App\Models\User;
     use App\Models\journal;
 
@@ -157,6 +158,96 @@
             return User::where('id_user', '=', $id_user)->update([
                 'naissance' => $date_naissance
             ]);
+        }
+
+        public function ouvrirEditAdresse(){
+            return view('User.edit_adresse');
+        }
+
+        public function gestionUpdateAdresse(Request $request){
+            if($this->updateAdresse($request->new_adresse, auth()->user()->getIdUserAttribute())){
+                if($this->creerJounral("Modification d'adresse", "Choisir une nouvelle adresse d'utiliateur", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', 'Votre adresse a été changé avec succès. Vous pouvez maintenant consulter votre nouvelle adresse.');
+                }
+            }
+
+            else{
+                return back()->with('erreur', "Vous avez saisir votre ancien adresse.");
+            }
+        }
+
+        public function updateAdresse($adresse, $id_user){
+            return User::where('id_user', '=', $id_user)->update([
+                'adresse' => $adresse
+            ]);
+        }
+
+        public function ouvrirEditMobile(Request $request){
+            return view('User.edit_mobile');
+        }
+
+        public function gestionUpdateMobile(Request $request){
+            if(Str::length($request->new_mobile) != 8){
+                return back()->with('erreur', "Vérifiez que le numéro de mobile est composé de 8 chiffres.");
+            }
+
+            else if($this->checkUserMobile($request->new_mobile)){
+                return back()->with('erreur', "Un autre compte créé avec ce numéro de mobile.");
+            }
+
+            else if($this->updateMobile($request->new_mobile, auth()->user()->getIdUserAttribute())){
+                if($this->creerJounral("Modification de numéro mobile", "Choisir un nouveau numéro mobile d'utiliateur", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', 'Votre numéro mobile a été changé avec succès. Vous pouvez maintenant consulter votre nouvelle numéro.');
+                }
+            }
+
+            else{
+                return back()->with('erreur', "Vous avez saisir votre ancien numéro mobile.");
+            }
+        }
+
+        public function updateMobile($mobile, $id_user){
+            return User::where('id_user', '=', $id_user)->update([
+                'mobile' => $mobile
+            ]);
+        }
+
+        public function checkUserMobile($mobile){
+            return (User::where('mobile', '=', $mobile)->where('id_user', '!=', auth()->user()->getIdUserAttribute())->exists());
+        }
+
+        public function ouvrirEditCin(){
+            return view('User.edit_cin');
+        }
+
+        public function gestionUpdateCin(Request $request){
+            if(Str::length($request->new_cin) != 8){
+                return back()->with('erreur', "Vérifiez que le numéro de carte d'identité est composé de 8 chiffres.");
+            }
+
+            else if($this->checkUserCin($request->new_cin)){
+                return back()->with('erreur', "Un autre compte créé avec ce numéro de carte d'identité.");
+            }
+
+            else if($this->updateCin($request->new_cin, auth()->user()->getIdUserAttribute())){
+                if($this->creerJounral("Modification de numéro de carte d'identité", "Choisir un nouveau numéro de carte d'identité d'utiliateur", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', "Votre numéro de carte d'identité a été changé avec succès. Vous pouvez maintenant consulter votre nouvelle numéro de carte.");
+                }
+            }
+
+            else{
+                return back()->with('erreur', "Vous avez saisir votre ancien numéro de carte d'identité.");
+            }
+        }
+
+        public function updateCin($cin, $id_user){
+            return User::where('id_user', '=', $id_user)->update([
+                'cin' => $cin
+            ]);
+        }
+
+        public function checkUserCin($cin){
+            return (User::where('cin', '=', $cin)->where('id_user', '!=', auth()->user()->getIdUserAttribute())->exists());
         }
     }
 ?>
