@@ -30,5 +30,7 @@
     Route::post('/update-fullname', [UserController::class, 'gestionUpdateFullName']);
     Route::get('/edit-genre', [UserController::class, 'ouvrirEditGenre'])->middleware('session_not_exist');
     Route::post('/update-genre', [UserController::class, 'gestionUpdateGenre']);
+    Route::get('/edit-date-naissance', [UserController::class, 'ouvrirEditDateNaissance'])->middleware('session_not_exist');
+    Route::post('/update-date-naissance', [UserController::class, 'gestionUpdateDateNaissance']);
 ?>
 
