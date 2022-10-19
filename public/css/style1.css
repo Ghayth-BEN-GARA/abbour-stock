@@ -10611,10 +10611,10 @@ button.close:focus {
     padding-left: 1rem;
 }
 .app-search-form .search-input:focus {
-    border-color: #e7e9ed;
+    border-color: #F7941E;
 }
 .app-search-form .search-btn {
-    color: #828d9f;
+    color: #F7941E;
     background: none;
     border: none;
     position: absolute;
@@ -10627,7 +10627,7 @@ button.close:focus {
 .app-search-form .search-btn:focus,
 .app-search-form .search-btn:hover {
     outline: none !important;
-    color: #15a362;
+    color: #fbc98e;
     box-shadow: none;
 }
 .app-utility-item {
