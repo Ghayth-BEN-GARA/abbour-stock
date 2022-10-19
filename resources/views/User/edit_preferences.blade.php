@@ -134,7 +134,7 @@
                                                         ?>" 
                                                 required disabled>
                                         </div>
-                                        <p class = "form-text text-danger">La modification de date de création de compte n'est pas disponible pour aucun personne</p>
+                                        <p class = "form-text text-danger">La modification de date de création de compte n'est pas disponible pour aucune personne</p>
                                         <button type = "submit" class = "btn app-btn-primary" disabled>Modifier</button>
                                     </form>
                                 </div>

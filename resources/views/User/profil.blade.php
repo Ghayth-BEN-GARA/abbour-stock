@@ -59,7 +59,7 @@
                                                 </div>
                                             </div>
                                             <div class = "col text-end">
-										        <a class = "btn-sm app-btn-secondary" href = "#">Modifier</a>
+										        <a class = "btn-sm app-btn-secondary" href = "{{url('/edit-name')}}">Modifier</a>
 									        </div>
                                         </div>
                                     </div>

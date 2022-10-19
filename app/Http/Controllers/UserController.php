@@ -78,7 +78,7 @@
             }
 
             else{
-                return redirect('/erreur');
+                return back()->with('erreur', "Vous n'êtes pas obligé de saisir la même photo de profil.");
             }
         }
 
@@ -90,6 +90,29 @@
             return User::where('id_user', '=', $id_user)->update([
                     'image' => $img
             ]);
+        }
+
+        public function ouvrirEditName(){
+            return view('User.edit_name');
+        }
+
+        public function gestionUpdateFullName(Request $request){
+            if($this->updateFullName($request->new_nom, $request->new_prenom, auth()->user()->getIdUserAttribute())){
+                if($this->creerJounral("Modification du nom et prénom", "Modification de photo de profil de compte", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', 'Votre nom a été changé avec succès. Vous pouvez maintenant consulter vos nouveaux informations.');
+                }
+            }
+
+            else{
+                return back()->with('erreur', "Vous avez saisir votre ancien nom et/ou prénom.");
+            }
+        }
+
+        public function updateFullName($nom, $prenom, $id_user){
+            return User::where('id_user', '=', $id_user)->update([
+                'nom' => $nom,
+                'prenom' => $prenom
+        ]);
         }
     }
 ?>

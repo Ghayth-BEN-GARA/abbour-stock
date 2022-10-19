@@ -26,4 +26,7 @@
     Route::get('/edit-preferences', [UserController::class, 'ouvrirEditPreferences'])->middleware('session_not_exist');
     Route::get('/edit-photo', [UserController::class, 'ouvrirEditPhoto'])->middleware('session_not_exist');
     Route::post('/update-photo', [UserController::class, 'gestionUpdatePhoto']);
+    Route::get('/edit-name', [UserController::class, 'ouvrirEditName'])->middleware('session_not_exist');
+    Route::post('/update-fullname', [UserController::class, 'gestionUpdateFullName']);
 ?>
+
