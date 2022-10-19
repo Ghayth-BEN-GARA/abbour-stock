@@ -1,6 +1,7 @@
 <?php
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\AuthentificationUserController;
+    use App\Http\Controllers\UserController;
 
     /*
     |--------------------------------------------------------------------------
@@ -19,4 +20,5 @@
     Route::get('/home', [AuthentificationUserController::class, 'ouvrirHome'])->middleware('session_not_exist');
     Route::get('/logout', [AuthentificationUserController::class, 'gestionDeconnexion']);
     Route::get('/error', [AuthentificationUserController::class, 'ouvrirError']);
+    Route::get('/profil', [UserController::class, 'ouvrirProfil'])->middleware('session_not_exist');
 ?>

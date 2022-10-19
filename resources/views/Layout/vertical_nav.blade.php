@@ -18,7 +18,7 @@
                 </a>
             </li>
             <li class = "nav-item">
-                <a class = "nav-link" href = "#">
+                <a class = "nav-link" href = "{{url('/profil')}}">
                     <span class = "nav-icon">
                         <i class = "lni lni-user"></i>
                     </span>
@@ -148,7 +148,7 @@
             <li class = "nav-item has-submenu">
                 <a class = "nav-link submenu-toggle" href = "javascript:void(0)" data-bs-toggle = "collapse" data-bs-target = "#submenu-6" aria-expanded = "false" aria-controls = "submenu-6">
                     <span class = "nav-icon">
-                        <i class = "lni lni-users"></i>
+                        <i class = "lni lni-network"></i>
                     </span>
                     <span class = "nav-link-text">Clients</span>
                     <span class = "submenu-arrow">

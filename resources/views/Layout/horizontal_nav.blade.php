@@ -46,7 +46,7 @@
                     </a>
                     <ul class = "dropdown-menu" aria-labelledby = "user-dropdown-toggle">
                         <li>
-                            <a class = "dropdown-item" href = "#">Profil</a>
+                            <a class = "dropdown-item" href = "{{url('/profil')}}">Profil</a>
                         </li>
                         <li>
                             <hr class = "dropdown-divider">

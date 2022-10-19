@@ -141,5 +141,13 @@
         public function getFullNameUserAttribute(){
             return $this->getPrenomUserAttribute()." ".$this->getNomUserAttribute();
         }
+
+        public function getFormattedMobileUserAttribute(){
+            return substr($this->getMobileUserAttribute(), 0, 2)." ".substr($this->getMobileUserAttribute(), 2, 3)." ".substr($this->getMobileUserAttribute(), 5, 3);
+        }
+
+        public function getFormattedCinUserAttribute(){
+            return substr($this->getCinUserAttribute(), 0, 3)." ".substr($this->getCinUserAttribute(), 3, 3)." ".substr($this->getCinUserAttribute(), 6, 2);
+        }
     }
 ?>
