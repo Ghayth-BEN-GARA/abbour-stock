@@ -98,7 +98,7 @@
 
         public function gestionUpdateFullName(Request $request){
             if($this->updateFullName($request->new_nom, $request->new_prenom, auth()->user()->getIdUserAttribute())){
-                if($this->creerJounral("Modification du nom et prénom", "Modification de photo de profil de compte", auth()->user()->getIdUserAttribute())){
+                if($this->creerJounral("Modification du nom et prénom", "Modification du nom et prénom d'utilisateur", auth()->user()->getIdUserAttribute())){
                     return back()->with('success', 'Votre nom a été changé avec succès. Vous pouvez maintenant consulter vos nouveaux informations.');
                 }
             }
@@ -112,7 +112,29 @@
             return User::where('id_user', '=', $id_user)->update([
                 'nom' => $nom,
                 'prenom' => $prenom
-        ]);
+            ]);
+        }
+
+        public function ouvrirEditGenre(){
+            return view('User.edit_genre');
+        }
+
+        public function gestionUpdateGenre(Request $request){
+            if($this->updateGenre($request->new_genre, auth()->user()->getIdUserAttribute())){
+                if($this->creerJounral("Modification du genre", "Modification du genre d'utiliateur", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', 'Votre genre a été changé avec succès. Vous pouvez maintenant consulter votre nouveau genre.');
+                }
+            }
+
+            else{
+                return back()->with('erreur', "Vous avez saisir votre ancien genre.");
+            }
+        }
+
+        public function updateGenre($genre, $id_user){
+            return User::where('id_user', '=', $id_user)->update([
+                'genre' => $genre
+            ]);
         }
     }
 ?>

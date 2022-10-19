@@ -52,7 +52,7 @@
                 <li class = "nav-item has-submenu">
                     <a class = "nav-link submenu-toggle" href = "javascript:void(0)" data-bs-toggle = "collapse" data-bs-target = "#submenu-2" aria-expanded = "false" aria-controls = "submenu-2">
                         <span class = "nav-icon">
-                            <i class = "lni lni-users"></i>
+                            <i class = "lni lni-customer"></i>
                         </span>
                         <span class = "nav-link-text">Fournisseurs</span>
                         <span class = "submenu-arrow">
