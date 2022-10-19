@@ -11505,7 +11505,7 @@ button.close:focus {
     color: #fff;
 }
 .app-auth-footer {
-    position: absolute;
+    position: relative;
     bottom: 0;
     left: 0;
     width: 100%;

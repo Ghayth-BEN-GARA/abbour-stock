@@ -67,7 +67,7 @@
                                             </label>
                                             <input type = "password" class = "form-control" id = "confirm_new_password" name = "confirm_new_password" placeholder = "Confirmez votre nouveau mot de passe.." required>
                                         </div>
-                                        <button type = "submit" class = "btn app-btn-primary" >Modifier</button>
+                                        <button type = "submit" class = "btn app-btn-primary">Modifier</button>
                                     </form>
                                 </div>
                             </div>

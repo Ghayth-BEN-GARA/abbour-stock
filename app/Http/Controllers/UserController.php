@@ -60,5 +60,9 @@
             $journal->setIdUserAttribute($id_user);
             return $journal->save();
         }
+
+        public function ouvrirEditPreferences(){
+            return view('User.edit_preferences');
+        }
     }
 ?>

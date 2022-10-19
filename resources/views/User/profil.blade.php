@@ -235,7 +235,7 @@
                                     </div>
                                 </div>
                                 <div class = "app-card-footer p-4 mt-auto">
-							        <a class = "btn app-btn-secondary" href = "#">Gérer les préférences</a>
+							        <a class = "btn app-btn-secondary" href = "{{url('/edit-preferences')}}">Gérer les préférences</a>
 						        </div>
                             </div>
                         </div>
