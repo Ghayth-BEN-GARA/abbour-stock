@@ -143,7 +143,7 @@
                                     </div>
                                 </div>
                                 <div class = "app-card-footer p-4 mt-auto">
-                                    <a class = "btn app-btn-secondary" href = "#">Gérer le profil</a>
+                                    <a class = "btn app-btn-secondary" href = "{{url('/edit-profil')}}">Gérer le profil</a>
                                 </div>
                             </div>
                         </div>

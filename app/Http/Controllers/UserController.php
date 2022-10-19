@@ -249,5 +249,60 @@
         public function checkUserCin($cin){
             return (User::where('cin', '=', $cin)->where('id_user', '!=', auth()->user()->getIdUserAttribute())->exists());
         }
+
+        public function ouvrirEditProfil(){
+            return view('User.edit_profil');
+        }
+
+        public function gestionUpdateProfil(Request $request){
+            if(Str::length($request->new_cin) != 8){
+                return back()->with('erreur', "Vérifiez que le numéro de carte d'identité est composé de 8 chiffres.");
+            }
+
+            else if($this->checkUserCin($request->new_cin)){
+                return back()->with('erreur', "Un autre compte créé avec ce numéro de carte d'identité.");
+            }
+
+            else if(Str::length($request->new_mobile) != 8){
+                return back()->with('erreur', "Vérifiez que le numéro de mobile est composé de 8 chiffres.");
+            }
+
+            else if($this->checkUserMobile($request->new_mobile)){
+                return back()->with('erreur', "Un autre compte créé avec ce numéro de mobile.");
+            }
+
+            else if($this->updateProfil(auth()->user()->getIdUserAttribute(), $request->new_nom, $request->new_prenom, $request->new_genre, $request->new_cin, $request->new_date_naissance, $request->new_mobile, $request->new_adresse, $request)){
+                if($this->creerJounral("Modification de profil", "Modifier les anciennes informations en ajoutant de nouvelles informations", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', "Vos informations ont été modifiées avec succès. Vous pouvez désormais les consulter à tout moment.");
+                }
+            }
+
+            else{
+                return redirect('erreur');
+            }
+        }
+
+        public function updateProfil($id_user, $nom, $prenom, $genre, $cin, $naissance, $mobile, $adresse, $request){
+            if($request->new_photo == null || $request->new_photo == ""){
+                $img = auth()->user()->getPhotoUserAttribute();
+            }
+
+            else{
+                $filename = time().$request->file('new_photo')->getClientOriginalName();
+                $path = $request->file('new_photo')->storeAs('/images/'.$id_user, $filename , 'public');
+                $img = '/storage/'.$path;
+            }
+
+            return User::where('id_user', '=', $id_user)->update([
+                'nom' => $nom,
+                'prenom' => $prenom, 
+                'genre' => $genre, 
+                'cin' => $cin,
+                'naissance' => $naissance,
+                'mobile' => $mobile,
+                'adresse' => $adresse,
+                'image' => $img
+            ]);
+        }
     }
 ?>
