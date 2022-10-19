@@ -5,3 +5,4 @@
 <meta name = "author" content = "Ghayth Ben Gara">    
 <link rel = "shortcut icon" href = "{{asset('images/favicon.png')}}">
 <link rel = "stylesheet" href = "{{asset('css/style1.css')}}">
+<link rel = "stylesheet" href = "{{asset('css/lineicons.css')}}">

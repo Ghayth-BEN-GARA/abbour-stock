@@ -9,6 +9,9 @@
             <div class = "app-header-inner"> 
                 @include('Layout.horizontal_nav')
             </div>
+            <div id = "app-sidepanel" class = "app-sidepanel"> 
+                @include('Layout.vertical_nav')
+            </div>
         </header>
 
         <footer class = "app-auth-footer">

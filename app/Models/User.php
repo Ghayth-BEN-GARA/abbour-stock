@@ -137,5 +137,9 @@
         public function getDateCreationUserAttribute(){
             return $this->attributes['date_creation'];
         }
+
+        public function getFullNameUserAttribute(){
+            return $this->getPrenomUserAttribute()." ".$this->getNomUserAttribute();
+        }
     }
 ?>

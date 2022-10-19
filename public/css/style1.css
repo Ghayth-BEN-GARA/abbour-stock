@@ -10614,7 +10614,7 @@ button.close:focus {
     border-color: #F7941E;
 }
 .app-search-form .search-btn {
-    color: #F7941E;
+    color: #828d9f;
     background: none;
     border: none;
     position: absolute;
@@ -10862,7 +10862,7 @@ button.close:focus {
 }
 .app-branding .logo-text {
     color: #252930;
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 600;
     vertical-align: middle;
 }
@@ -10890,9 +10890,9 @@ button.close:focus {
     border-left: 3px solid rgba(0, 0, 0, 0);
 }
 .app-nav .nav-link.active {
-    color: #15a362;
-    background: #edfdf6;
-    border-left: 3px solid #15a362;
+    color: black;
+    background: #fbc98e;
+    border-left: 3px solid #F7941E;
     font-weight: 500;
 }
 .app-nav .nav-link.submenu-toggle.active {
@@ -10900,16 +10900,17 @@ button.close:focus {
     border-color: rgba(0, 0, 0, 0);
 }
 .app-nav .nav-link:hover {
-    color: #15a362;
+    color: #F7941E;
 }
 .app-nav .nav-icon {
     position: absolute;
     left: 1rem;
     top: 0.7rem;
 }
-.app-nav .nav-icon .bi {
-    width: 1.25rem;
-    height: 1.25rem;
+.app-nav .nav-icon i {
+    width: 50px;
+    height: 70px;
+    margin-top: 6px;
 }
 .app-nav .submenu-arrow {
     position: absolute;
