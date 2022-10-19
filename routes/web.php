@@ -24,4 +24,6 @@
     Route::get('/edit-password', [UserController::class, 'ouvrirEditPassword'])->middleware('session_not_exist');
     Route::post('/update-password', [UserController::class, 'gestionUpdatePassword']);
     Route::get('/edit-preferences', [UserController::class, 'ouvrirEditPreferences'])->middleware('session_not_exist');
+    Route::get('/edit-photo', [UserController::class, 'ouvrirEditPhoto'])->middleware('session_not_exist');
+    Route::post('/update-photo', [UserController::class, 'gestionUpdatePhoto']);
 ?>

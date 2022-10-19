@@ -10681,9 +10681,17 @@ button.close:focus {
     font-size: 1rem;
 }
 .app-notifications-dropdown .dropdown-menu .profile-image {
-    width: 36px;
-    height: 36px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }
+
+.profile-image-load{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
 .app-notifications-dropdown .dropdown-menu .info {
     padding-right: 80px;
     position: relative;
@@ -10740,8 +10748,9 @@ button.close:focus {
     display: inline-block;
 }
 .app-user-dropdown img {
-    width: 36px;
-    height: 36px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
 }
 @media (min-width: 576px) {
     .app-notifications-dropdown .dropdown-menu {
@@ -11373,6 +11382,7 @@ button.close:focus {
 .app-card-account .item .profile-image {
     width: 50px;
     height: 50px;
+    border-radius: 50%;
 }
 .app-card-account .item .btn-sm,
 .app-card-account .item .btn-group-sm > .btn {
@@ -11416,8 +11426,9 @@ button.close:focus {
     text-transform: uppercase;
 }
 .app-card-notification .profile-image {
-    width: 60px;
-    height: 60px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
 }
 .app-card-notification .notification-title {
     font-size: 1.125rem;
@@ -11505,7 +11516,7 @@ button.close:focus {
     color: #fff;
 }
 .app-auth-footer {
-    position: relative;
+    position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;

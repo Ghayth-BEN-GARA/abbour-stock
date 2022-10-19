@@ -191,7 +191,7 @@
                 </div>
             </div>
         </div>
-        <footer class = "app-auth-footer">
+        <footer class = "app-auth-footer app-auth-footer2">
             @include('Layout.footer')
         </footer>
         @include('Layout.script')

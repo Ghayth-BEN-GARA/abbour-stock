@@ -2,6 +2,7 @@
     namespace App\Http\Controllers;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Facades\File;
     use App\Models\User;
     use App\Models\journal;
 
@@ -24,7 +25,7 @@
             }
 
             else if($this->editPassword($request->new_password)){
-                if($this->creerJounral("Modifier le mot de passe", "Ajouter un nouveau mot de passe de compte", auth()->user()->getIdUserAttribute())){
+                if($this->creerJounral("Modification de mot de passe", "Ajout d'un nouveau mot de passe de compte", auth()->user()->getIdUserAttribute())){
                     return back()->with('success', 'Votre mot de passe a été changé avec succès. Vous pouvez maintenant utiliser votre nouveau mot de passe.');
                 }
             }
@@ -63,6 +64,32 @@
 
         public function ouvrirEditPreferences(){
             return view('User.edit_preferences');
+        }
+
+        public function ouvrirEditPhoto(){
+            return view('User.edit_photo');
+        }
+
+        public function gestionUpdatePhoto(Request $request){
+            if($this->updatePhotoProfil($request, auth()->user()->getIdUserAttribute())){
+                if($this->creerJounral("Modification du photo de profil", "Modification de photo de profil de compte", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', 'Votre photo de profil a été changé avec succès. Vous pouvez maintenant consulter votre nouveau image.');
+                }
+            }
+
+            else{
+                return redirect('/erreur');
+            }
+        }
+
+        public function updatePhotoProfil($request, $id_user){
+            $filename = time().$request->file('new_photo')->getClientOriginalName();
+            $path = $request->file('new_photo')->storeAs('/images/'.$id_user, $filename , 'public');
+            $img = '/storage/'.$path;
+
+            return User::where('id_user', '=', $id_user)->update([
+                    'image' => $img
+            ]);
         }
     }
 ?>

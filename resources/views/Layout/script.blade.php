@@ -2,3 +2,4 @@
 <script src = "{{asset('plugins/popper.min.js')}}"></script>
 <script src = "{{asset('plugins/bootstrap/js/bootstrap.min.js')}}"></script>
 <script src = "{{asset('js/app.js')}}"></script> 
+<script src = "{{asset('js/functions.js')}}"></script> 

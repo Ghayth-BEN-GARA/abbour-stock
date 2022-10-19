@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en"> 
     <head>
-        <title>Abbour'Stock Dépôt | Modifier le mot de passe</title> 
+        <title>Abbour'Stock Dépôt | Modifier la photo de profil</title> 
         @include('Layout.head_app')
     </head> 
     <body class = "app">
@@ -20,15 +20,15 @@
                     <hr class = "mb-4">
                     <div class = "row g-4 settings-section">
                         <div class = "col-12 col-md-4">
-                            <h3 class = "section-title">Mot de passe</h3>
+                            <h3 class = "section-title">Photo de profil</h3>
                             <div class = "section-intro">
-                                Gérez votre mot de passe enregistrée dans l'application web. Elle est stockée de manière sécurisée dans votre compte sur l'application Abbour'Stock Dépôt.
+                                Modifiez votre photo de profil enregistrée dans l'application Abbour'Stock Dépôt.
                             </div>
                         </div>
                         <div class = "col-12 col-md-8">
                             <div class = "app-card app-card-settings shadow-sm p-4">
                                 <div class = "app-card-body">
-                                    <form class = "settings-form" name = "f" id = "f" method = "post" action = "{{url('/update-password')}}">
+                                    <form class = "settings-form" name = "f" id = "f" method = "post" action = "{{url('/update-photo')}}" enctype = "multipart/form-data">
                                         @csrf
                                         @if (Session::has('erreur'))
                                             <div class = "alert alert-danger d-flex align-items-center" role = "alert">
@@ -51,21 +51,17 @@
                                         @endif
                                         <div class = "mb-3">
                                             <label class = "form-label">
-                                                Nouveau mot de passe
+                                                Nouvelle photo de profil
                                                 <span class = "ms-2" data-container = "body" data-bs-toggle = "popover" data-trigger = "hover" data-placement = "top">
-                                                    <i class = "lni lni-lock"></i>
+                                                    <i class = "lni lni-image"></i>
                                                 </span>
                                             </label>
-                                            <input type = "password" class = "form-control" id = "new_password" name = "new_password" placeholder = "Entrez votre nouveau mot de passe.." required>
+                                            <input type = "file" class = "form-control" id = "new_photo" name = "new_photo" placeholder = "Entrez votre nouvelle photo de profil.." accept = "image/jpeg" required>
                                         </div>
                                         <div class = "mb-3">
-                                            <label class = "form-label">
-                                                Confirmation de mot de passe
-                                                <span class = "ms-2" data-container = "body" data-bs-toggle = "popover" data-trigger = "hover" data-placement = "top">
-                                                    <i class = "lni lni-lock"></i>
-                                                </span>
-                                            </label>
-                                            <input type = "password" class = "form-control" id = "confirm_new_password" name = "confirm_new_password" placeholder = "Confirmez votre nouveau mot de passe.." required>
+                                            <div class = "item-data">
+                                                <img class = "profile-image-load" src = "{{auth()->user()->getImageUserAttribute()}}" alt = "Photo de profil" id = "image_load">
+                                            </div>
                                         </div>
                                         <button type = "submit" class = "btn app-btn-primary">Modifier</button>
                                     </form>
@@ -76,9 +72,15 @@
                 </div>
             </div>
         </div>
-        <footer class = "app-auth-footer app-auth-footer2">
+        <footer class = "app-auth-footer">
             @include('Layout.footer')
         </footer>
         @include('Layout.script')
+        <script src = "{{asset('js/jquery.js')}}"></script> 
+        <script>
+            $("#new_photo").change(function(){
+                readURL(this);
+            });
+        </script>
     </body>
 </html>
