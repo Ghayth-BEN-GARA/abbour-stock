@@ -21,4 +21,6 @@
     Route::get('/logout', [AuthentificationUserController::class, 'gestionDeconnexion']);
     Route::get('/error', [AuthentificationUserController::class, 'ouvrirError']);
     Route::get('/profil', [UserController::class, 'ouvrirProfil'])->middleware('session_not_exist');
+    Route::get('/edit-password', [UserController::class, 'ouvrirEditPassword'])->middleware('session_not_exist');
+    Route::post('/update-password', [UserController::class, 'gestionUpdatePassword']);
 ?>

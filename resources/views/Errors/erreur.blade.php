@@ -24,7 +24,7 @@
                         Pour des raisons techniques, nous ne pouvons pas répondre à votre demande pour le moment.
 				        </div>
                         @if (Session::has('email'))
-				            <a class = "btn app-btn-primary" href = "{{url('/home')}}">Aller à la page d'accueil</a>
+				            <a class = "btn app-btn-primary" href = "{{ url()->previous() }}">Retournez à la page précédente</a>
                         @else
                             <a class = "btn app-btn-primary" href = "{{url('/')}}">Aller à la page d'authentification</a>
                         @endif
