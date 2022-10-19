@@ -70,7 +70,7 @@
                             <hr class = "dropdown-divider">
                         </li>
                         <li>
-                            <a class = "dropdown-item" href = "#">Déconnexion</a>
+                            <a class = "dropdown-item" href = "{{url('/logout')}}">Déconnexion</a>
                         </li>
                     </ul>
                 </div>

@@ -72,5 +72,39 @@
         public function ouvrirHome(){
             return view('home');
         }
+
+        public function gestionDeconnexion(){
+            if($this->creerJounral("Déconnexion", "Déconnexion de votre session utilisateur et quitter l'application", $this->getIdUserConnected())){
+                if($this->logout()){
+                    return redirect('/');
+                }
+
+                else{
+                    return redirect('/erreur');
+                }
+            }
+
+            else{
+                return redirect('/erreur');
+            }
+        }
+
+        public function logout(){
+            Session::forget('email');
+            Session::forget('type');
+            Session::flush();
+
+            if (!Session::has('email')){
+                return true;
+            }
+        }
+
+        public function getIdUserConnected(){
+            return auth()->user()->getIdUserAttribute();
+        }
+
+        public function ouvrirError(){
+            return view('Errors.erreur');
+        }
     }
 ?>
