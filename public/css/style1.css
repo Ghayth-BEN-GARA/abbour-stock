@@ -6572,8 +6572,8 @@ fieldset:disabled .btn {
     background-color: RGBA(92, 179, 119, var(--bs-bg-opacity, 1)) !important;
 }
 .text-bg-danger {
-    color: #000 !important; 
-    background-color: RGBA(210, 109, 105, var(--bs-bg-opacity, 1)) ;
+    color: #d50100;
+    background: rgba(213, 1, 0, 0.1); 
 }
 .text-bg-warning {
     color: #000 !important;
@@ -7733,10 +7733,8 @@ fieldset:disabled .btn {
 }
 .bg-success {
     --bs-bg-opacity: 1;
-    background-color: rgba(
-        var(--bs-success-rgb),
-        var(--bs-bg-opacity)
-    ) !important;
+    color: #219653;
+    background: rgba(33, 150, 83, 0.1);
 }
 .bg-danger {
     color: #d50100 !important;
@@ -7751,7 +7749,8 @@ fieldset:disabled .btn {
 }
 .bg-info {
     --bs-bg-opacity: 1;
-    background-color: rgba(var(--bs-info-rgb), var(--bs-bg-opacity)) !important;
+    color: #97ca31;
+    background: rgba(151, 202, 49, 0.1); 
 }
 .bg-black {
     --bs-bg-opacity: 1;
@@ -11442,6 +11441,7 @@ button.close:focus {
 }
 .app-card-notification .action-link {
     font-size: 0.875rem;
+    color: #F7941E;
 }
 .app-card-notification .app-card-footer {
     background: #fafbff;

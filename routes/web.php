@@ -3,6 +3,7 @@
     use App\Http\Controllers\AuthentificationUserController;
     use App\Http\Controllers\UserController;
     use App\Http\Controllers\JournalController;
+    use App\Http\Controllers\DemandeModificationTypeController;
 
     /*
     |--------------------------------------------------------------------------
@@ -48,6 +49,7 @@
     Route::get('/edit-email', [UserController::class, 'ouvrirEditEmail'])->middleware('session_not_open_administrateur');
     Route::post('/update-email', [UserController::class, 'gestionUpdateEmail']);
     Route::get('/edit-type-compte', [UserController::class, 'ouvrirEditTypeCompte'])->middleware('session_not_open_administrateur');
-    Route::post('/update-type-compte-user', [UserController::class, 'gestionCreateDemandeModificationType']);
+    Route::post('/update-type-compte-user', [DemandeModificationTypeController::class, 'gestionCreateDemandeModificationType']);
+    Route::get('/mes-demandes', [DemandeModificationTypeController::class, 'ouvrirMesDemandes'])->middleware('session_not_open_administrateur');
 ?>
 

@@ -53,7 +53,7 @@
                         </li>
                         @if (session('type') == 'Utilisateur')
                             <li>
-                                <a class = "dropdown-item" href = "#">Mes demandes</a>
+                                <a class = "dropdown-item" href = "{{url('/mes-demandes')}}">Mes demandes</a>
                             </li>
                         @else
                             <li>

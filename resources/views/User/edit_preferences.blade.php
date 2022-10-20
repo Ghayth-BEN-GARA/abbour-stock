@@ -16,7 +16,7 @@
         <div class = "app-wrapper">
             <div class = "app-content pt-3 p-md-3 p-lg-4">
                 <div class = "container-xl">
-                    <h1 class = "app-page-title">Paramètres</h1>
+                    <h1 class = "app-page-title">Préférences</h1>
                     <div class = "row gy-4">
                         <div class = "col-12 col-lg-6">
                             <div class = "app-card app-card-settings shadow-sm p-4">
@@ -127,7 +127,7 @@
                                                     <i class = "lni lni-agenda"></i>
                                                 </span>
                                             </label>
-                                            <input type = "text" class = "form-control-plaintext" id = "type" name = "type" placeholder = "Entrez votre nouvel type.."
+                                            <input type = "text" class = "form-control-plaintext text-capitalize" id = "type" name = "type" placeholder = "Entrez votre nouvel type.."
                                                 value = "<?php
                                                             setlocale (LC_TIME, 'fr_FR.utf8','fra');
                                                             echo strftime("%A %d %B %Y",strtotime(strftime(auth()->user()->getDateCreationUserAttribute())))  

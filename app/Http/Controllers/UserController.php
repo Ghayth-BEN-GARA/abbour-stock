@@ -333,7 +333,7 @@
             }
 
             else if($this->storeUser($request->email, $request->password, $request->cin, $request->nom, $request->prenom, $request->genre, $request->naissance, $request->mobile, $request->adresse, $request->type)){
-                if($this->creerJounral("Création d'un nouveau compte", "Créer un nouveau compte pour l'utilisateur ".$request->prenom." ".$request->nom."en ajoutant les informations requises.", auth()->user()->getIdUserAttribute())){
+                if($this->creerJounral("Création d'un nouveau compte", "Créer un nouveau compte pour l'utilisateur ".$request->prenom." ".$request->nom." en ajoutant les informations requises.", auth()->user()->getIdUserAttribute())){
                     return back()->with('success', "Vos informations ont été modifiées avec succès. Vous pouvez désormais les consulter à tout moment.");
                 }
             }
@@ -408,37 +408,6 @@
 
         public function ouvrirEditTypeCompte(){
             return view('User.edit_type_compte');
-        }
-
-        public function checkUserDemandeModificationType(){
-            return (DemandeModificationType::where('id_user', '=', auth()->user()->getIdUserAttribute())->where('etat_demande', '=', 0)->exists());
-        }
-
-        public function gestionCreateDemandeModificationType(Request $request){
-            if($this->checkUserDemandeModificationType()){
-                return back()->with('erreur2', "L'administrateur n'a pas encore répondu à votre dernière demande, vous ne pouvez donc pas faire une autre demande pour changer le type de votre compte.");
-            }
-
-            else if($this->getTypeUser() == $request->new_type){
-                return back()->with('erreur2', "Vous avez choisir votre ancien type de compte.");
-            }
-
-            else if($this->creerDemandeModificationTypeUser($request->new_type, auth()->user()->getIdUserAttribute())){
-                if($this->creerJounral("Modification de type de compte", "Choisir un nouveau type de compte d'utiliateur", auth()->user()->getIdUserAttribute())){
-                    return back()->with('success2', "Votre demande de modification de rôle a été envoyée avec succès. Vous recevrez une notification avec une présentation de la décision dès que possible.");
-                }
-            }
-        }
-
-        public function creerDemandeModificationTypeUser($type, $id_user){
-            $demande = new DemandeModificationType();
-            $demande->setTypeDemandeAttribute($type);
-            $demande->setIdUserAttribute($id_user);
-            return $demande->save();
-        }
-
-        public function getTypeUser(){
-            return User::where('id_user', '=', auth()->user()->getIdUserAttribute())->first()->getTypeUserAttribute();
         }
     }
 ?>
