@@ -1,0 +1,36 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    box-sizing: border-box;
+}
+
+.division{
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+
+.division a, .division span{
+    text-decoration: none;
+    font-size: 14px;
+    margin: 5px;
+    padding: 6px 9px;
+    border-radius: 50%;
+    color: black;
+    cursor: pointer;
+}
+
+.division .pg:hover, .division a.active{
+    background-color: #F7941E;
+    color: white;
+    transition: 200ms ease;
+}
+
+.division a.disabled {
+    pointer-events: none;
+    cursor: default;
+}
+
+#pg{
+    text-align: center;
+}

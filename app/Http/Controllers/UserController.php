@@ -5,7 +5,7 @@
     use Illuminate\Support\Facades\File;
     use Illuminate\Support\Str;
     use App\Models\User;
-    use App\Models\journal;
+    use App\Models\Journal;
 
     class UserController extends Controller{
         public function ouvrirProfil(){

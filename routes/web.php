@@ -2,6 +2,7 @@
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\AuthentificationUserController;
     use App\Http\Controllers\UserController;
+    use App\Http\Controllers\JournalController;
 
     /*
     |--------------------------------------------------------------------------
@@ -40,5 +41,7 @@
     Route::post('/update-cin', [UserController::class, 'gestionUpdateCin']);
     Route::get('/edit-profil', [UserController::class, 'ouvrirEditProfil'])->middleware('session_not_exist');
     Route::post('/update-profil', [UserController::class, 'gestionUpdateProfil']);
+    Route::get('/parametres', [JournalController::class, 'ouvrirParametres'])->middleware('session_not_exist');
+    Route::get('/delete-journal', [JournalController::class, 'gestionDeleteJournalProfil']);
 ?>
 
