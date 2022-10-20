@@ -21,7 +21,7 @@
                         <div class = "col-12 col-lg-6">
                             <div class = "app-card app-card-settings shadow-sm p-4">
                                 <div class = "app-card-body">
-                                    <form class = "settings-form" name = "f-email" id = "f-email" method = "post" action = "#">
+                                    <form class = "settings-form" name = "f-email" id = "f-email" method = "post" action = "{{url('/update-email')}}">
                                         @csrf
                                         @if (Session::has('erreur3'))
                                             <div class = "alert alert-danger d-flex align-items-center" role = "alert">
@@ -50,10 +50,10 @@
                                                 </span>
                                             </label>
                                             @if (session('type') == 'Administrateur')
-                                                <input type = "email" class = "form-control" id = "email" name = "email" placeholder = "Entrez votre nouvelle adresse email.." value = "{{auth()->user()->getEmailUserAttribute()}}" required disabled>
+                                                <input type = "email" class = "form-control" id = "new_email" name = "new_email" placeholder = "Entrez votre nouvelle adresse email.." value = "{{auth()->user()->getEmailUserAttribute()}}" required disabled>
                                                 <p class = "form-text text-danger">La modification de l'adresse e-mail n'est pas disponible pour l'administrateur</p>
                                             @else
-                                                <input type = "email" class = "form-control" id = "email" name = "email" placeholder = "Entrez votre nouvelle adresse email.." value = "{{auth()->user()->getEmailUserAttribute()}}" required>
+                                                <input type = "email" class = "form-control" id = "new_email" name = "new_email" placeholder = "Entrez votre nouvelle adresse email.." value = "{{auth()->user()->getEmailUserAttribute()}}" required>
                                             @endif
                                         </div>
                                         @if (session('type') == 'Administrateur')

@@ -64,6 +64,7 @@
             'session_exist' => \App\Http\Middleware\SessionExist::class,
             'session_not_exist' => \App\Http\Middleware\SessionNotExist::class,
             'session_not_open_user' => \App\Http\Middleware\SessionNotOpenUser::class,
+            'session_not_open_administrateur' => \App\Http\Middleware\SessionNotOpenAdministrateur::class,
         ];
     }
 ?>

@@ -45,5 +45,7 @@
     Route::get('/delete-journal', [JournalController::class, 'gestionDeleteJournalProfil']);
     Route::get('/add-user', [UserController::class, 'ouvrirAddUser'])->middleware('session_not_open_user');
     Route::post('/create-user', [UserController::class, 'gestionCreateUser']);
+    Route::get('/edit-email', [UserController::class, 'ouvrirEditEmail'])->middleware('session_not_open_administrateur');
+    Route::post('/update-email', [UserController::class, 'gestionUpdateEmail']);
 ?>
 

@@ -6,6 +6,7 @@
     use Illuminate\Support\Str;
     use App\Models\User;
     use App\Models\Journal;
+    use Session;
 
     class UserController extends Controller{
         public function ouvrirProfil(){
@@ -331,7 +332,7 @@
             }
 
             else if($this->storeUser($request->email, $request->password, $request->cin, $request->nom, $request->prenom, $request->genre, $request->naissance, $request->mobile, $request->adresse, $request->type)){
-                if($this->creerJounral("Création d'un nouveau compte", "Créer un nouveau compte pour l'utilisateur ".$request->prenom." ".$request->nom."en ajoutant les informations requises.", $this->getIdUser($request->email))){
+                if($this->creerJounral("Création d'un nouveau compte", "Créer un nouveau compte pour l'utilisateur ".$request->prenom." ".$request->nom."en ajoutant les informations requises.", auth()->user()->getIdUserAttribute())){
                     return back()->with('success', "Vos informations ont été modifiées avec succès. Vous pouvez désormais les consulter à tout moment.");
                 }
             }
@@ -360,15 +361,44 @@
             return (User::where('email', '=', $email)->exists());
         }
 
-        public function sauvegarderImage($request, $id_user){
-            $filename = time().$request->file('photo')->getClientOriginalName();
-            $path = $request->file('photo')->storeAs('/images/'.$id_user, $filename , 'public');
-            $img = '/storage/'.$path;
-            return $img;
-        }
-
         public function getIdUser($email){
             return User::where('email', '=', $email)->first()->getIdUserAttribute();
+        }
+
+        public function ouvrirEditEmail(){
+            return view('User.edit_email');
+        }
+
+        public function gestionUpdateEmail(Request $request){
+            if($this->checkUserEmail($request->new_email)){
+                return back()->with('erreur3', "Un autre compte créé avec cette adresse email.");
+            }
+
+            else if($this->updateEmail($request->new_email)){
+                $this->removeSessionEmail();
+                $this->addSessionEmail($request->new_email);
+                if($this->creerJounral("Modification d'adresse email", "Choisir un nouveau adresse email d'utiliateur", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success3', "Votre adresse email a été changé avec succès. Vous pouvez maintenant consulter votre nouvelle numéro de carte.");
+                }
+            }
+
+            else{
+                return back()->with('erreur3', "Vous avez saisir votre ancien adresse email.");
+            }
+        }
+
+        public function updateEmail($email){
+            return User::where('id_user', '=', auth()->user()->getIdUserAttribute())->update([
+                'email' => $email
+            ]);
+        }
+
+        public function removeSessionEmail(){
+            Session::forget('email');
+        }
+
+        public function addSessionEmail($email){
+            Session::put('email', $email);
         }
     }
 ?>

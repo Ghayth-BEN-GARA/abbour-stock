@@ -176,7 +176,7 @@
                                                 @if (session('type') == 'Administrateur')
                                                     <a class = "badge bg-danger" href = "javascript:void(0)">Indisponible</a>
                                                 @else
-                                                    <a class = "btn-sm app-btn-secondary" href = "#">Modifier</a>
+                                                    <a class = "btn-sm app-btn-secondary" href = "{{url('/edit-email')}}">Modifier</a>
                                                 @endif
                                             </div>
                                         </div>
