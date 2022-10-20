@@ -43,5 +43,7 @@
     Route::post('/update-profil', [UserController::class, 'gestionUpdateProfil']);
     Route::get('/parametres', [JournalController::class, 'ouvrirParametres'])->middleware('session_not_exist');
     Route::get('/delete-journal', [JournalController::class, 'gestionDeleteJournalProfil']);
+    Route::get('/add-user', [UserController::class, 'ouvrirAddUser'])->middleware('session_not_open_user');
+    Route::post('/create-user', [UserController::class, 'gestionCreateUser']);
 ?>
 

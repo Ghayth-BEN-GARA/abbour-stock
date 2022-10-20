@@ -304,5 +304,71 @@
                 'image' => $img
             ]);
         }
+
+        public function ouvrirAddUser(){
+            return view('User.add_user');
+        }
+
+        public function gestionCreateUser(Request $request){
+            if($this->checkUserEmail($request->email)){
+                return back()->with('erreur', "Un autre compte créé avec cette adresse email.");
+            }
+
+            else if($this->checkUserCin($request->cin)){
+                return back()->with('erreur', "Un autre compte créé avec ce numéro de carte d'identité.");
+            }
+
+            else if(Str::length($request->cin) != 8){
+                return back()->with('erreur', "Vérifiez que le numéro de carte d'identité est composé de 8 chiffres.");
+            }
+
+            else if($this->checkUserMobile($request->mobile)){
+                return back()->with('erreur', "Un autre compte créé avec ce numéro mobile.");
+            }
+
+            else if(Str::length($request->mobile) != 8){
+                return back()->with('erreur', "Vérifiez que le numéro mobile est composé de 8 chiffres.");
+            }
+
+            else if($this->storeUser($request->email, $request->password, $request->cin, $request->nom, $request->prenom, $request->genre, $request->naissance, $request->mobile, $request->adresse, $request->type)){
+                if($this->creerJounral("Création d'un nouveau compte", "Créer un nouveau compte pour l'utilisateur ".$request->prenom." ".$request->nom."en ajoutant les informations requises.", $this->getIdUser($request->email))){
+                    return back()->with('success', "Vos informations ont été modifiées avec succès. Vous pouvez désormais les consulter à tout moment.");
+                }
+            }
+
+            else{
+                return redirect('erreur');
+            }
+        }
+
+        public function storeUser($email, $password, $cin, $nom, $prenom, $genre, $naissance, $mobile, $adresse, $type){
+            $user = new User();
+            $user->setEmailUserAttribute($email);
+            $user->setPasswordUserAttribute(bcrypt($password));
+            $user->setCinUserAttribute($cin);
+            $user->setNomUserAttribute($nom);
+            $user->setPrenomUserAttribute($prenom);
+            $user->setGenreUserAttribute($genre);
+            $user->setNaissanceUserAttribute($naissance);
+            $user->setMobileUserAttribute($mobile);
+            $user->setAdresseUserAttribute($adresse);
+            $user->setTypeUserAttribute($type);
+            return $user->save();
+        }
+
+        public function checkUserEmail($email){
+            return (User::where('email', '=', $email)->exists());
+        }
+
+        public function sauvegarderImage($request, $id_user){
+            $filename = time().$request->file('photo')->getClientOriginalName();
+            $path = $request->file('photo')->storeAs('/images/'.$id_user, $filename , 'public');
+            $img = '/storage/'.$path;
+            return $img;
+        }
+
+        public function getIdUser($email){
+            return User::where('email', '=', $email)->first()->getIdUserAttribute();
+        }
     }
 ?>

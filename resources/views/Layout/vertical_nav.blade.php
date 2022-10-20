@@ -41,7 +41,7 @@
                     <div id = "submenu-1" class = "collapse submenu submenu-1" data-bs-parent = "#menu-accordion">
                         <ul class = "submenu-list list-unstyled">
                             <li class = "submenu-item">
-                                <a class = "submenu-link" href = "#">Créer</a>
+                                <a class = "submenu-link" href = "{{url('/add-user')}}">Créer</a>
                             </li>
                             <li class = "submenu-item">
                                 <a class = "submenu-link" href = "#">Gérer</a>
