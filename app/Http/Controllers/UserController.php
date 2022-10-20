@@ -370,7 +370,7 @@
         }
 
         public function gestionUpdateEmail(Request $request){
-            if($this->checkUserEmail($request->new_email)){
+            if($this->checkUserEmailUpdateUser($request->new_email)){
                 return back()->with('erreur3', "Un autre compte créé avec cette adresse email.");
             }
 
@@ -399,6 +399,10 @@
 
         public function addSessionEmail($email){
             Session::put('email', $email);
+        }
+
+        public function checkUserEmailUpdateUser($email){
+            return (User::where('email', '=', $email)->where('email','!=',auth()->user()->getEmailUserAttribute())->exists());
         }
     }
 ?>
