@@ -68,7 +68,7 @@
                         <div class = "col-12 col-lg-6">
                             <div class = "app-card app-card-settings shadow-sm p-4">
                                 <div class = "app-card-body">
-                                    <form class = "settings-form" name = "f-type" id = "f-type" method = "post" action = "#">
+                                    <form class = "settings-form" name = "f-type" id = "f-type" method = "post" action = "{{url('/update-type-compte-user')}}">
                                         @csrf
                                         @if (Session::has('erreur2'))
                                             <div class = "alert alert-danger d-flex align-items-center" role = "alert">

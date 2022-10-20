@@ -47,5 +47,7 @@
     Route::post('/create-user', [UserController::class, 'gestionCreateUser']);
     Route::get('/edit-email', [UserController::class, 'ouvrirEditEmail'])->middleware('session_not_open_administrateur');
     Route::post('/update-email', [UserController::class, 'gestionUpdateEmail']);
+    Route::get('/edit-type-compte', [UserController::class, 'ouvrirEditTypeCompte'])->middleware('session_not_open_administrateur');
+    Route::post('/update-type-compte-user', [UserController::class, 'gestionCreateDemandeModificationType']);
 ?>
 
