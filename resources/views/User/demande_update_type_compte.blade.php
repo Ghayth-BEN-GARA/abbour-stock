@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en"> 
     <head>
-        <title>Abbour'Stock Dépôt | Mes demandes</title> 
+        <title>Abbour'Stock Dépôt | Demande de modification de type de compte</title> 
         @include('Layout.head_app')
         <link rel = "stylesheet" href = "{{asset('css/pagination.css')}}">
     </head> 
@@ -41,47 +41,48 @@
                             </div>
                         </div>         
                     @endif
-                    @if(!empty($demandes) && ($demandes->count()))
-                        @foreach($demandes as $data)
-                            <div class = "app-card app-card-notification shadow-sm mb-4">
-                                <div class = "app-card-header px-4 py-3">
-                                    <div class = "row g-3 align-items-center">
-                                        <div class = "col-12 col-lg-auto text-center text-lg-start">						        
-				                            <img class = "profile-image" src = "{{auth()->user()->getImageUserAttribute()}}" alt = "Photo de profil">
-					                    </div>
-                                        <div class = "col-12 col-lg-auto text-center text-lg-start">
-                                            <div class = "notification-type mb-2">
-                                                @if($data->getEtatDemandeAttribute() == 0)
-                                                    <span class = "badge bg-info">En attente</span>
-                                                @elseif($data->getEtatDemandeAttribute() == 1)
-                                                    <span class = "badge bg-success">Acceptée</span>
-                                                @else
-                                                    <span class = "badge bg-danger">Refusée</span>
-                                                @endif
-                                            </div>
-                                            <h4 class = "notification-title mb-1 text-capitalize">Demande de modification de type</h4>
-                                            <ul class = "notification-meta list-inline mb-0">
-                                                <li class = "list-inline-item">{{App\Http\Controllers\DemandeModificationTypeController::getDifferenceDate($data->getDateTimeDemandeAttribute())}}</li>
-                                                <li class = "list-inline-item">|</li>
-                                                <li class="list-inline-item">{{auth()->user()->getFullNameUserAttribute()}}</li>
-                                            </ul>
+                    @if(!empty($demande) && ($demande->count()))
+                        <div class = "app-card app-card-notification shadow-sm mb-4">
+                            <div class = "app-card-header px-4 py-3">
+                                <div class = "row g-3 align-items-center">
+                                    <div class = "col-12 col-lg-auto text-center text-lg-start">						        
+				                        <img class = "profile-image" src = "{{$demande->image}}" alt = "Photo de profil">
+					                </div>
+                                    <div class = "col-12 col-lg-auto text-center text-lg-start">
+                                        <div class = "notification-type mb-2">
+                                            @if($demande->getEtatDemandeAttribute() == 0)
+                                                <span class = "badge bg-info">En attente</span>
+                                            @elseif($demande->getEtatDemandeAttribute() == 1)
+                                                <span class = "badge bg-success">Acceptée</span>
+                                            @else
+                                                <span class = "badge bg-danger">Refusée</span>
+                                            @endif
                                         </div>
+                                        <h4 class = "notification-title mb-1 text-capitalize">Demande de modification de type</h4>
+                                        <ul class = "notification-meta list-inline mb-0">
+                                            <li class = "list-inline-item">{{App\Http\Controllers\DemandeModificationTypeController::getDifferenceDate($demande->getDateTimeDemandeAttribute())}}</li>
+                                            <li class = "list-inline-item">|</li>
+                                            <li class="list-inline-item">{{$demande->prenom}} {{$demande->nom}}</li>
+                                        </ul>
                                     </div>
                                 </div>
-                                <div class = "app-card-body p-4">
-                                    <div class = "notification-content">
-                                        Vous avez envoyé une demande de changement de type de compte à l'administrateur pour changer le type de votre compte de <b>{{auth()->user()->getTypeUserAttribute()}}</b> à <b>{{$data->getTypeDemandeAttribute()}}</b>. Vous pouvez voir les informations de votre demande ici.
-                                    </div>
-                                </div>
-                                @if($data->getEtatDemandeAttribute() == 0)
-                                    <div class = "app-card-footer px-4 py-3">
-                                        <a class = "action-link" href = "{{url('/delete-demande?id_demande='.$data->getIdDemandeAttribute())}}" style = "color:inherit">
-                                            Supprimer la demande <i class = "lni lni-trash-can"></i>
-                                        </a>
-                                    </div>
-                                @endif
                             </div>
-                        @endforeach
+                            <div class = "app-card-body p-4">
+                                <div class = "notification-content">
+                                    L'utilisateur {{$demande->prenom}} {{$demande->nom}} vous a envoyé une demande de changement de type de compte pour changer le type de son compte de <b>{{$demande->type}}</b> à <b>{{$demande->getTypeDemandeAttribute()}}</b>. Vous pouvez voir les informations de demande ici.
+                                </div>
+                            </div>
+                            @if($demande->getEtatDemandeAttribute() == 0)
+                                <div class = "app-card-footer px-4 py-3">
+                                    <a class = "action-link mx-2" href = "{{url('/gestion-modifier-etat-demande?id_demande='.$demande->getIdDemandeAttribute().'&resp=1')}}" style = "color:inherit">
+                                        Accepter la demande <i class = "lni lni-checkmark-circle"></i>
+                                    </a>
+                                    <a class = "action-link" href = "{{url('/gestion-modifier-etat-demande?id_demande='.$demande->getIdDemandeAttribute().'&resp=-1')}}" style = "color:inherit">
+                                        Refuser la demande <i class = "lni lni-thumbs-down"></i>
+                                    </a>
+                                </div>
+                            @endif
+                        </div>
                     @else
                         <div class="alert alert-warning d-flex align-items-center" role = "alert">
                             <svg xmlns = "http://www.w3.org/2000/svg" width = "24" height = "24" fill = "currentColor" class = "bi flex-shrink-0 me-2" viewBox = "0 0 16 16" role = "img" aria-label = "Warning:">
@@ -92,9 +93,6 @@
                             </div>
                         </div>
                     @endif
-                    <div class = "row text-center">
-                        {{$demandes->links("vendor.pagination.normal_pagination")}}
-                    </div>
                 </div>
             </div>
         </div>

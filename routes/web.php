@@ -52,5 +52,7 @@
     Route::post('/update-type-compte-user', [DemandeModificationTypeController::class, 'gestionCreateDemandeModificationType']);
     Route::get('/mes-demandes', [DemandeModificationTypeController::class, 'ouvrirMesDemandes'])->middleware('session_not_open_administrateur');
     Route::get('/delete-demande', [DemandeModificationTypeController::class, 'gestionDeleteDemande']);
+    Route::get('/demande-update-type-compte', [DemandeModificationTypeController::class, 'ouvrirDemandeUpdateTypeCompte'])->middleware('session_not_open_user');
+    Route::get('/gestion-modifier-etat-demande', [DemandeModificationTypeController::class, 'gestionAccepterRefuserDemande']);
 ?>
 

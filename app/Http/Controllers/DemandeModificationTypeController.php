@@ -102,5 +102,26 @@
         public function deleteDemande($id_demande){
             return DemandeModificationType::where('id_demande',$id_demande)->delete();
         }
+
+        public function ouvrirDemandeUpdateTypeCompte(Request $request){
+            $demande = $this->getDetailsDemandeUpdateTypeAcount($request->input('id_demande'));
+            return view('User.demande_update_type_compte', compact('demande'));
+        }
+
+        public function getDetailsDemandeUpdateTypeAcount($id_demande){
+            return (DemandeModificationType::join('users', 'users.id_user', '=', 'demandes_modification_type.id_user')
+                    ->where('demandes_modification_type.id_demande', '=', $id_demande)
+                    ->first());
+        }
+
+        public function gestionAccepterRefuserDemande(Request $request){
+            # code...
+        }
+
+        public function updateDemandeModificationTypeCompte($id_demande, $new_etat){
+            return DemandeModificationType::where('id_demande', '=', $id_demande)->update([
+                'etat_demande' => $new_etat
+            ]);
+        }
     }
 ?>
