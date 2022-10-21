@@ -86,5 +86,21 @@
                 return ("Il y a ".round($differenceDates / (86400 * 365))." ans.");
             }
         }
+
+        public function gestionDeleteDemande(Request $request){
+            if($this->deleteDemande($request->input('id_demande'))){
+                if($this->creerJounral("Annulation de demande", "Annuler la demande de modification de type de compte envoyé à l'administrateur de l'application.", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', "Votre demande de modification de rôle a été annulé avec succès. Vous pouvez créer une nouvelle demande à tout moment.");
+                }
+            }
+
+            else{
+                return redirect('/erreur');
+            }
+        }
+
+        public function deleteDemande($id_demande){
+            return DemandeModificationType::where('id_demande',$id_demande)->delete();
+        }
     }
 ?>
