@@ -2,10 +2,12 @@
     namespace App\Http\Controllers;
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Auth;
+    use Illuminate\Support\Facades\Mail;
     use App\Models\User;
     use App\Models\Journal;
     use App\Models\DemandeModificationType;
     use Carbon\Carbon;
+    use App\Mail\EnvoyerNotificationDecisionAdministrateur;
 
     class DemandeModificationTypeController extends Controller{
     
@@ -90,7 +92,7 @@
         public function gestionDeleteDemande(Request $request){
             if($this->deleteDemande($request->input('id_demande'))){
                 if($this->creerJounral("Annulation de demande", "Annuler la demande de modification de type de compte envoyé à l'administrateur de l'application.", auth()->user()->getIdUserAttribute())){
-                    return back()->with('success', "Votre demande de modification de rôle a été annulé avec succès. Vous pouvez créer une nouvelle demande à tout moment.");
+                    return back()->with('success', "Votre demande de modification de type de compte a été annulé avec succès. Vous pouvez créer une nouvelle demande à tout moment.");
                 }
             }
 
@@ -109,19 +111,51 @@
         }
 
         public function getDetailsDemandeUpdateTypeAcount($id_demande){
-            return (DemandeModificationType::join('users', 'users.id_user', '=', 'demandes_modification_type.id_user')
+            return DemandeModificationType::join('users', 'users.id_user', '=', 'demandes_modification_type.id_user')
                     ->where('demandes_modification_type.id_demande', '=', $id_demande)
-                    ->first());
+                    ->first();
         }
 
         public function gestionAccepterRefuserDemande(Request $request){
-            # code...
+            if($this->updateDemandeModificationTypeCompte($request->input('id_demande'), $request->input('resp'))){
+                if($this->envoyerEmailDecisionModificationTypeCompte($request->input('id_user'), $request->input('resp'))){
+                    if($this->creerJounral("Gestion de la demande", "Vous avez bien géré la demande de modification de type de compte.", auth()->user()->getIdUserAttribute())){
+                        return back()->with('success', "Votre demande de modification de type de compte a été géré avec succès. Vous pouvez créer une nouvelle demande à tout moment.");
+                    }
+                }
+            }
+
+            else{
+                return redirect('/erreur');
+            }
         }
 
         public function updateDemandeModificationTypeCompte($id_demande, $new_etat){
             return DemandeModificationType::where('id_demande', '=', $id_demande)->update([
                 'etat_demande' => $new_etat
             ]);
+        }
+
+        public function envoyerEmailDecisionModificationTypeCompte($id_user, $new_etat){
+            $mailData = [
+                'email' => $this->getEmailAttribute($id_user),
+                'prenom' => $this->getPrenomAttribute($id_user),
+                'fullname' => $this->getFullNameAttribute($id_user),
+                'etat_demande' => $new_etat
+            ];
+            return (Mail::to($this->getEmailAttribute($id_user))->send(new EnvoyerNotificationDecisionAdministrateur($mailData)));
+        }
+
+        public function getEmailAttribute($id_user){
+            return User::where('id_user',$id_user)->first()->getEmailUserAttribute();
+        }
+
+        public function getPrenomAttribute($id_user){
+            return User::where('id_user',$id_user)->first()->getPrenomUserAttribute();
+        }
+
+        public function getFullNameAttribute($id_user){
+            return User::where('id_user',$id_user)->first()->getFullNameUserAttribute();
         }
     }
 ?>

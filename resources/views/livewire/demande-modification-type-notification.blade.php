@@ -40,7 +40,7 @@
                     <div class = "item p-3">
                         <div class = "row gx-2 justify-content-between align-items-center">
                             <div class = "col-auto">
-                                <img class = "profile-image" src = "{{auth()->user()->getImageAttribute()}}" alt = "Photo de profil">
+                                <img class = "profile-image" src = "{{auth()->user()->getImageUserAttribute()}}" alt = "Photo de profil">
                             </div>
                             <div class = "col">
                                 <div class = "info">

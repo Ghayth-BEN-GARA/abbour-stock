@@ -62,7 +62,7 @@
                                         <ul class = "notification-meta list-inline mb-0">
                                             <li class = "list-inline-item">{{App\Http\Controllers\DemandeModificationTypeController::getDifferenceDate($demande->getDateTimeDemandeAttribute())}}</li>
                                             <li class = "list-inline-item">|</li>
-                                            <li class="list-inline-item">{{$demande->prenom}} {{$demande->nom}}</li>
+                                            <li class = "list-inline-item">{{$demande->prenom}} {{$demande->nom}}</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -74,10 +74,10 @@
                             </div>
                             @if($demande->getEtatDemandeAttribute() == 0)
                                 <div class = "app-card-footer px-4 py-3">
-                                    <a class = "action-link mx-2" href = "{{url('/gestion-modifier-etat-demande?id_demande='.$demande->getIdDemandeAttribute().'&resp=1')}}" style = "color:inherit">
+                                    <a class = "action-link mx-2" href = "{{url('/gestion-modifier-etat-demande?id_demande='.$demande->getIdDemandeAttribute().'&resp=1&id_user='.$demande->id_user)}}" style = "color:inherit">
                                         Accepter la demande <i class = "lni lni-checkmark-circle"></i>
                                     </a>
-                                    <a class = "action-link" href = "{{url('/gestion-modifier-etat-demande?id_demande='.$demande->getIdDemandeAttribute().'&resp=-1')}}" style = "color:inherit">
+                                    <a class = "action-link" href = "{{url('/gestion-modifier-etat-demande?id_demande='.$demande->getIdDemandeAttribute().'&resp=-1&id_user='.$demande->id_user)}}" style = "color:inherit">
                                         Refuser la demande <i class = "lni lni-thumbs-down"></i>
                                     </a>
                                 </div>
