@@ -413,5 +413,14 @@
         public function ouvrirListeUsers(){
             return view ('User.liste_users');
         }
+
+        public function ouvrirUser(Request $request){
+            $user = $this->getInformationsUser($request->input('id_user'));
+            return view('User.user', compact('user'));
+        }
+
+        public function getInformationsUser($id_user){
+            return User::where('id_user', '=', $id_user)->first();
+        }
     }
 ?>

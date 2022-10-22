@@ -15,7 +15,7 @@
 							    <tr>
 									<th class = "cell">#</th>
 									<th class = "cell">Nom</th>
-									<th class = "cell">Adresse e-mail</th>
+									<th class = "cell">Adresse email</th>
 									<th class = "cell">Numéro mobile</th>
 									<th class = "cell">Type de compte</th>
 									<th class = "cell">Action</th>
@@ -57,7 +57,7 @@
                                             </td>
                                             <td class = "cell">
                                                 <p>
-                                                    <a href = "#" class = "btn app-btn-primary">Consulter</a>
+                                                    <a href = "{{url('/user?id_user='.$data->getIdUserAttribute())}}" class = "btn app-btn-primary">Consulter</a>
                                                     <a href = "#" class = "btn app-btn-secondary">Modifier</a>
                                                 </p>
                                             </td>
@@ -72,6 +72,9 @@
                                 @endif
                             </tbody>
                         </table>
+                    </div>
+                    <div class = "row text-center">
+                        {{$users->links("vendor.pagination.normal_pagination")}}
                     </div>
                 </div>
             </div>
