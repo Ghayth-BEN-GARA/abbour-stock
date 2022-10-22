@@ -17,10 +17,11 @@
         }
 
         public function getListeDemandeModificationType(){
-            return (DemandeModificationType::join('users', 'users.id_user', '=', 'demandes_modification_type.id_user')
+            return DemandeModificationType::join('users', 'users.id_user', '=', 'demandes_modification_type.id_user')
                 ->where('demandes_modification_type.etat_demande', '=', '0')
+                ->where('demandes_modification_type.id_user', '<>', auth()->user()->getIdUserAttribute())
                 ->orderBy('demandes_modification_type.date_time_demande','desc')
-                ->get());
+                ->get();
         }
     }
 ?>

@@ -51,10 +51,6 @@
                             <li>
                                 <a class = "dropdown-item" href = "{{url('/mes-demandes')}}">Mes demandes</a>
                             </li>
-                        @else
-                            <li>
-                                <a class = "dropdown-item" href = "#">Demandes</a>
-                            </li>
                         @endif
                         <li>
                             <hr class = "dropdown-divider">

@@ -57,7 +57,7 @@
                 @endif
             </div>
             <div class = "dropdown-menu-footer p-2 text-center">
-				<a href = "#" style = "color:black">Afficher toutes les notifications</a>
+				<a href = "{{url('/liste-demandes-modification-type-compte')}}" style = "color:black">Afficher toutes les notifications</a>
 		    </div>
         </div>
     @endif
