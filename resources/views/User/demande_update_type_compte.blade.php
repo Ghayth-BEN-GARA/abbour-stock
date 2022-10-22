@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en"> 
     <head>
-        <title>Abbour'Stock Dépôt | Demande de modification de type de compte</title> 
+        <title>Abbour'Stock Dépôt | Demande</title> 
         @include('Layout.head_app')
         <link rel = "stylesheet" href = "{{asset('css/pagination.css')}}">
     </head> 

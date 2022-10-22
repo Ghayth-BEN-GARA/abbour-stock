@@ -55,5 +55,6 @@
     Route::get('/demande-update-type-compte', [DemandeModificationTypeController::class, 'ouvrirDemandeUpdateTypeCompte'])->middleware('session_not_open_user');
     Route::get('/gestion-modifier-etat-demande', [DemandeModificationTypeController::class, 'gestionAccepterRefuserDemande']);
     Route::get('/liste-demandes-modification-type-compte', [DemandeModificationTypeController::class, 'ouvrirListeDemandeModificationCompte'])->middleware('session_not_open_user');
+    Route::get('/liste-users', [UserController::class, 'ouvrirListeUsers'])->middleware('session_not_open_user');
 ?>
 

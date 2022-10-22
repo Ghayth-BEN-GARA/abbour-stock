@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en"> 
     <head>
-        <title>Abbour'Stock Dépôt | Modifier le type de compte</title> 
+        <title>Abbour'Stock Dépôt | Type de compte</title> 
         @include('Layout.head_app')
     </head> 
     <body class = "app">

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en"> 
     <head>
-        <title>Abbour'Stock Dépôt | Modifier les préférences</title> 
+        <title>Abbour'Stock Dépôt | Préférences</title> 
         @include('Layout.head_app')
     </head> 
     <body class = "app">

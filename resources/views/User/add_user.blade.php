@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en"> 
     <head>
-        <title>Abbour'Stock Dépôt | Créer un utilisateur</title> 
+        <title>Abbour'Stock Dépôt | Utilisateur</title> 
         @include('Layout.head_app')
     </head> 
     <body class = "app">

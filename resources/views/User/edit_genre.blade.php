@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en"> 
     <head>
-        <title>Abbour'Stock Dépôt | Modifier le genre</title> 
+        <title>Abbour'Stock Dépôt | Genre</title> 
         @include('Layout.head_app')
     </head> 
     <body class = "app">

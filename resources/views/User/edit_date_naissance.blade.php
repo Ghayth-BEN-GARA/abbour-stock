@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en"> 
     <head>
-        <title>Abbour'Stock Dépôt | Modifier le date de naissance</title> 
+        <title>Abbour'Stock Dépôt | Date de naissance</title> 
         @include('Layout.head_app')
     </head> 
     <body class = "app">

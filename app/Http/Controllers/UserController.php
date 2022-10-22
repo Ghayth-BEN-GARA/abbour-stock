@@ -409,5 +409,9 @@
         public function ouvrirEditTypeCompte(){
             return view('User.edit_type_compte');
         }
+
+        public function ouvrirListeUsers(){
+            return view ('User.liste_users');
+        }
     }
 ?>

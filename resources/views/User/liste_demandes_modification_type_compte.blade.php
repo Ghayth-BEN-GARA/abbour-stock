@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en"> 
     <head>
-        <title>Abbour'Stock Dépôt | Liste des demandes</title> 
+        <title>Abbour'Stock Dépôt | Demandes</title> 
         @include('Layout.head_app')
         <link rel = "stylesheet" href = "{{asset('css/pagination.css')}}">
     </head> 

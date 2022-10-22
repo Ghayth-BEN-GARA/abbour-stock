@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en"> 
     <head>
-        <title>Abbour'Stock Dépôt | Modifier le numéro de carte d'identité</title> 
+        <title>Abbour'Stock Dépôt | numéro de carte d'identité</title> 
         @include('Layout.head_app')
     </head> 
     <body class = "app">

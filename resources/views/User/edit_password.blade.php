@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en"> 
     <head>
-        <title>Abbour'Stock Dépôt | Modifier le mot de passe</title> 
+        <title>Abbour'Stock Dépôt | Mot de passe</title> 
         @include('Layout.head_app')
     </head> 
     <body class = "app">
