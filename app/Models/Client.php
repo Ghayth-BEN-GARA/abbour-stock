@@ -75,5 +75,9 @@
         public function getFullNameClientAttribute(){
             $this->getPrenomClientAttribute()." ".$this->getNomClientAttribute();
         }
+
+        public function getFormattedMobileClientAttribute(){
+            return substr($this->getMobileClientAttribute(), 0, 2)." ".substr($this->getMobileClientAttribute(), 2, 3)." ".substr($this->getMobileClientAttribute(), 5, 3);
+        }
     }
 ?>

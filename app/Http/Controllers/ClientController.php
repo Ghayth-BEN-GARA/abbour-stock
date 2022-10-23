@@ -73,5 +73,14 @@
         public function ouvrirListeClients(){
             return view('Clients.liste_clients');
         }
+
+        public function ouvrirClient(Request $request){
+            $client = $this->getInformationsClient($request->input('matricule_client'));
+            return view('Clients.client', compact('client'));
+        }
+
+        public function getInformationsClient($matricule){
+            return Client::where('matricule_client', '=', $matricule)->first();
+        }
     }
 ?>

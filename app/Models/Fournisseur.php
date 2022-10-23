@@ -76,5 +76,13 @@
         public function getDateCreationFournisseurAttribute(){
             return $this->attributes['date_creation_fournisseur'];
         }
+
+        public function getFormattedMobile1FournisseurAttribute(){
+            return substr($this->getMobile1FournisseurAttribute(), 0, 2)." ".substr($this->getMobile1FournisseurAttribute(), 2, 3)." ".substr($this->getMobile1FournisseurAttribute(), 5, 3);
+        }
+
+        public function getFormattedMobile2FournisseurAttribute(){
+            return substr($this->getMobile2FournisseurAttribute(), 0, 2)." ".substr($this->getMobile2FournisseurAttribute(), 2, 3)." ".substr($this->getMobile2FournisseurAttribute(), 5, 3);
+        }
     }
 ?>
