@@ -69,5 +69,9 @@
         public function checkMobileClient($mobile){
             return (Client::where('mobile_client', '=', $mobile)->exists());
         }
+
+        public function ouvrirListeClients(){
+            return view('Clients.liste_clients');
+        }
     }
 ?>

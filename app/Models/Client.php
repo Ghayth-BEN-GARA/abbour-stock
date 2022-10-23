@@ -71,5 +71,9 @@
         public function getDateCreationClientAttribute(){
             return $this->attributes['date_creation_client'];
         }
+
+        public function getFullNameClientAttribute(){
+            $this->getPrenomClientAttribute()." ".$this->getNomClientAttribute();
+        }
     }
 ?>

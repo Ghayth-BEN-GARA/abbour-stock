@@ -68,5 +68,6 @@
     Route::post('/modifier-fournisseur', [FournisseurController::class, 'gestionModifierFournisseur']);
     Route::get('/add-client', [ClientController::class, 'ouvrirAddClient'])->middleware('session_not_open_user');
     Route::post('/create-client', [ClientController::class, 'gestionCreerClient']);
+    Route::get('/liste-clients', [ClientController::class, 'ouvrirListeClients'])->middleware('session_not_open_user');
 ?>
 
