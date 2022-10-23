@@ -67,7 +67,7 @@
                                 <a class = "submenu-link" href = "{{url('/add-fournisseur')}}">Créer</a>
                             </li>
                             <li class = "submenu-item">
-                                <a class = "submenu-link" href = "#">Gérer</a>
+                                <a class = "submenu-link" href = "{{url('/liste-fournisseurs')}}">Gérer</a>
                             </li>
                         </ul>
                     </div>

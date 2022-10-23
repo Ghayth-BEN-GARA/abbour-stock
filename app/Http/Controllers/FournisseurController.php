@@ -71,5 +71,9 @@
         public function checkMobile1Fournisseur($mobile){
             return (Fournisseur::where('mobile1_fournisseur', '=', $mobile)->exists());
         }
+
+        public function ouvrirListeFournisseurs(){
+            return view('Fournisseurs.liste_fournisseurs');
+        }
     }
 ?>
