@@ -22,7 +22,7 @@
             }
 
             else if(!$this->checkCredentials($request)){
-                return back()->with('erreur', "Vérifiez vos paramètres de connexion et réessayez.");
+                return back()->with('erreur', "Vérifiez vos paramètres de connexion et réessayez une autre fois.");
             }
 
             else if($this->signin($request->email)){
@@ -30,7 +30,7 @@
             }
 
             else{
-                return back()->with('erreur', "Pour des raisons techniques, vous ne pouvez pas vous connecter pour le moment.");
+                return ('/erreur');
             }
         }
 
@@ -45,7 +45,7 @@
 
         public function signin($email){
             $this->creerSession($email, $this->getType($email));
-            return $this->creerJounral("Connexion", "Connexion normale avec adresse e-mail et mot de passe.", $this->getId($email));
+            return $this->creerJounral("Authentification", "Se connecter avec l'adresse e-mail et le mot de passe.", $this->getId($email));
         }
 
         public function creerSession($email, $type){
@@ -74,7 +74,7 @@
         }
 
         public function gestionDeconnexion(){
-            if($this->creerJounral("Déconnexion", "Déconnexion de votre session utilisateur et quitter l'application", $this->getIdUserConnected())){
+            if($this->creerJounral("Déconnexion", "Se déconnecter de la session et revenir à la page d'authentification.", $this->getIdUserConnected())){
                 if($this->logout()){
                     return redirect('/');
                 }

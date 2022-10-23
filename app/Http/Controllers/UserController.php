@@ -28,7 +28,7 @@
             }
 
             else if($this->editPassword($request->new_password)){
-                if($this->creerJounral("Modification de mot de passe", "Ajout d'un nouveau mot de passe de compte", auth()->user()->getIdUserAttribute())){
+                if($this->creerJounral("Modification de mot de passe", "Ajouter un nouveau mot de passe pour sécuriser le compte.", auth()->user()->getIdUserAttribute())){
                     return back()->with('success', 'Votre mot de passe a été changé avec succès. Vous pouvez maintenant utiliser votre nouveau mot de passe.');
                 }
             }
@@ -75,13 +75,13 @@
 
         public function gestionUpdatePhoto(Request $request){
             if($this->updatePhotoProfil($request, auth()->user()->getIdUserAttribute())){
-                if($this->creerJounral("Modification du photo de profil", "Ajouter une nouvelle photo de profil pour votre compte", auth()->user()->getIdUserAttribute())){
-                    return back()->with('success', 'Votre photo de profil a été changé avec succès. Vous pouvez maintenant consulter votre nouveau image.');
+                if($this->creerJounral("Modification du photo de profil", "Ajouter une nouvelle photo de profil pour le compte.", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', 'Votre photo de profil a été modifiée avec succès. Vous pouvez maintenant voir votre nouvelle image.');
                 }
             }
 
             else{
-                return back()->with('erreur', "Vous n'êtes pas obligé de saisir la même photo de profil.");
+                return back()->with('erreur', "Vous n'êtes pas obligé de choisir la même photo de profil.");
             }
         }
 
@@ -101,13 +101,13 @@
 
         public function gestionUpdateFullName(Request $request){
             if($this->updateFullName($request->new_nom, $request->new_prenom, auth()->user()->getIdUserAttribute())){
-                if($this->creerJounral("Modification du nom et prénom", "Ajouter un nouvau nom et prénom pour le compte", auth()->user()->getIdUserAttribute())){
-                    return back()->with('success', 'Votre nom a été changé avec succès. Vous pouvez maintenant consulter vos nouveaux informations.');
+                if($this->creerJounral("Modification du nom", "Ajouter un nouveau nom pour le compte.", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', 'Votre nom a été changé avec succès. Vous pouvez maintenant voir vos nouvelles informations.');
                 }
             }
 
             else{
-                return back()->with('erreur', "Vous avez saisir votre ancien nom et/ou prénom.");
+                return back()->with('erreur', "Vous avez saisi votre ancien nom et/ou prénom.");
             }
         }
 
@@ -124,13 +124,13 @@
 
         public function gestionUpdateGenre(Request $request){
             if($this->updateGenre($request->new_genre, auth()->user()->getIdUserAttribute())){
-                if($this->creerJounral("Modification du genre", "Choisir un nouveau genre d'utiliateur", auth()->user()->getIdUserAttribute())){
-                    return back()->with('success', 'Votre genre a été changé avec succès. Vous pouvez maintenant consulter votre nouveau genre.');
+                if($this->creerJounral("Modification du genre", "Choisir un nouveau genre d'utilisateur.", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', 'Votre genre a été changé avec succès. Vous pouvez maintenant voir votre nouveau genre.');
                 }
             }
 
             else{
-                return back()->with('erreur', "Vous avez saisir votre ancien genre.");
+                return back()->with('erreur', "Vous avez entré votre ancien sexe.");
             }
         }
 
@@ -146,13 +146,13 @@
 
         public function gestionUpdateDateNaissance(Request $request){
             if($this->updateDateNaissance($request->new_date_naissance, auth()->user()->getIdUserAttribute())){
-                if($this->creerJounral("Modification du date de naissance", "Choisir un nouveau date de naissance d'utiliateur", auth()->user()->getIdUserAttribute())){
-                    return back()->with('success', 'Votre date de naissance a été changé avec succès. Vous pouvez maintenant consulter votre nouveau date de naissance.');
+                if($this->creerJounral("Modification du date de naissance", "Choisir un nouveau date de naissance d'utilisateur.", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', 'Votre date de naissance a été modifiée avec succès. Vous pouvez maintenant voir votre nouvelle date de naissance.');
                 }
             }
 
             else{
-                return back()->with('erreur', "Vous avez saisir votre ancien date de naissance.");
+                return back()->with('erreur', "Vous avez entré votre ancienne date de naissance.");
             }
         }
 
@@ -168,13 +168,13 @@
 
         public function gestionUpdateAdresse(Request $request){
             if($this->updateAdresse($request->new_adresse, auth()->user()->getIdUserAttribute())){
-                if($this->creerJounral("Modification d'adresse", "Choisir une nouvelle adresse d'utiliateur", auth()->user()->getIdUserAttribute())){
-                    return back()->with('success', 'Votre adresse a été changé avec succès. Vous pouvez maintenant consulter votre nouvelle adresse.');
+                if($this->creerJounral("Modification d'adresse", "Choisir une nouvelle adresse d'utilisateur.", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', 'Votre adresse a été modifiée avec succès. Vous pouvez maintenant consulter votre nouvelle adresse.');
                 }
             }
 
             else{
-                return back()->with('erreur', "Vous avez saisir votre ancien adresse.");
+                return back()->with('erreur', "Vous avez entré votre ancienne adresse.");
             }
         }
 
@@ -190,21 +190,21 @@
 
         public function gestionUpdateMobile(Request $request){
             if(Str::length($request->new_mobile) != 8){
-                return back()->with('erreur', "Vérifiez que le numéro de mobile est composé de 8 chiffres.");
+                return back()->with('erreur', "Le numéro de mobile d'utilisateur doit être composé de 8 chiffres.");
             }
 
             else if($this->checkUserMobile($request->new_mobile)){
-                return back()->with('erreur', "Un autre compte créé avec ce numéro de mobile.");
+                return back()->with('erreur', "Un autre utilisateur a déjà été créé un compte avec ce numéro mobile.");
             }
 
             else if($this->updateMobile($request->new_mobile, auth()->user()->getIdUserAttribute())){
-                if($this->creerJounral("Modification de numéro mobile", "Choisir un nouveau numéro mobile d'utiliateur", auth()->user()->getIdUserAttribute())){
-                    return back()->with('success', 'Votre numéro mobile a été changé avec succès. Vous pouvez maintenant consulter votre nouvelle numéro.');
+                if($this->creerJounral("Modification de numéro mobile", "Choisir un nouveau numéro de mobile d'utilisateur", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', 'Votre numéro de mobile a été changé avec succès. Vous pouvez maintenant voir votre nouveau numéro.');
                 }
             }
 
             else{
-                return back()->with('erreur', "Vous avez saisir votre ancien numéro mobile.");
+                return back()->with('erreur', "Vous avez saisi votre ancien numéro de mobile.");
             }
         }
 
@@ -224,21 +224,21 @@
 
         public function gestionUpdateCin(Request $request){
             if(Str::length($request->new_cin) != 8){
-                return back()->with('erreur', "Vérifiez que le numéro de carte d'identité est composé de 8 chiffres.");
+                return back()->with('erreur', "Le numéro de carte d'identité d'utilisateur doit être composé de 8 chiffres.");
             }
 
             else if($this->checkUserCin($request->new_cin)){
-                return back()->with('erreur', "Un autre compte créé avec ce numéro de carte d'identité.");
+                return back()->with('erreur', "Un autre utilisateur a déjà été créé un compte avec ce numéro de carte d'identité.");
             }
 
             else if($this->updateCin($request->new_cin, auth()->user()->getIdUserAttribute())){
-                if($this->creerJounral("Modification de numéro de carte d'identité", "Choisir un nouveau numéro de carte d'identité d'utiliateur", auth()->user()->getIdUserAttribute())){
-                    return back()->with('success', "Votre numéro de carte d'identité a été changé avec succès. Vous pouvez maintenant consulter votre nouvelle numéro de carte.");
+                if($this->creerJounral("Modification de numéro de carte d'identité", "Choisir un nouveau numéro de carte d'identité d'utilisateur.", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', "Votre numéro de carte d'identité a été modifié avec succès. Vous pouvez maintenant voir votre nouveau numéro de carte d'identité.");
                 }
             }
 
             else{
-                return back()->with('erreur', "Vous avez saisir votre ancien numéro de carte d'identité.");
+                return back()->with('erreur', "Vous avez entré votre ancien numéro de carte d'identité.");
             }
         }
 
@@ -258,23 +258,23 @@
 
         public function gestionUpdateProfil(Request $request){
             if(Str::length($request->new_cin) != 8){
-                return back()->with('erreur', "Vérifiez que le numéro de carte d'identité est composé de 8 chiffres.");
+                return back()->with('erreur', "Le numéro de carte d'identité d'utilisateur doit être composé de 8 chiffres.");
             }
 
             else if($this->checkUserCin($request->new_cin)){
-                return back()->with('erreur', "Un autre compte créé avec ce numéro de carte d'identité.");
+                return back()->with('erreur', "Un autre utilisateur a déjà été créé un compte avec ce numéro de carte d'identité.");
             }
 
             else if(Str::length($request->new_mobile) != 8){
-                return back()->with('erreur', "Vérifiez que le numéro de mobile est composé de 8 chiffres.");
+                return back()->with('erreur', "Le numéro mobile d'utilisateur doit être composé de 8 chiffres.");
             }
 
             else if($this->checkUserMobile($request->new_mobile)){
-                return back()->with('erreur', "Un autre compte créé avec ce numéro de mobile.");
+                return back()->with('erreur', "Un autre utilisateur a déjà été créé un compte avec ce numéro de mobile.");
             }
 
             else if($this->updateProfil(auth()->user()->getIdUserAttribute(), $request->new_nom, $request->new_prenom, $request->new_genre, $request->new_cin, $request->new_date_naissance, $request->new_mobile, $request->new_adresse, $request)){
-                if($this->creerJounral("Modification de profil", "Modifier les anciennes informations en ajoutant de nouvelles informations", auth()->user()->getIdUserAttribute())){
+                if($this->creerJounral("Modification de profil", "Modifier les anciennes informations en ajoutant de nouvelles informations.", auth()->user()->getIdUserAttribute())){
                     return back()->with('success', "Vos informations ont été modifiées avec succès. Vous pouvez désormais les consulter à tout moment.");
                 }
             }
@@ -313,33 +313,33 @@
 
         public function gestionCreateUser(Request $request){
             if($this->checkUserEmail($request->email)){
-                return back()->with('erreur', "Un autre compte créé avec cette adresse email.");
+                return back()->with('erreur', "Un autre utilisateur a déjà été créé un compte avec cette adresse email.");
             }
 
             else if($this->checkUserCin($request->cin)){
-                return back()->with('erreur', "Un autre compte créé avec ce numéro de carte d'identité.");
+                return back()->with('erreur', "Un autre utilisateur a déjà été créé un compte avec ce numéro de carte d'identité.");
             }
 
             else if(Str::length($request->cin) != 8){
-                return back()->with('erreur', "Vérifiez que le numéro de carte d'identité est composé de 8 chiffres.");
+                return back()->with('erreur', "Le numéro de carte d'identité d'utilisateur doit être composé de 8 chiffres.");
             }
 
             else if($this->checkUserMobile($request->mobile)){
-                return back()->with('erreur', "Un autre compte créé avec ce numéro mobile.");
+                return back()->with('erreur', "Un autre utilisateur a déjà été créé un compte avec ce numéro mobile.");
             }
 
             else if(Str::length($request->mobile) != 8){
-                return back()->with('erreur', "Vérifiez que le numéro mobile est composé de 8 chiffres.");
+                return back()->with('erreur', "Le numéro de mobile d'utilisateur doit être composé de 8 chiffres.");
             }
 
             else if($this->storeUser($request->email, $request->password, $request->cin, $request->nom, $request->prenom, $request->genre, $request->naissance, $request->mobile, $request->adresse, $request->type)){
-                if($this->creerJounral("Création d'un nouveau compte", "Créer un nouveau compte pour l'utilisateur ".$request->prenom." ".$request->nom." en ajoutant les informations requises.", auth()->user()->getIdUserAttribute())){
-                    return back()->with('success', "Un nouveau utilisateur a été créé avec succès. Vous pouvez désormais le consulter à tout moment.");
+                if($this->creerJounral("Création d'un nouveau compte", "Créer un nouveau compte pour l'utilisateur ".$request->prenom." ".$request->nom." en ajoutant les informations nécessaires à cette création.", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', "Un nouvel utilisateur a été créé avec succès. Vous pouvez désormais le consulter à tout moment.");
                 }
             }
 
             else{
-                return redirect('erreur');
+                return redirect('/erreur');
             }
         }
 
@@ -372,19 +372,19 @@
 
         public function gestionUpdateEmail(Request $request){
             if($this->checkUserEmailUpdateUser($request->new_email)){
-                return back()->with('erreur3', "Un autre compte créé avec cette adresse email.");
+                return back()->with('erreur3', "Un autre fournisseur a déjà été créé un compte avec cette adresse email.");
             }
 
             else if($this->updateEmail($request->new_email)){
                 $this->removeSessionEmail();
                 $this->addSessionEmail($request->new_email);
-                if($this->creerJounral("Modification d'adresse email", "Choisir un nouveau adresse email d'utiliateur", auth()->user()->getIdUserAttribute())){
-                    return back()->with('success3', "Votre adresse email a été changé avec succès. Vous pouvez maintenant consulter votre nouvelle numéro de carte.");
+                if($this->creerJounral("Modification d'adresse email", "Choisir une nouvelle adresse e-mail d'utilisateur.", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success3', "Votre adresse e-mail a été modifiée avec succès. Vous pouvez maintenant voir votre nouvelle adresse e-mail.");
                 }
             }
 
             else{
-                return back()->with('erreur3', "Vous avez saisir votre ancien adresse email.");
+                return back()->with('erreur3', "Vous avez entré votre ancienne adresse e-mail.");
             }
         }
 
@@ -430,28 +430,28 @@
 
         public function gestionModifierUser(Request $request){
             if($this->checkUserEmail2($request->id_user, $request->email)){
-                return back()->with('erreur', "Un autre compte créé avec cette adresse email.");
+                return back()->with('erreur', "Un autre utilisateur a déjà été créé un compte avec cette adresse email.");
             }
 
             else if($this->checkUserCin2($request->id_user, $request->cin)){
-                return back()->with('erreur', "Un autre compte créé avec ce numéro de carte d'identité.");
+                return back()->with('erreur', "Un autre utilisateur a déjà été créé un compte avec ce numéro de carte d'identité.");
             }
 
             else if(Str::length($request->cin) != 8){
-                return back()->with('erreur', "Vérifiez que le numéro de carte d'identité est composé de 8 chiffres.");
+                return back()->with('erreur', "Le numéro de carte d'identité d'utilisateur doit être composé de 8 chiffres.");
             }
 
             else if($this->checkUserMobile2($request->id_user, $request->mobile)){
-                return back()->with('erreur', "Un autre compte créé avec ce numéro mobile.");
+                return back()->with('erreur', "Un autre utilisateur a déjà été créé un compte avec ce numéro mobile.");
             }
 
             else if(Str::length($request->mobile) != 8){
-                return back()->with('erreur', "Vérifiez que le numéro mobile est composé de 8 chiffres.");
+                return back()->with('erreur', "Le numéro de mobile d'utilisateur doit être composé de 8 chiffres.");
             }
 
             else if($this->updateUser($request->nom, $request->prenom, $request->email, $request->cin, $request->genre, $request->date_naissance, $request->mobile, $request->adresse, $request->type, $request->id_user)){
-                if($this->creerJounral("Modification des informations d'utilisateur", "Modifier les informations d'utilisateur ".$request->prenom." ".$request->nom." en ajoutant les informations requises.", auth()->user()->getIdUserAttribute())){
-                    return back()->with('success', "Les informations d'utilisateurs ont été modifiées avec succès. Vous pouvez désormais les consulter à tout moment.");
+                if($this->creerJounral("Modification des informations de l'utilisateur", "Modifier les informations de l'utilisateur ".$request->prenom." ".$request->nom." en ajoutant les informations nécessaires à cette modification.", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', "Les informations utilisateur ont été modifiées avec succès. Vous pouvez désormais les consulter à tout moment.");
                 }
             }
 

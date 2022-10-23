@@ -12,24 +12,24 @@
 
         public function gestionCreerFournisseur(Request $request){
             if($this->checkMatriculeFournisseur($request->matricule)){
-                return back()->with('erreur', "Un autre fournisseur créé avec cette matricule.");
+                return back()->with('erreur', "Un autre fournisseur a déjà été créé un compte avec cette matricule fiscale.");
             }
 
             else if($this->checkEmailFournisseur($request->email)){
-                return back()->with('erreur', "Un autre fournisseur créé avec cette adresse email.");
+                return back()->with('erreur', "Un autre fournisseur a déjà été créé un compte avec cette adresse email.");
             }
 
             else if($this->checkMobile1Fournisseur($request->mobile1)){
-                return back()->with('erreur', "Un autre fournisseur créé avec ce numéro mobile.");
+                return back()->with('erreur', "Un autre fournisseur a déjà été créé un compte avec ce numéro mobile.");
             }
 
             else if(Str::length($request->mobile1) != 8){
-                return back()->with('erreur', "Vérifiez que le numéro mobile est composé de 8 chiffres.");
+                return back()->with('erreur', "Le numéro de mobile du fournisseur doit être composé de 8 chiffres.");
             }
 
             else if($this->creerFournisseur($request->fullname, $request->matricule, $request->email, $request->adresse, $request->mobile1, $request->mobile2)){
-                if($this->creerJounral("Création d'un nouveau fournisseur", "Créer un nouveau compte pour le fournisseur ".$request->fullname." en ajoutant les informations requises.", auth()->user()->getIdUserAttribute())){
-                    return back()->with('success', "Un nouveau fournisseur a été créé avec succès. Vous pouvez désormais le consulter à tout moment.");
+                if($this->creerJounral("Création d'un nouveau  fournisseur", "Créer un nouveau  fournisseur ".$request->fullname." en ajoutant les informations nécessaires à cette création.", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', "Un nouveau fournisseur a été créé avec succès. Vous pouvez le consulter à tout moment.");
                 }
             }
 
@@ -92,24 +92,24 @@
 
         public function gestionModifierFournisseur(Request $request){
             if($this->checkMatriculeFournisseur2($request->input('matricule_fournisseur'), $request->matricule)){
-                return back()->with('erreur', "Un autre fournisseur créé avec cette matricule.");
+                return back()->with('erreur', "Un autre fournisseur a déjà été créé un compte avec cette matricule fiscale.");
             }
 
             else if($this->checkEmailFournisseur2($request->input('matricule_fournisseur'), $request->email)){
-                return back()->with('erreur', "Un autre fournisseur créé avec cette adresse email.");
-            }
-
-            else if(Str::length($request->mobile1) != 8){
-                return back()->with('erreur', "Vérifiez que le numéro mobile est composé de 8 chiffres.");
+                return back()->with('erreur', "Un autre fournisseur a déjà été créé un compte avec cette adresse email.");
             }
 
             else if($this->checkMobile1Fournisseur2($request->input('matricule_fournisseur'), $request->mobile1)){
-                return back()->with('erreur', "Un autre fournisseur créé avec ce numéro mobile.");
+                return back()->with('erreur', "Un autre fournisseur a déjà été créé un compte avec ce numéro mobile.");
+            }
+
+            else if(Str::length($request->mobile1) != 8){
+                return back()->with('erreur', "Le numéro de mobile du fournisseur doit être composé de 8 chiffres.");
             }
 
             else if($this->updateFournisseur($request->fullname, $request->matricule, $request->email, $request->adresse, $request->mobile1, $request->mobile2, $request->matricule_fournisseur)){
-                if($this->creerJounral("Modification de fournisseur", "Modifier les information de fournisseur ".$request->fullname." en ajoutant les informations requises.", auth()->user()->getIdUserAttribute())){
-                    return back()->with('success', "Le fournisseur a été modifié avec succès. Vous pouvez désormais le consulter à tout moment.");
+                if($this->creerJounral("Modification de fournisseur", "Modifier le fournisseur ".$request->fullname." en ajoutant les informations nécessaires à cette modification.", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', "Le fournisseur a été modifié avec succès. Vous pouvez le consulter à tout moment.");
                 }
             }
 

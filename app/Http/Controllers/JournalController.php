@@ -24,7 +24,7 @@
             }
 
             else{
-                return back()->with('erreur', "Pour des raisons techniques, Vous ne pouvez pas supprimer le journal d'authentification.");
+                return redirect('/erreur');
             }
         }
 

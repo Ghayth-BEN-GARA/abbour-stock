@@ -73,7 +73,7 @@
                         <div class = "overlay-content p-3 p-lg-4 rounded">
                             <h5 class = "mb-3 overlay-title">Abbour'Stock Dépôt</h5>
                             <div>
-                                Abbour'Stock Dépôt est une application web e-commerce de gestion des stocks et des ventes développée avec laravel 9 par <a href = "https://www.facebook.com/profile.php?id=100075317294165">Ghayth Ben Gara</a> en 2022.
+                                Abbour'Stock Dépôt est une application web e-commerce pour la gestion des stocks et des ventes développée avec laravel 9 par <a href = "https://www.facebook.com/profile.php?id=100075317294165">Ghayth Ben Gara</a> en 2022.
                             </div>
                         </div>
                     </div>

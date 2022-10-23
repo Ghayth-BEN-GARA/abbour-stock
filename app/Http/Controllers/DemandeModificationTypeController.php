@@ -13,16 +13,16 @@
     
         public function gestionCreateDemandeModificationType(Request $request){
             if($this->checkUserDemandeModificationType()){
-                return back()->with('erreur2', "L'administrateur n'a pas encore répondu à votre dernière demande, vous ne pouvez donc pas faire une autre demande pour changer le type de votre compte.");
+                return back()->with('erreur2', "L'administrateur n'a pas encore répondu à votre dernière demande, vous ne pouvez donc pas faire une autre demande pour modifier votre type de compte.");
             }
 
             else if($this->getTypeUser() == $request->new_type){
-                return back()->with('erreur2', "Vous avez choisir votre ancien type de compte.");
+                return back()->with('erreur2', "Vous avez choisi votre type de compte actuel.");
             }
 
             else if($this->creerDemandeModificationTypeUser($request->new_type, auth()->user()->getIdUserAttribute())){
-                if($this->creerJounral("Modification de type de compte", "Choisir un nouveau type de compte d'utiliateur", auth()->user()->getIdUserAttribute())){
-                    return back()->with('success2', "Votre demande de modification de rôle a été envoyée avec succès. Vous recevrez une notification avec une présentation de la décision dès que possible.");
+                if($this->creerJounral("Modification du type de compte", "Choisir un nouveau type de compte d'utilisateur.", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success2', "Votre demande de changement de type de compte a été soumise avec succès. Vous recevrez une notification avec une présentation de la décision dès que la décision est prise.");
                 }
             }
         }
@@ -91,8 +91,8 @@
 
         public function gestionDeleteDemande(Request $request){
             if($this->deleteDemande($request->input('id_demande'))){
-                if($this->creerJounral("Annulation de demande", "Annuler la demande de modification de type de compte envoyé à l'administrateur de l'application.", auth()->user()->getIdUserAttribute())){
-                    return back()->with('success', "Votre demande de modification de type de compte a été annulé avec succès. Vous pouvez créer une nouvelle demande à tout moment.");
+                if($this->creerJounral("Annulation de la demande de changement de type de compte", "Annuler la demande de changement de type de compte envoyée à l'administrateur de l'application.", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', "Votre demande de changement de type de compte a été annulée avec succès. Vous pouvez créer une nouvelle demande à tout moment.");
                 }
             }
 
@@ -119,8 +119,8 @@
         public function gestionAccepterRefuserDemande(Request $request){
             if($this->updateDemandeModificationTypeCompte($request->input('id_demande'), $request->input('resp'))){
                 if($this->envoyerEmailDecisionModificationTypeCompte($request->input('id_user'), $request->input('resp'))){
-                    if($this->creerJounral("Gestion de la demande", "Vous avez bien géré la demande de modification de type de compte.", auth()->user()->getIdUserAttribute())){
-                        return back()->with('success', "Votre demande de modification de type de compte a été géré avec succès. Vous pouvez créer une nouvelle demande à tout moment.");
+                    if($this->creerJounral("Gestion des demandes de changement de type de compte", "Vous avez traité avec succès la demande de changement de type de compte.", auth()->user()->getIdUserAttribute())){
+                        return back()->with('success', "La demande de changement de type de compte a été traitée avec succès.");
                     }
                 }
             }

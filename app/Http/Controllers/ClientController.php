@@ -12,24 +12,24 @@
 
         public function gestionCreerClient(Request $request){
             if($this->checkMatriculeClient($request->matricule)){
-                return back()->with('erreur', "Un autre client créé avec cette matricule.");
+                return back()->with('erreur', "Un autre client a déjà été créé un compte avec cette matricule.");
             }
 
             else if($this->checkEmailClient($request->email)){
-                return back()->with('erreur', "Un autre client créé avec cette adresse email.");
+                return back()->with('erreur', "Un autre client a déjà été créé un compte avec cette adresse email.");
             }
 
             else if($this->checkMobileClient($request->mobile)){
-                return back()->with('erreur', "Un autre client créé avec ce numéro mobile.");
+                return back()->with('erreur', "Un autre client a déjà été créé un compte avec ce numéro mobile");
             }
 
             else if(Str::length($request->mobile) != 8){
-                return back()->with('erreur', "Vérifiez que le numéro mobile est composé de 8 chiffres.");
+                return back()->with('erreur', "Le numéro de mobile du client doit être composé de 8 chiffres.");
             }
 
             else if($this->creerClient($request->nom, $request->prenom, $request->matricule, $request->email, $request->adresse, $request->mobile)){
-                if($this->creerJounral("Création d'un nouveau client", "Créer un nouveau client ".$request->prenom." ".$request->nom." en ajoutant les informations requises.", auth()->user()->getIdUserAttribute())){
-                    return back()->with('success', "Un nouveau client a été créé avec succès. Vous pouvez désormais le consulter à tout moment.");
+                if($this->creerJounral("Création d'un nouveau client", "Créer un nouveau client ".$request->prenom." ".$request->nom." en ajoutant les informations nécessaires à cette création.", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', "Un nouveau client a été créé avec succès. Vous pouvez le consulter à tout moment.");
                 }
             }
 
