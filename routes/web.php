@@ -72,5 +72,8 @@
     Route::get('/client', [ClientController::class, 'ouvrirClient'])->middleware('session_not_open_user');
     Route::get('/edit-client', [ClientController::class, 'ouvrirEditClient'])->middleware('session_not_open_user');
     Route::post('/modifier-client', [ClientController::class, 'gestionModifierClient']);
+    Route::get('/forget-password', [AuthentificationUserController::class, 'ouvrirForgetPassword'])->middleware('session_exist');
+    Route::post('/chercher-compte', [AuthentificationUserController::class, 'gestionRecuperationCompte']);
+    Route::get('/reset-password/{token}/{id}', [AuthentificationUserController::class, 'ouvrirResetPassword'])->middleware('session_exist');
 ?>
 

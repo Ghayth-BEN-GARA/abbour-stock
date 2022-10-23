@@ -9,7 +9,7 @@
 	    <div id = "notfound">
 		    <div class = "notfound">
 			    <div class = "notfound-404">
-				    <h1>500</h1>
+				    <h1>404</h1>
 			    </div>
 			    <h2>Oops! Page non disponible</h2>
 			    <p>

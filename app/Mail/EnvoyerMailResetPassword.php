@@ -7,7 +7,7 @@
     use Illuminate\Mail\Mailables\Envelope;
     use Illuminate\Queue\SerializesModels;
 
-    class EnvoyerNotificationDecisionAdministrateur extends Mailable{
+    class EnvoyerMailResetPassword extends Mailable{
         use Queueable, SerializesModels;
         public $mailData;
         /**
@@ -26,17 +26,8 @@
          */
         public function envelope(){
             return new Envelope(
-                subject: "Décision de l'administrateur",
+                subject: 'Réinitialisation du mot de passe',
             );
-        }
-
-            /**
-         * Build the message.
-         *
-         * @return $this
-         */
-        public function build(){
-            return $this->subject("Décision de l'administrateur")->view('Mails.demande_modification_type');
         }
 
         /**
@@ -46,6 +37,15 @@
          */
         public function attachments(){
             return [];
+        }
+
+         /**
+         * Build the message.
+         *
+         * @return $this
+         */
+        public function build(){
+            return $this->subject("Réinitialisation du mot de passe")->view('Mails.renitialiser_compte');
         }
     }
 ?>
