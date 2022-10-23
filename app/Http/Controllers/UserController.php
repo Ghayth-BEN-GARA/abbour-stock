@@ -422,5 +422,68 @@
         public function getInformationsUser($id_user){
             return User::where('id_user', '=', $id_user)->first();
         }
+
+        public function ouvrirEditUser(Request $request){
+            $user = $this->getInformationsUser($request->input('id_user'));
+            return view('User.edit_user', compact('user'));
+        }
+
+        public function gestionModifierUser(Request $request){
+            if($this->checkUserEmail2($request->id_user, $request->email)){
+                return back()->with('erreur', "Un autre compte créé avec cette adresse email.");
+            }
+
+            else if($this->checkUserCin2($request->id_user, $request->cin)){
+                return back()->with('erreur', "Un autre compte créé avec ce numéro de carte d'identité.");
+            }
+
+            else if(Str::length($request->cin) != 8){
+                return back()->with('erreur', "Vérifiez que le numéro de carte d'identité est composé de 8 chiffres.");
+            }
+
+            else if($this->checkUserMobile2($request->id_user, $request->mobile)){
+                return back()->with('erreur', "Un autre compte créé avec ce numéro mobile.");
+            }
+
+            else if(Str::length($request->mobile) != 8){
+                return back()->with('erreur', "Vérifiez que le numéro mobile est composé de 8 chiffres.");
+            }
+
+            else if($this->updateUser($request->nom, $request->prenom, $request->email, $request->cin, $request->genre, $request->date_naissance, $request->mobile, $request->adresse, $request->type, $request->id_user)){
+                if($this->creerJounral("Modification des informations d'utilisateur", "Modifier les informations d'utilisateur ".$request->prenom." ".$request->nom." en ajoutant les informations requises.", $request->id_user)){
+                    return back()->with('success', "Les informations d'utilisateurs ont été modifiées avec succès. Vous pouvez désormais les consulter à tout moment.");
+                }
+            }
+
+            else{
+                return redirect('/erreur');
+            }
+        }
+
+        public function checkUserEmail2($id_user, $email){
+            return (User::where('id_user', '!=', $id_user)->where('email', '=', $email)->exists());
+        }
+
+        public function checkUserCin2($id_user, $cin){
+            return (User::where('id_user', '!=', $id_user)->where('cin', '=', $cin)->exists());
+        }
+
+        public function checkUserMobile2($id_user, $mobile){
+            return (User::where('id_user', '!=', $id_user)->where('mobile', '=', $mobile)->exists());
+        }
+
+        public function updateUser($nom, $prenom, $email, $cin, $genre, $naissance, $mobile, $adresse, $type, $id_user){
+            return User::where('id_user', '=', $id_user)->update([
+                'nom' => $nom,
+                'prenom' => $prenom, 
+                'email' => $email, 
+                'cin' => $cin,
+                'genre' => $genre,
+                'naissance' => $naissance,
+                'mobile' => $mobile,
+                'adresse' => $adresse, 
+                'type' => $type
+            ]);
+        }
     }
 ?>

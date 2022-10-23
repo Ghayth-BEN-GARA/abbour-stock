@@ -21,7 +21,7 @@
     Route::post('/login', [AuthentificationUserController::class, 'gestionConnexion']);
     Route::get('/home', [AuthentificationUserController::class, 'ouvrirHome'])->middleware('session_not_exist');
     Route::get('/logout', [AuthentificationUserController::class, 'gestionDeconnexion']);
-    Route::get('/error', [AuthentificationUserController::class, 'ouvrirError']);
+    Route::get('/erreur', [AuthentificationUserController::class, 'ouvrirError']);
     Route::get('/profil', [UserController::class, 'ouvrirProfil'])->middleware('session_not_exist');
     Route::get('/edit-password', [UserController::class, 'ouvrirEditPassword'])->middleware('session_not_exist');
     Route::post('/update-password', [UserController::class, 'gestionUpdatePassword']);
@@ -57,5 +57,7 @@
     Route::get('/liste-demandes-modification-type-compte', [DemandeModificationTypeController::class, 'ouvrirListeDemandeModificationCompte'])->middleware('session_not_open_user');
     Route::get('/liste-users', [UserController::class, 'ouvrirListeUsers'])->middleware('session_not_open_user');
     Route::get('/user', [UserController::class, 'ouvrirUser'])->middleware('session_not_open_user');
+    Route::get('/edit-user', [UserController::class, 'ouvrirEditUser'])->middleware('session_not_open_user');
+    Route::post('/modifier-user', [UserController::class, 'gestionModifierUser']);
 ?>
 

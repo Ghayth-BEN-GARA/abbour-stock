@@ -56,9 +56,7 @@
                                                     <i class = "lni lni-home"></i>
                                                 </span>
                                             </label>
-                                            <textarea id = "new_adresse" name = "new_adresse" class = "form-control" cols = "6" rows = "6" placeholder = "Entrez votre nouvelle adresse.." required>
-                                                {{auth()->user()->getAdresseUserAttribute()}}
-                                            </textarea>
+                                            <input type = "text" id = "new_adresse" name = "new_adresse" class = "form-control" placeholder = "Entrez votre nouvelle adresse.." value = "{{auth()->user()->getAdresseUserAttribute()}}" required>
                                         </div>
                                         <button type = "submit" class = "btn app-btn-primary">Modifier</button>
                                     </form>
