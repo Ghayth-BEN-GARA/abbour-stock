@@ -334,7 +334,7 @@
 
             else if($this->storeUser($request->email, $request->password, $request->cin, $request->nom, $request->prenom, $request->genre, $request->naissance, $request->mobile, $request->adresse, $request->type)){
                 if($this->creerJounral("Création d'un nouveau compte", "Créer un nouveau compte pour l'utilisateur ".$request->prenom." ".$request->nom." en ajoutant les informations requises.", auth()->user()->getIdUserAttribute())){
-                    return back()->with('success', "Vos informations ont été modifiées avec succès. Vous pouvez désormais les consulter à tout moment.");
+                    return back()->with('success', "Un nouveau utilisateur a été créé avec succès. Vous pouvez désormais le consulter à tout moment.");
                 }
             }
 
@@ -450,7 +450,7 @@
             }
 
             else if($this->updateUser($request->nom, $request->prenom, $request->email, $request->cin, $request->genre, $request->date_naissance, $request->mobile, $request->adresse, $request->type, $request->id_user)){
-                if($this->creerJounral("Modification des informations d'utilisateur", "Modifier les informations d'utilisateur ".$request->prenom." ".$request->nom." en ajoutant les informations requises.", $request->id_user)){
+                if($this->creerJounral("Modification des informations d'utilisateur", "Modifier les informations d'utilisateur ".$request->prenom." ".$request->nom." en ajoutant les informations requises.", auth()->user()->getIdUserAttribute())){
                     return back()->with('success', "Les informations d'utilisateurs ont été modifiées avec succès. Vous pouvez désormais les consulter à tout moment.");
                 }
             }
