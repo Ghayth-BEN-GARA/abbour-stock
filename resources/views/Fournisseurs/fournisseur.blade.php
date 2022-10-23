@@ -34,6 +34,7 @@
                                                         <th class = "cell">Adresse email</th>
                                                         <th class = "cell" colspan = 2>Numéro mobile</th>
                                                         <th class = "cell">Adresse</th>
+                                                        <th class = "cell">Date de création</th>
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -78,10 +79,18 @@
                                                                 </p>
                                                             </td>
                                                             <td class = "cell">
-                                                            <p>
-                                                                {{$fournisseur->getAdresseFournisseurAttribute()}}
-                                                            </p>
-                                                        </td>
+                                                                <p>
+                                                                    {{$fournisseur->getAdresseFournisseurAttribute()}}
+                                                                </p>
+                                                            </td>
+                                                            <td class = "cell">
+                                                                <p class = "text-capitalize">
+                                                                    <?php
+                                                                        setlocale (LC_TIME, 'fr_FR.utf8','fra');
+                                                                        echo strftime("%A %d %B %Y",strtotime(strftime($fournisseur->getDateCreationFournisseurAttribute())))  
+                                                                    ?>
+                                                                </p>
+                                                            </td>
                                                         </tr>
                                                     @endif
                                                 </tbody>

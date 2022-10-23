@@ -5,6 +5,7 @@
     use App\Http\Controllers\JournalController;
     use App\Http\Controllers\DemandeModificationTypeController;
     use App\Http\Controllers\FournisseurController;
+    use App\Http\Controllers\ClientController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -65,5 +66,7 @@
     Route::get('/fournisseur', [FournisseurController::class, 'ouvrirFournisseur'])->middleware('session_not_open_user');
     Route::get('/edit-fournisseur', [FournisseurController::class, 'ouvrirEditFournisseur'])->middleware('session_not_open_user');
     Route::post('/modifier-fournisseur', [FournisseurController::class, 'gestionModifierFournisseur']);
+    Route::get('/add-client', [ClientController::class, 'ouvrirAddClient'])->middleware('session_not_open_user');
+    Route::post('/create-client', [ClientController::class, 'gestionCreerClient']);
 ?>
 
