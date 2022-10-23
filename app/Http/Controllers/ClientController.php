@@ -82,5 +82,61 @@
         public function getInformationsClient($matricule){
             return Client::where('matricule_client', '=', $matricule)->first();
         }
+
+        public function ouvrirEditClient(Request $request){
+            $client = $this->getInformationsClient($request->input('matricule_client'));
+            return view('Clients.edit_client', compact('client'));
+        }
+
+        public function gestionModifierClient(Request $request){
+            if($this->checkMatriculeClient2($request->input('matricule_client'), $request->matricule)){
+                return back()->with('erreur', "Un autre client a déjà été créé un compte avec cette matricule fiscale.");
+            }
+
+            else if($this->checkEmailClient2($request->input('matricule_client'), $request->email)){
+                return back()->with('erreur', "Un autre client a déjà été créé un compte avec cette adresse email.");
+            }
+
+            else if($this->checkMobileClient2($request->input('matricule_client'), $request->mobile1)){
+                return back()->with('erreur', "Un autre client a déjà été créé un compte avec ce numéro mobile.");
+            }
+
+            else if(Str::length($request->mobile) != 8){
+                return back()->with('erreur', "Le numéro de mobile du client doit être composé de 8 chiffres.");
+            }
+
+            else if($this->updateClient($request->nom, $request->prenom, $request->matricule, $request->email, $request->adresse, $request->mobile, $request->matricule_client)){
+                if($this->creerJounral("Modification de client", "Modifier le client ".$request->prenom. " ".$request->nom." en ajoutant les informations nécessaires à cette modification.", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success', "Le client a été modifié avec succès. Vous pouvez le consulter à tout moment.");
+                }
+            }
+
+            else{
+                return redirect('/erreur');
+            }
+        }
+
+        public function checkMatriculeClient2($matricule, $new_matricule){
+            return (Client::where('matricule_client', '!=', $matricule)->where('matricule_client', '=', $new_matricule)->exists());
+        }
+
+        public function checkEmailClient2($matricule, $email){
+            return (Client::where('matricule_client', '!=', $matricule)->where('email_client', '=', $email)->exists());
+        }
+
+        public function checkMobileClient2($matricule, $mobile){
+            return (Client::where('matricule_client', '!=', $matricule)->where('mobile_client', '=', $mobile)->exists());
+        }
+
+        public function updateClient($nom, $prenom, $matricule, $email, $adresse, $mobile, $matricule_client){
+            return Client::where('matricule_client', '=', $matricule_client)->update([
+                'nom_client' => $nom,
+                'prenom_client' => $prenom,
+                'matricule_client' => $matricule, 
+                'email_client' => $email,
+                'adresse_client' => $adresse, 
+                'mobile_client' => $mobile
+            ]);
+        }
     }
 ?>

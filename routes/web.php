@@ -70,5 +70,7 @@
     Route::post('/create-client', [ClientController::class, 'gestionCreerClient']);
     Route::get('/liste-clients', [ClientController::class, 'ouvrirListeClients'])->middleware('session_not_open_user');
     Route::get('/client', [ClientController::class, 'ouvrirClient'])->middleware('session_not_open_user');
+    Route::get('/edit-client', [ClientController::class, 'ouvrirEditClient'])->middleware('session_not_open_user');
+    Route::post('/modifier-client', [ClientController::class, 'gestionModifierClient']);
 ?>
 
