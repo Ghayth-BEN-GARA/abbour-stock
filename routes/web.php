@@ -63,5 +63,7 @@
     Route::post('/create-fourniseur', [FournisseurController::class, 'gestionCreerFournisseur']);
     Route::get('/liste-fournisseurs', [FournisseurController::class, 'ouvrirListeFournisseurs'])->middleware('session_not_open_user');
     Route::get('/fournisseur', [FournisseurController::class, 'ouvrirFournisseur'])->middleware('session_not_open_user');
+    Route::get('/edit-fournisseur', [FournisseurController::class, 'ouvrirEditFournisseur'])->middleware('session_not_open_user');
+    Route::post('/modifier-fournisseur', [FournisseurController::class, 'gestionModifierFournisseur']);
 ?>
 
