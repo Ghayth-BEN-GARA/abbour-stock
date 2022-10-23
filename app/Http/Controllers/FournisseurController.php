@@ -75,5 +75,14 @@
         public function ouvrirListeFournisseurs(){
             return view('Fournisseurs.liste_fournisseurs');
         }
+
+        public function ouvrirFournisseur(Request $request){
+            $fournisseur = $this->getInformationsFournisseur($request->input('matricule_fournisseur'));
+            return view('Fournisseurs.fournisseur', compact('fournisseur'));
+        }
+
+        public function getInformationsFournisseur($matricule){
+            return Fournisseur::where('matricule_fournisseur', '=', $matricule)->first();
+        }
     }
 ?>
