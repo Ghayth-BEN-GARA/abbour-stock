@@ -75,5 +75,6 @@
     Route::get('/forget-password', [AuthentificationUserController::class, 'ouvrirForgetPassword'])->middleware('session_exist');
     Route::post('/chercher-compte', [AuthentificationUserController::class, 'gestionRecuperationCompte']);
     Route::get('/reset-password/{token}/{id}', [AuthentificationUserController::class, 'ouvrirResetPassword'])->middleware('session_exist');
+    Route::post('/update-reset-password', [AuthentificationUserController::class, 'gestionUpdateResetPassword']);
 ?>
 

@@ -149,7 +149,7 @@
         }
 
         public function checkTokenResetPassword($id_user, $token){
-            return PasswordReset::where('id_user', '=', $id_user)->exists();
+            return PasswordReset::where('id_user', '=', $id_user)->where('token', '=', $token)->exists();
         }
 
         public function gestionInsertUpdateTokenResetPassword($id_user, $token){
@@ -186,6 +186,32 @@
         public function ouvrirResetPassword($token, $id_user){
             $checkToken = $this->checkTokenResetPassword($id_user, $token);
             return view('Authentification.reset_password', compact('id_user', 'token', 'checkToken'));
+        }
+
+        public function gestionUpdateResetPassword(Request $request){
+            if($this->checkEqualsPasswordsEntred($request->new_password, $request->confirm_password) != 0){
+                return back()->with('erreur', 'Les deux mots de passe que vous avez saisis ne sont pas identiques.');
+            }
+
+            else if($this->editPassword($request->id_user, $request->new_password)){
+                if($this->creerJounral("Récupération de compte", "Ajouter un nouveau mot de passe pour aprés la récupération de compte.", $request->id_user)){
+                    return redirect('/');
+                }
+            }
+
+            else{
+                return redirect('/erreur');
+            }
+        }
+
+        public function checkEqualsPasswordsEntred($password1, $password2){
+            return strcmp($password1, $password2);
+        }
+
+        public function editPassword($id_user, $password){
+            return User::where('id_user', '=',$id_user)->update([
+                'password' => bcrypt($password)
+            ]);
         }
     }
 ?>

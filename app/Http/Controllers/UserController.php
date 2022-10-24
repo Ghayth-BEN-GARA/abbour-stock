@@ -23,7 +23,7 @@
                 return back()->with('erreur', 'Les deux mots de passe que vous avez saisis ne sont pas identiques.');
             }
 
-            elseif($this->checkUserPassword(auth()->user()->getEmailUserAttribute(), $request->new_password)){
+            else if($this->checkUserPassword(auth()->user()->getEmailUserAttribute(), $request->new_password)){
                 return back()->with('erreur', 'Vous avez entré votre ancien mot de passe, nous ne pouvons donc pas le modifier actuellement.');
             }
 
