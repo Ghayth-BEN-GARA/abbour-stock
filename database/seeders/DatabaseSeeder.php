@@ -12,7 +12,8 @@
             $this->call([
                 UserSeeder::class,
                 JournalSeeder::class,
-                CategorieSeeder::class
+                CategorieSeeder::class,
+                EtatImportationSeeder::class
             ]);
         }
     }

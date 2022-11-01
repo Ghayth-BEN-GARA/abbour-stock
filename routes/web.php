@@ -7,6 +7,7 @@
     use App\Http\Controllers\FournisseurController;
     use App\Http\Controllers\ClientController;
     use App\Http\Controllers\AchatController;
+    use App\Http\Controllers\StockController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -80,5 +81,6 @@
     Route::get('/autres', [AchatController::class, 'ouvrirAutres'])->middleware('session_not_open_user');
     Route::post('/add-categorie', [AchatController::class, 'gestionAddCategorie']);
     Route::post('/add-article', [AchatController::class, 'gestionAddArticle']);
+    Route::get('/import-stock', [StockController::class, 'ouvrirImportStock'])->middleware('session_not_open_user');
 ?>
 
