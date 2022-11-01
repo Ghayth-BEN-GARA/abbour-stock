@@ -11,7 +11,8 @@
         public function run(){
             $this->call([
                 UserSeeder::class,
-                JournalSeeder::class
+                JournalSeeder::class,
+                CategorieSeeder::class
             ]);
         }
     }

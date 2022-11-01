@@ -10,7 +10,7 @@
          * @return void
          */
         public function up(){
-            Schema::create('categorie', function (Blueprint $table) {
+            Schema::create('categories', function (Blueprint $table) {
                 $table->collation = 'utf8_general_ci';
                 $table->charset = 'utf8';
                 $table->string('nom_categorie', 700)->primary()->default('Aucun');
@@ -23,7 +23,7 @@
          * @return void
          */
         public function down(){
-            Schema::dropIfExists('categorie');
+            Schema::dropIfExists('categories');
         }
     };
 ?>
