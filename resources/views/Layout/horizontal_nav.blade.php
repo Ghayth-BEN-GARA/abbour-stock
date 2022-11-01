@@ -47,11 +47,9 @@
                         <li>
                             <hr class = "dropdown-divider">
                         </li>
-                        @if (session('type') == 'Utilisateur')
-                            <li>
-                                <a class = "dropdown-item" href = "{{url('/mes-demandes')}}">Mes demandes</a>
-                            </li>
-                        @endif
+                        <li>
+                            <a class = "dropdown-item" href = "{{url('/mes-demandes')}}">Mes demandes</a>
+                        </li>
                         <li>
                             <hr class = "dropdown-divider">
                         </li>

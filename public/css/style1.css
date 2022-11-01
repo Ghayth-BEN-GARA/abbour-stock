@@ -6583,6 +6583,7 @@ fieldset:disabled .btn {
     color: #000 !important;
     background-color: RGBA(91, 153, 234, var(--bs-bg-opacity, 1)) !important;
 }
+
 .link-primary {
     color: #15a362 !important;
 }
@@ -7736,6 +7737,13 @@ fieldset:disabled .btn {
     color: #219653;
     background: rgba(33, 150, 83, 0.1);
 }
+
+.bg-success2 {
+    --bs-bg-opacity: 1;
+    color: #219653;
+    background: rgba(33, 150, 83, 0.1);
+}
+
 .bg-danger {
     color: #d50100 !important;
     background: rgba(213, 1, 0, 0.1) !important;
@@ -7752,6 +7760,13 @@ fieldset:disabled .btn {
     color: #97ca31;
     background: rgba(151, 202, 49, 0.1); 
 }
+
+.bg-info2 {
+    --bs-bg-opacity: 1;
+    color: #97ca31;
+    background: rgba(151, 202, 49, 0.1); 
+}
+
 .bg-black {
     --bs-bg-opacity: 1;
     background-color: rgba(
@@ -10636,6 +10651,7 @@ button.close:focus {
 }
 .app-utility-item > a:hover {
     color: #252930;
+    text-decoration: none;
 }
 .app-utility-item .dropdown-toggle {
     position: relative;

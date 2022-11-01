@@ -52,9 +52,9 @@
                                         <div class = "col-12 col-lg-auto text-center text-lg-start">
                                             <div class = "notification-type mb-2">
                                                 @if($data->getEtatDemandeAttribute() == 0)
-                                                    <span class = "badge bg-info">En attente</span>
+                                                    <span class = "badge bg-info2">En attente</span>
                                                 @elseif($data->getEtatDemandeAttribute() == 1)
-                                                    <span class = "badge bg-success">Acceptée</span>
+                                                    <span class = "badge bg-success2">Acceptée</span>
                                                 @else
                                                     <span class = "badge bg-danger">Refusée</span>
                                                 @endif
@@ -70,7 +70,7 @@
                                 </div>
                                 <div class = "app-card-body p-4">
                                     <div class = "notification-content">
-                                        Vous avez envoyé une demande de changement de type de compte à l'administrateur pour changer le type de votre compte de <b>{{auth()->user()->getTypeUserAttribute()}}</b> à <b>{{$data->getTypeDemandeAttribute()}}</b>. Vous pouvez voir les informations de votre demande ici.
+                                        Vous avez envoyé une demande de changement de type de compte à l'administrateur pour changer le type de votre compte vers <b>{{$data->getTypeDemandeAttribute()}}</b>. Vous pouvez voir les informations de votre demande ici.
                                     </div>
                                 </div>
                                 @if($data->getEtatDemandeAttribute() == 0)

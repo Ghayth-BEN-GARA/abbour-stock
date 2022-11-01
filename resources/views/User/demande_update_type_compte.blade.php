@@ -51,9 +51,9 @@
                                     <div class = "col-12 col-lg-auto text-center text-lg-start">
                                         <div class = "notification-type mb-2">
                                             @if($demande->getEtatDemandeAttribute() == 0)
-                                                <span class = "badge bg-info">En attente</span>
+                                                <span class = "badge bg-info2">En attente</span>
                                             @elseif($demande->getEtatDemandeAttribute() == 1)
-                                                <span class = "badge bg-success">Acceptée</span>
+                                                <span class = "badge bg-success2">Acceptée</span>
                                             @else
                                                 <span class = "badge bg-danger">Refusée</span>
                                             @endif
@@ -69,15 +69,15 @@
                             </div>
                             <div class = "app-card-body p-4">
                                 <div class = "notification-content">
-                                    L'utilisateur {{$demande->prenom}} {{$demande->nom}} vous a envoyé une demande de changement de type de compte pour changer le type de son compte de <b>{{$demande->type}}</b> à <b>{{$demande->getTypeDemandeAttribute()}}</b>. Vous pouvez voir les informations de demande ici.
+                                    L'utilisateur {{$demande->prenom}} {{$demande->nom}} vous a envoyé une demande de changement de type de compte pour changer le type de son compte vers <b>{{$demande->getTypeDemandeAttribute()}}</b>. Vous pouvez voir les informations de demande ici.
                                 </div>
                             </div>
                             @if($demande->getEtatDemandeAttribute() == 0)
                                 <div class = "app-card-footer px-4 py-3">
-                                    <a class = "action-link mx-2" href = "{{url('/gestion-modifier-etat-demande?id_demande='.$demande->getIdDemandeAttribute().'&resp=1&id_user='.$demande->id_user)}}" style = "color:inherit">
+                                    <a class = "action-link mx-2" href = "{{url('/gestion-modifier-etat-demande?id_demande='.$demande->getIdDemandeAttribute().'&resp=1&id_user='.$demande->id_user.'&new_type='.$demande->getTypeDemandeAttribute())}}" style = "color:inherit">
                                         Accepter la demande <i class = "lni lni-checkmark-circle"></i>
                                     </a>
-                                    <a class = "action-link" href = "{{url('/gestion-modifier-etat-demande?id_demande='.$demande->getIdDemandeAttribute().'&resp=-1&id_user='.$demande->id_user)}}" style = "color:inherit">
+                                    <a class = "action-link" href = "{{url('/gestion-modifier-etat-demande?id_demande='.$demande->getIdDemandeAttribute().'&resp=-1&id_user='.$demande->id_user.'&new_type=null')}}" style = "color:inherit">
                                         Refuser la demande <i class = "lni lni-thumbs-down"></i>
                                     </a>
                                 </div>

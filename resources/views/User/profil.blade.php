@@ -174,7 +174,7 @@
 									        </div>
                                             <div class = "col text-end">
                                                 @if (session('type') == 'Administrateur')
-                                                    <a class = "badge bg-danger" href = "javascript:void(0)">Indisponible</a>
+                                                    <span class = "badge bg-danger">Indisponible</span>
                                                 @else
                                                     <a class = "btn-sm app-btn-secondary" href = "{{url('/edit-email')}}">Modifier</a>
                                                 @endif
@@ -193,7 +193,7 @@
 									        </div>
                                             <div class = "col text-end">
                                                 @if (session('type') == 'Administrateur')
-                                                    <a class = "badge bg-danger" href = "javascript:void(0)">Indisponible</a>
+                                                    <span class = "badge bg-danger">Indisponible</span>
                                                 @else
                                                     <a class = "btn-sm app-btn-secondary" href = "{{url('/edit-type-compte')}}">Modifier</a>
                                                 @endif
@@ -229,7 +229,7 @@
                                                 </div>
 									        </div>
                                             <div class = "col text-end">
-                                                <a class = "badge bg-danger" href = "javascript:void(0)">Indisponible</a>
+                                                <span class = "badge bg-danger">Indisponible</span>
                                             </div>
                                         </div>
                                     </div>

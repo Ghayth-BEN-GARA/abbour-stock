@@ -60,7 +60,7 @@
         }
 
         public static function getDifferenceDate($date){
-            $currentDate = strtotime(Carbon::now('+02:00')->format('Y-m-d H:i:s'));
+            $currentDate = strtotime(Carbon::now('+01:00')->format('Y-m-d H:i:s'));
             $dateNotification = strtotime($date);
             $differenceDates = $currentDate - $dateNotification;
 
@@ -118,9 +118,11 @@
 
         public function gestionAccepterRefuserDemande(Request $request){
             if($this->updateDemandeModificationTypeCompte($request->input('id_demande'), $request->input('resp'))){
-                if($this->envoyerEmailDecisionModificationTypeCompte($request->input('id_user'), $request->input('resp'))){
-                    if($this->creerJounral("Gestion des demandes de changement de type de compte", "Vous avez traité avec succès la demande de changement de type de compte.", auth()->user()->getIdUserAttribute())){
-                        return back()->with('success', "La demande de changement de type de compte a été traitée avec succès.");
+                if($this->updateTypeCompte($request->input('id_user'), $request->input('new_type'))){
+                    if($this->envoyerEmailDecisionModificationTypeCompte($request->input('id_user'), $request->input('resp'))){
+                        if($this->creerJounral("Gestion des demandes de changement de type de compte", "Vous avez traité avec succès la demande de changement de type de compte.", auth()->user()->getIdUserAttribute())){
+                            return back()->with('success', "La demande de changement de type de compte a été traitée avec succès.");
+                        }
                     }
                 }
             }
@@ -169,6 +171,18 @@
                 ->where('demandes_modification_type.id_user', '<>', auth()->user()->getIdUserAttribute())
                 ->orderBy('demandes_modification_type.date_time_demande','desc')
                 ->get();
+        }
+
+        public function updateTypeCompte($id_user, $new_type){
+            if($new_type != 'null'){
+                return User::where('id_user', '=', $id_user)->update([
+                    'type' => $new_type
+                ]);
+            }
+
+            else{
+                return true;
+            }
         }
     }
 ?>
