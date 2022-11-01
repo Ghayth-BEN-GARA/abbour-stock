@@ -129,7 +129,7 @@
                                                 </div>
                                             </div>    
                                             <input type = "hidden" name = "matricule_fournisseur" id = "matricule_fournisseur" value = "{{$_GET['matricule_fournisseur']}}">
-                                            <div class = "item border-bottom py-3">
+                                            <div class = "item py-3">
                                                 <div class = "item-data">
                                                     <button type = "submit" class = "btn app-btn-primary">Modifier ce fournisseur</button>
                                                     <button type = "reset" class = "btn app-btn-info">Annuler</button>

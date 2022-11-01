@@ -79,5 +79,6 @@
     Route::post('/update-reset-password', [AuthentificationUserController::class, 'gestionUpdateResetPassword']);
     Route::get('/autres', [AchatController::class, 'ouvrirAutres'])->middleware('session_not_open_user');
     Route::post('/add-categorie', [AchatController::class, 'gestionAddCategorie']);
+    Route::post('/add-article', [AchatController::class, 'gestionAddArticle']);
 ?>
 

@@ -125,7 +125,7 @@
                                                 </div>
                                             </div>    
                                             <input type = "hidden" name = "matricule_client" id = "matricule_client" value = "{{$_GET['matricule_client']}}">
-                                            <div class = "item border-bottom py-3">
+                                            <div class = "item py-3">
                                                 <div class = "item-data">
                                                     <button type = "submit" class = "btn app-btn-primary">Modifier ce client</button>
                                                     <button type = "reset" class = "btn app-btn-info">Annuler</button>

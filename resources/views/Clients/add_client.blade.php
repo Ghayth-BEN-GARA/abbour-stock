@@ -114,7 +114,7 @@
                                                 </div>
                                             </div>
                                         </div>                                        
-                                        <div class = "item border-bottom py-3">
+                                        <div class = "item py-3">
                                             <div class = "item-data">
                                                 <button type = "submit" class = "btn app-btn-primary">Créer un nouveau client</button>
                                                 <button type = "reset" class = "btn app-btn-info">Annuler</button>
