@@ -6,6 +6,7 @@
     use App\Http\Controllers\DemandeModificationTypeController;
     use App\Http\Controllers\FournisseurController;
     use App\Http\Controllers\ClientController;
+    use App\Http\Controllers\AchatController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -76,5 +77,7 @@
     Route::post('/chercher-compte', [AuthentificationUserController::class, 'gestionRecuperationCompte']);
     Route::get('/reset-password/{token}/{id}', [AuthentificationUserController::class, 'ouvrirResetPassword'])->middleware('session_exist');
     Route::post('/update-reset-password', [AuthentificationUserController::class, 'gestionUpdateResetPassword']);
+    Route::get('/autres', [AchatController::class, 'ouvrirAutres'])->middleware('session_not_open_user');
+    Route::post('/add-categorie', [AchatController::class, 'gestionAddCategorie']);
 ?>
 

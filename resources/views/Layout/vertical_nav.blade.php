@@ -93,7 +93,7 @@
                                 <a class = "submenu-link" href = "#">Gérer</a>
                             </li>
                             <li class = "submenu-item">
-                                <a class = "submenu-link" href = "#">Autre</a>
+                                <a class = "submenu-link" href = "{{url('/autres')}}">Autre</a>
                             </li>
                         </ul>
                     </div>

@@ -5,7 +5,7 @@
     use Illuminate\Support\Str;
     use Illuminate\Support\Facades\Mail;
     use App\Models\User;
-    use App\Models\journal;
+    use App\Models\Journal;
     use App\Models\PasswordReset;
     use Session;
     use App\Mail\EnvoyerMailResetPassword;
