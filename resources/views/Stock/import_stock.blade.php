@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en"> 
     <head>
-        <title>Abbour'Stock Dépôt | Accueil</title> 
+        <title>Abbour'Stock Dépôt | Stock</title> 
         @include('Layout.head_app')
     </head> 
     <body class = "app">
@@ -105,7 +105,7 @@
                 </div>
             </div>
         </div>
-        <footer class = "app-auth-footer">
+        <footer class = "app-auth-footer2">
             @include('Layout.footer')
         </footer>
         @include('Layout.script')

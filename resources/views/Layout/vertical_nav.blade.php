@@ -183,7 +183,7 @@
                 <div id = "submenu-7" class = "collapse submenu submenu-2" data-bs-parent = "#menu-accordion">
                     <ul class = "submenu-list list-unstyled">
                         <li class = "submenu-item">
-                            <a class = "submenu-link" href = "#">Disponibilité</a>
+                            <a class = "submenu-link" href = "{{url('/liste-article-disponible')}}">Disponibilité</a>
                         </li>
                         @if (session('type') != 'Utilisateur')
                             <li class = "submenu-item">

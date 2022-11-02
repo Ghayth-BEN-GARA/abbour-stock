@@ -11063,9 +11063,13 @@ button.close:focus {
     margin-bottom: 1.5rem;
 }
 .app-card {
-    position: relative;
     background: #fff;
-    border-radius: 0.25rem;
+  box-sizing: border-box;
+  padding: 25px 30px;
+  position: relative;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0px 10px 20px rgba(200, 208, 216, 0.3);
+  border-radius: 10px;;
 }
 .app-card.border-left-decoration {
     border-left: 3px solid #F7941E;

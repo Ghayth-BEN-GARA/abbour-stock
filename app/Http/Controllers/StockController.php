@@ -93,5 +93,9 @@
                 'etat_importation_article' => 1
             ]);
         }
+
+        public function ouvrirListeArticleDisponible(){
+            return view('Stock.liste_articles_disponible');
+        }
     }
 ?>
