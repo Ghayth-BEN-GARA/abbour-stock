@@ -37,7 +37,7 @@
 						            <h4 class = "app-card-title">Importation</h4>
 					            </div>
                                 <div class = "app-card-body p-4">	
-                                    <form class = "settings-form" name = "f" id = "f" method = "post" action = "#" enctype = "multipart/form-data">
+                                    <form class = "settings-form" name = "f" id = "f" method = "post" action = "{{url('/import-file')}}" enctype = "multipart/form-data">
                                         @csrf
                                         @if (Session::has('erreur'))
                                             <div class = "alert alert-danger d-flex align-items-center" role = "alert">

@@ -82,5 +82,6 @@
     Route::post('/add-categorie', [AchatController::class, 'gestionAddCategorie']);
     Route::post('/add-article', [AchatController::class, 'gestionAddArticle']);
     Route::get('/import-stock', [StockController::class, 'ouvrirImportStock'])->middleware('session_not_open_user');
+    Route::post('/import-file', [StockController::class, 'gestionImporterArticlesStock']);
 ?>
 
