@@ -17,6 +17,9 @@
 									<th class = "cell">Désignation</th>
 									<th class = "cell">Catégorie</th>
                                     <th class = "cell">Quantité</th>
+                                    @if(session('type') != "Utilisateur")
+                                        <th class = "cell">Prix d'achat</th>
+                                    @endif
                                     <th class = "cell">Prix de vente</th>
                                     <th class = "cell">Disponibilité</th>
 								</tr>
@@ -45,6 +48,13 @@
                                                     {{$data->getQuantiteStockAttribute()}}
                                                 </p>
                                             </td>
+                                            @if(session('type') != "Utilisateur")
+                                                <td class = "cell">
+                                                    <p>
+                                                        {{$data->getPrixAchatArticleAttribute()}}
+                                                    </p>
+                                                </td>
+                                            @endif
                                             <td class = "cell">
                                                 <p>
                                                     {{$this->calculerPrixVente($data->getPrixAchatArticleAttribute(), $data->getMargePrixAttribute())}} DT

@@ -207,7 +207,7 @@
                                                     <strong>Mot de passe</strong>
                                                 </div>
 									            <div class = "item-data">
-                                                    Mot de passe crypté en raison de la sécurité du compte
+                                                    Mot de passe crypté
                                                 </div>
 									        </div>
                                             <div class = "col text-end">
