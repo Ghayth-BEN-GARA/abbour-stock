@@ -16,7 +16,7 @@
                 $table->id('id_stock');
                 $table->integer('quantite_stock')->default(0);
                 $table->decimal('prix_achat_article', 10,3)->default(0.000);
-                $table->decimal('marge_prix',10,3)->default(0.000);
+                $table->decimal('marge_prix',10,3)->default(20.000);
                 $table->bigInteger('reference_article')->unsigned()->index();
                 $table->foreign('reference_article')->references('reference_article')->on('articles')->onDelete('cascade')->onUpdate('cascade');
             });

@@ -25,11 +25,11 @@
                     <div class = "col-12 col-lg-12">
                         <div class = "app-card app-card-settings shadow-sm p-4">
                             <div class = "app-card-body">
-                                <p class = "form-text text-dark">Gérez la disponnibilité des articles dans le stock enregistrés sur l'application en toute sécurité. Vous pouvez consulter, modifier et rechercher un article existant dans le stock à tout moment.</p>      
+                                <p class = "form-text text-dark">Gérez la liste des articles dans le stock enregistrés sur l'application en toute sécurité. Vous pouvez consulter, modifier et rechercher un article existant dans le stock à tout moment.</p>      
                             </div>
                         </div>
                     </div>
-                    <livewire:liste-articles-disponible/>
+                    <livewire:liste-stock/>
                 </div>
             </div>
         </div>

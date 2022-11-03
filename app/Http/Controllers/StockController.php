@@ -97,5 +97,9 @@
         public function ouvrirListeArticleDisponible(){
             return view('Stock.liste_articles_disponible');
         }
+
+        public function ouvrirListStock(){
+            return view('Stock.liste_stock');
+        }
     }
 ?>

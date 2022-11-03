@@ -17,11 +17,10 @@
 									<th class = "cell">Désignation</th>
 									<th class = "cell">Catégorie</th>
                                     <th class = "cell">Quantité</th>
-                                    @if(session('type') != "Utilisateur")
-                                        <th class = "cell">Prix d'achat</th>
-                                    @endif
-                                    <th class = "cell">Prix de vente</th>
-                                    <th class = "cell">Disponibilité</th>
+                                    <th class = "cell">Achat</th>
+                                    <th class = "cell">Vente</th>
+                                    <th class = "cell">Marge</th>
+                                    <th class = "cell">Action</th>
 								</tr>
 							</thead>
                             <tbody>
@@ -48,13 +47,11 @@
                                                     {{$data->getQuantiteStockAttribute()}}
                                                 </p>
                                             </td>
-                                            @if(session('type') != "Utilisateur")
-                                                <td class = "cell">
-                                                    <p>
-                                                        {{$data->getPrixAchatArticleAttribute()}} DT
-                                                    </p>
-                                                </td>
-                                            @endif
+                                            <td class = "cell">
+                                                <p>
+                                                    {{$data->getPrixAchatArticleAttribute()}} DT
+                                                </p>
+                                            </td>
                                             <td class = "cell">
                                                 <p>
                                                     {{$this->calculerPrixVente($data->getPrixAchatArticleAttribute(), $data->getMargePrixAttribute())}} DT
@@ -62,18 +59,19 @@
                                             </td>
                                             <td class = "cell">
                                                 <p>
-                                                    @if($data->getQuantiteStockAttribute() == 0)
-                                                        <span class = "badge bg-danger">En repture de stock</span>
-                                                    @else
-                                                        <span class = "badge bg-success">Disponible</span>
-                                                    @endif
+                                                    {{number_format($data->getMargePrixAttribute(), 2)}} %
+                                                </p>
+                                            </td>
+                                            <td class = "cell">
+                                                <p>
+                                                    
                                                 </p>
                                             </td>
                                         </tr>
                                     @endforeach
                                 @else
                                 <tr>
-                                    <td colspan = "6" class = "text-center">
+                                    <td colspan = "8" class = "text-center">
                                         <span>La liste des articles est vide.</span>
                                     </td>
                                 </tr>

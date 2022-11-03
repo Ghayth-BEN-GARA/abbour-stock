@@ -187,7 +187,7 @@
                         </li>
                         @if (session('type') != 'Utilisateur')
                             <li class = "submenu-item">
-                                <a class = "submenu-link" href = "#">Gérer</a>
+                                <a class = "submenu-link" href = "{{url('/liste-stock')}}">Gérer</a>
                             </li>
                             <li class = "submenu-item">
                                 <a class = "submenu-link" href = "{{url('/import-stock')}}">Importer</a>
