@@ -20,7 +20,7 @@
                                     <th class = "cell">Achat</th>
                                     <th class = "cell">Vente</th>
                                     <th class = "cell">Marge</th>
-                                    <th class = "cell">Action</th>
+                                    <th class = "cell text-center">Action</th>
 								</tr>
 							</thead>
                             <tbody>
@@ -64,7 +64,8 @@
                                             </td>
                                             <td class = "cell">
                                                 <p>
-                                                    
+                                                    <a href = "{{url('/article?reference_article='.$data->getReferenceArticleAttribute())}}" class = "btn app-btn-secondary">Consulter</a>
+                                                    <a href = "{{url('/edit-article?reference_article='.$data->getReferenceArticleAttribute())}}" class = "btn app-btn-secondary">Modifier</a>
                                                 </p>
                                             </td>
                                         </tr>

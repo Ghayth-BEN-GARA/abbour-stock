@@ -101,5 +101,16 @@
         public function ouvrirListStock(){
             return view('Stock.liste_stock');
         }
+
+        public function ouvrirArticle(Request $request){
+            $article = $this->getDetailsArticle($request->input('reference_article'));
+            return view('Stock.article', compact('article'));
+        }
+
+        public function getDetailsArticle($reference_article){
+            return Stock::join('articles', 'articles.reference_article', '=', 'stocks.reference_article')
+            ->where('articles.reference_article', '=', $reference_article)->first();
+        }
+        
     }
 ?>

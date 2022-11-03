@@ -18,7 +18,7 @@
 									<th class = "cell">Adresse email</th>
 									<th class = "cell">Numéro mobile</th>
 									<th class = "cell">Type de compte</th>
-									<th class = "cell">Action</th>
+									<th class = "cell text-center">Action</th>
 								</tr>
 							</thead>
                             <tbody>

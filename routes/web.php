@@ -85,5 +85,6 @@
     Route::post('/import-file', [StockController::class, 'gestionImporterArticlesStock']);
     Route::get('/liste-article-disponible', [StockController::class, 'ouvrirListeArticleDisponible'])->middleware('session_not_exist');
     Route::get('/liste-stock', [StockController::class, 'ouvrirListStock'])->middleware('session_not_open_user');
+    Route::get('/article', [StockController::class, 'ouvrirArticle'])->middleware('session_not_open_user');
 ?>
 
