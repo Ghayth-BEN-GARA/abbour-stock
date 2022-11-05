@@ -57,7 +57,7 @@
                                             </td>
                                             <td class = "cell">
                                                 <p>
-                                                    <a href = "{{url('/user?id_user='.$data->getIdUserAttribute())}}" class = "btn app-btn-primary">Consulter</a>
+                                                    <a href = "{{url('/user?id_user='.$data->getIdUserAttribute())}}" class = "btn app-btn-secondary">Consulter</a>
                                                     <a href = "{{url('/edit-user?id_user='.$data->getIdUserAttribute())}}" class = "btn app-btn-secondary">Modifier</a>
                                                 </p>
                                             </td>

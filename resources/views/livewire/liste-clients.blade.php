@@ -46,7 +46,7 @@
                                             </td>
                                             <td class = "cell">
                                                 <p>
-                                                    <a href = "{{url('/client?matricule_client='.$data->getMatriculeClientAttribute())}}" class = "btn app-btn-primary">Consulter</a>
+                                                    <a href = "{{url('/client?matricule_client='.$data->getMatriculeClientAttribute())}}" class = "btn app-btn-secondary">Consulter</a>
                                                     <a href = "{{url('/edit-client?matricule_client='.$data->getMatriculeClientAttribute())}}" class = "btn app-btn-secondary">Modifier</a>
                                                 </p>
                                             </td>

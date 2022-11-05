@@ -4,6 +4,7 @@
     use App\Models\EtatImportation;
     use App\Models\Article;
     use App\Models\Stock;
+    use App\Models\Categorie;
     use PhpOffice\PhpSpreadsheet\Spreadsheet;
     use PhpOffice\PhpSpreadsheet\Reader\Exception;
     use PhpOffice\PhpSpreadsheet\Writer\Xls;
@@ -112,5 +113,47 @@
             ->where('articles.reference_article', '=', $reference_article)->first();
         }
         
+        public function ouvrirEditArticle(Request $request){
+            $article = $this->getDetailsArticle($request->input('reference_article'));
+            $last_reference = $this->getLastReferenceArticle();
+            $categories = $this->listeCategorie();
+            return view('Stock.edit_article', compact('article' , 'last_reference', 'categories'));
+        }
+
+        public function getLastReferenceArticle(){
+            if(Article::count() == 0){
+                return 0;
+            }
+
+            else{
+                return Article::orderBy('reference_article','desc')->first()->getReferenceArticleAttribute();
+            }
+        }
+
+        public function listeCategorie(){
+            return Categorie::all();
+        }
+
+        public function gestionUpdateArticle(Request $request){
+            if($this->updateArticle($request->reference, $request->designation, $request->description, $request->categorie, $request->prix_achat, $request->marge)){
+                return back()->with('success',"L'article a été modifié avec succès. Vous pouvez l'utiliser maintenant dans les ventes et les achats.");
+            }
+
+            else{
+                return redirect('/erreur');
+            }
+        }
+
+        public function updateArticle($reference_article, $designation, $description, $categorie, $prix_achat, $marge){
+            return (Article::join('stocks','articles.reference_article','=','stocks.reference_article')
+                ->where('articles.reference_article', '=', $reference_article)
+                ->update([
+                    'designation' => $designation, 
+                    'description' => $description, 
+                    'categorie' => $categorie,
+                    'prix_achat_article' => $prix_achat, 
+                    'marge_prix' => $marge
+                ]));
+        }
     }
 ?>

@@ -49,7 +49,7 @@
                                             </td>
                                             <td class = "cell">
                                                 <p>
-                                                    <a href = "{{url('/fournisseur?matricule_fournisseur='.$data->getMatriculeFournisseurAttribute())}}" class = "btn app-btn-primary">Consulter</a>
+                                                    <a href = "{{url('/fournisseur?matricule_fournisseur='.$data->getMatriculeFournisseurAttribute())}}" class = "btn app-btn-secondary">Consulter</a>
                                                     <a href = "{{url('/edit-fournisseur?matricule_fournisseur='.$data->getMatriculeFournisseurAttribute())}}" class = "btn app-btn-secondary">Modifier</a>
                                                 </p>
                                             </td>
