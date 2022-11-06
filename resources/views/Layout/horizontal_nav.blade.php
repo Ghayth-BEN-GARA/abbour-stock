@@ -47,9 +47,15 @@
                         <li>
                             <hr class = "dropdown-divider">
                         </li>
-                        <li>
-                            <a class = "dropdown-item" href = "{{url('/mes-demandes')}}">Mes demandes</a>
-                        </li>
+                        @if(auth()->user()->getTypeUserAttribute() == "Administrateur")
+                            <li>
+                                <a class = "dropdown-item" href = "{{url('/liste-demandes-modification-type-compte')}}">Demandes</a>
+                            </li>
+                        @else
+                            <li>
+                                <a class = "dropdown-item" href = "{{url('/mes-demandes')}}">Mes demandes</a>
+                            </li>
+                        @endif
                         <li>
                             <hr class = "dropdown-divider">
                         </li>
