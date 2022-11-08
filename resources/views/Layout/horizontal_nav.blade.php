@@ -38,7 +38,7 @@
                 </div>
                 <div class = "app-utility-item app-user-dropdown dropdown">
                     <a class = "dropdown-toggle" id = "user-dropdown-toggle" data-bs-toggle = "dropdown" href = "javascript:void(0)" role = "button" aria-expanded = "false">
-                        <img src = "{{auth()->user()->getImageUserAttribute()}}" alt = "Photo de profil">
+                        <img src = "{{URL::asset(auth()->user()->getImageUserAttribute())}}" alt = "Photo de profil">
                     </a>
                     <ul class = "dropdown-menu" aria-labelledby = "user-dropdown-toggle">
                         <li>

@@ -91,6 +91,8 @@
     Route::post('/update-article', [StockController::class, 'gestionUpdateArticle']);
     Route::get('/add-facture-achat', [AchatController::class, 'ouvrirAddFactureAchat'])->middleware('session_not_open_user');
     Route::get('/parametres', [UserController::class, 'ouvrirParametres'])->middleware('session_not_exist');
-    Route::get('/update-state', [UserController::class, 'gestionUpdateState'])
+    Route::get('/update-state', [UserController::class, 'gestionUpdateState']);
+    Route::post('/creer-facture-achat', [AchatController::class, 'gestionCreerFactureAchat']);
+    Route::get('/add-articles-facture-achat/{reference}', [AchatController::class, 'ouvrirAddArticleFactureAchat'])->middleware('session_not_open_user');
 ?>
 

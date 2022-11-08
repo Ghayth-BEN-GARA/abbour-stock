@@ -17,7 +17,7 @@
             <div class = "app-content pt-3 p-md-3 p-lg-4">
                 <div class = "container-xl">
                     <h1 class = "app-page-title">Achats</h1>
-                    <form class = "settings-form" name = "f" id = "f" method = "post" action = "#">
+                    <form class = "settings-form" name = "f" id = "f" method = "post" action = "{{url('/creer-facture-achat')}}" onsubmit = "validerCreerFacture()">
                         @csrf
                         @if (Session::has('erreur'))
                             <div class = "alert alert-danger d-flex align-items-center" role = "alert">
@@ -61,7 +61,7 @@
                                                         <strong>Nom</strong>
                                                     </div>
                                                     <div class = "item-data">
-                                                        <select class = "form-control" name = "nom_fournisseur" id = "nom_fournisseur" required>
+                                                        <select class = "form-control" name = "nom_fournisseur" id = "nom_fournisseur" onchange = "effacerErreurFournisseur()" required>
                                                             <option value = "Titre" disabled selected>Sélectionnez le fournisseur..</option>
                                                             @if(!empty($fournisseurs))
                                                                 @foreach ($fournisseurs as $data)
@@ -73,6 +73,8 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <input type = "hidden" placeholder = "Saisissez la matricule de fournisseur.." id = "matricule" name = "matricule" required />
+                                        <p class = "form-text text-danger" id = "erreur_matricule_fournisseur"></p>
                                     </div>
                                 </div>
                             </div>
@@ -152,7 +154,7 @@
                                                         <strong>Type</strong>
                                                     </div>
                                                     <div class = "item-data">
-                                                        <select class = "form-control" name = "type" id = "type" required>
+                                                        <select class = "form-control" name = "type" id = "type" onchange = "effacerErreurType()" required>
                                                             <option value = "Titre" disabled selected>Sélectionnez le type de facture..</option>
                                                             <option value = "BL">BL</option>
                                                             <option value = "FACT">FACT</option>
@@ -161,6 +163,7 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <p class = "form-text text-danger" id = "erreur_type_facture"></p>
                                     </div>
                                 </div>
                             </div>
@@ -193,11 +196,12 @@
                                                         </div>
                                                     </div>
                                                     <div class = "item-data">
-                                                        <input type = "text" class = "form-control" name = "montant" id = "montant" placeholder = "Entrez le montant de la facture d'achat.." onkeypress = "return (event.charCode>=46 && event.charCode<=57)" disabled required>
+                                                        <input type = "text" class = "form-control" name = "montant" id = "montant" placeholder = "Entrez le montant de la facture d'achat.." onkeypress = "return (event.charCode>=46 && event.charCode<=57)" oninput = "effacerErreurMontant()" disabled required>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        <p class = "form-text text-danger" id = "erreur_paiement_facture"></p>
                                     </div>
                                 </div>
                             </div>
@@ -276,5 +280,6 @@
             @include('Layout.footer')
         </footer>
         @include('Layout.script')
+        <script src = "{{asset('js/jquery.js')}}"></script> 
     </body>
 </html>

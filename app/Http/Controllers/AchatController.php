@@ -4,6 +4,8 @@
     use App\Models\Categorie;
     use App\Models\Article;
     use App\Models\Fournisseur;
+    use App\Models\FactureAchat;
+    use App\Models\ReglementAchat;
 
     class AchatController extends Controller{
         public function ouvrirAutres(){
@@ -26,7 +28,7 @@
         }
 
         public function checkCategorie($categorie){
-            return (Categorie::where('nom_categorie', '=', $categorie)->exists());
+            return Categorie::where('nom_categorie', '=', $categorie)->exists();
         }
 
         public function creerCategorie($categorie){
@@ -89,6 +91,65 @@
 
         public function getListeFournisseur(){
             return Fournisseur::all();
+        }
+
+        public function checkFactureAchat($reference_facture){
+            return FactureAchat::where('reference_facture', '=', $reference_facture)->exists();
+        }
+
+        public function gestionCreerFactureAchat(Request $request){
+            if($this->checkFactureAchat($request->reference_facture)){
+                return back()->with('erreur', "Une autre facture d'achat identifié par cette référence est déjà créé.");
+            }
+
+            else if($this->creerFactureAchat($request->reference_facture, $request->matricule, $request->date, $request->heure, $request->type, $request->responsable, auth()->user()->getIdUserAttribute())){
+                if($this->creerReglementAchat($request->montant, $request->date, "Facture", $request->reference_facture, $request->matricule)){
+                    return redirect('/add-articles-facture-achat/'.$request->reference_facture);
+                }
+
+                else{
+                    return redirect('/erreur');
+                }
+            }
+
+            else{
+                return redirect('/erreur');
+            }
+        }
+
+        public function creerFactureAchat($reference_facture, $matricule, $date, $heure, $type, $responsable, $id_user){
+            $facture_achat = new FactureAchat();
+            $facture_achat->setReferenceFactureAttribute($reference_facture);
+            $facture_achat->setMatriculeFournisseurAttribute($matricule);
+            $facture_achat->setDateFactureAttribute($date);
+            $facture_achat->setHeureFactureAttribute($heure);
+            $facture_achat->setTypeFactureAttribute($type);
+            $facture_achat->setResponsableFactureAttribute($responsable);
+            $facture_achat->setIdUserAttribute($id_user);
+
+            return $facture_achat->save();
+        }
+
+        public function creerReglementAchat($paye, $date, $type, $reference_facture, $matricule){
+            $reglementAchat = new ReglementAchat();
+
+            if($paye == null || $paye == ""){
+                $reglementAchat->setPayeReglementAchatAttribute(0.000);
+            }
+
+            else{
+                $reglementAchat->setPayeReglementAchatAttribute($paye);
+            }
+            $reglementAchat->setDateReglementAchatAttribute($date);
+            $reglementAchat->setTypeReglementAchatAttribute($type);
+            $reglementAchat->setReferenceFactureAchatAttribute($reference_facture);
+            $reglementAchat->setMatriculeFournisseurAttribute($matricule);
+
+            return $reglementAchat->save();
+        }
+
+        public function ouvrirAddArticleFactureAchat($reference_facture){
+            return view('Achats.add_facture_achat2', compact('reference_facture'));
         }
     }
 ?>
