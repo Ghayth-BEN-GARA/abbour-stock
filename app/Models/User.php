@@ -30,6 +30,7 @@
             'adresse',
             'image',
             'type',
+            'state',
             'date_creation'
         ];
 
@@ -132,6 +133,14 @@
 
         public function setTypeUserAttribute($value){
             $this->attributes['type'] = $value;
+        }
+
+        public function getStateUserAttribute(){
+            return $this->attributes['state'];
+        }
+
+        public function setStateUserAttribute($value){
+            $this->attributes['state'] = $value;
         }
 
         public function getDateCreationUserAttribute(){

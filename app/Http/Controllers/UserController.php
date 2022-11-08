@@ -485,5 +485,27 @@
                 'type' => $type
             ]);
         }
+
+        public function ouvrirParametres(){
+            return view('User.parametres');
+        }
+
+        public function gestionUpdateState(Request $request){
+            if($this->updateState(auth()->user()->getIdUserAttribute(), $request->input('resp'))){
+                if($this->creerJounral("Modification de l'état de compte d'utilisateur", "Modifier l'état de compte d'utilisateur.", auth()->user()->getIdUserAttribute())){
+                    return back()->with('success1', "L'état du compte a bien été modifié.");
+                }
+            }
+
+            else{
+                return redirect('/erreur');
+            }
+        }
+
+        public function updateState($id_user, $new_state){
+            return User::where('id_user', '=', $id_user)->update([
+                'state' => $new_state
+            ]);
+        }
     }
 ?>

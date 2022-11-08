@@ -8,6 +8,7 @@
     use App\Http\Controllers\ClientController;
     use App\Http\Controllers\AchatController;
     use App\Http\Controllers\StockController;
+    
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -89,5 +90,7 @@
     Route::get('/edit-article', [StockController::class, 'ouvrirEditArticle'])->middleware('session_not_open_user');
     Route::post('/update-article', [StockController::class, 'gestionUpdateArticle']);
     Route::get('/add-facture-achat', [AchatController::class, 'ouvrirAddFactureAchat'])->middleware('session_not_open_user');
+    Route::get('/parametres', [UserController::class, 'ouvrirParametres'])->middleware('session_not_exist');
+    Route::get('/update-state', [UserController::class, 'gestionUpdateState'])
 ?>
 

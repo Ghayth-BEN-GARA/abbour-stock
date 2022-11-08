@@ -25,6 +25,7 @@
                 $table->string('adresse',500)->default('Aucun');
                 $table->string('image',999)->default('images/user.png');
                 $table->string('type',150)->default('Utilisateur');
+                $table->string('state', 400)->default('Activé');
                 $table->date('date_creation')->default(DB::raw('CURRENT_TIMESTAMP'))->setTimezone('GMT');
             });
         }

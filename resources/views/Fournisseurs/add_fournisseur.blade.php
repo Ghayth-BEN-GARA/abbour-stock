@@ -114,7 +114,7 @@
                                                 </div>
                                                 <div class = "col-lg-6"></div>
                                                 <div class = "col-lg-6">
-                                                    <p class = "text-danger">Le deuxième numéro mobile n'est pas obligatoire</p>
+                                                    <p class = "text-danger my-1">Le deuxième numéro mobile n'est pas obligatoire</p>
                                                 </div>
                                             </div>
                                         </div>                                        

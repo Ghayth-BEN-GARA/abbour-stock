@@ -22,6 +22,7 @@
             $user->setMobileUserAttribute('24513092');
             $user->setAdresseUserAttribute('Ghar El Melh');
             $user->setTypeUserAttribute('Administrateur');
+            $user->setStateUserAttribute('Activé');
             $user->save();
         }
     }

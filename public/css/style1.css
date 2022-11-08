@@ -10529,11 +10529,19 @@ button.close:focus {
 .btn.focus {
     box-shadow: none !important;
 }
+
 .app-btn-primary {
     background: #F7941E;
     color: #fff;
     border-color: #F7941E;
 }
+
+.app-btn-primary2 {
+    background: none;
+    color: #F7941E;
+    border-color: #F7941E;
+}
+
 .app-btn-primary:hover,
 .app-btn-primary:active {
     color: #fff;

@@ -16,7 +16,7 @@
         <div class = "app-wrapper">
             <div class = "app-content pt-3 p-md-3 p-lg-4">
                 <div class = "container-xl">
-                    <h1 class = "app-page-title">Paramètres</h1>
+                    <h1 class = "app-page-title">Mot de passe</h1>
                     <hr class = "mb-4">
                     <div class = "row g-4 settings-section">
                         <div class = "col-12 col-md-4">
