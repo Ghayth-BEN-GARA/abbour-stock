@@ -13,11 +13,11 @@
                         <table class = "table app-table-hover mb-0 text-left">
                             <thead>
 							    <tr>
-									<th class = "cell">#</th>
+									<th class = "cell">Matricule fiscale</th>
 									<th class = "cell">Nom complet</th>
 									<th class = "cell">Adresse email</th>
 									<th class = "cell">Numéro mobile</th>
-									<th class = "cell">Action</th>
+									<th class = "cell text-center">Action</th>
 								</tr>
 							</thead>
                             <tbody>
@@ -41,13 +41,13 @@
                                             </td>
                                             <td class = "cell">
                                                 <p>
-                                                    (+216) {{$data->getMobile1FournisseurAttribute()}}
+                                                    (+216) {{$data->getFormattedMobile1FournisseurAttribute()}}
                                                     @if($data->getMobile2FournisseurAttribute() != 0)
                                                         / (+216) {{$data->getMobile2FournisseurAttribute()}}
                                                     @endif
                                                 </p>
                                             </td>
-                                            <td class = "cell">
+                                            <td class = "cell text-center">
                                                 <p>
                                                     <a href = "{{url('/fournisseur?matricule_fournisseur='.$data->getMatriculeFournisseurAttribute())}}" class = "btn app-btn-secondary">Consulter</a>
                                                     <a href = "{{url('/edit-fournisseur?matricule_fournisseur='.$data->getMatriculeFournisseurAttribute())}}" class = "btn app-btn-secondary">Modifier</a>

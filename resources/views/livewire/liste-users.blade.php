@@ -13,8 +13,7 @@
                         <table class = "table app-table-hover mb-0 text-left">
                             <thead>
 							    <tr>
-									<th class = "cell">#</th>
-									<th class = "cell">Nom</th>
+									<th class = "cell">Utilisateur</th>
 									<th class = "cell">Adresse email</th>
 									<th class = "cell">Numéro mobile</th>
 									<th class = "cell">Type de compte</th>
@@ -27,13 +26,8 @@
                                         <tr>
                                             <td class = "cell">
                                                 <p>
-                                                    {{$data->getIdUserAttribute()}}
-                                                </p>
-                                            </td>
-                                            <td class = "cell">
-                                                <p>
                                                     <img class = "profile-image-table" src = "{{$data->getImageUserAttribute()}}" alt = "Photo de profil">
-                                                    <span class = "mx-2">{{$data->getFullnameUserAttribute()}}</span>
+                                                    {{$data->getFullnameUserAttribute()}}
                                                 </p>
                                             </td>
                                             <td class = "cell">
@@ -55,7 +49,7 @@
                                                     @endif
                                                 </p>
                                             </td>
-                                            <td class = "cell">
+                                            <td class = "cell text-center">
                                                 <p>
                                                     <a href = "{{url('/user?id_user='.$data->getIdUserAttribute())}}" class = "btn app-btn-secondary">Consulter</a>
                                                     <a href = "{{url('/edit-user?id_user='.$data->getIdUserAttribute())}}" class = "btn app-btn-secondary">Modifier</a>

@@ -73,7 +73,7 @@
         }
 
         public function getFullNameClientAttribute(){
-            $this->getPrenomClientAttribute()." ".$this->getNomClientAttribute();
+            return $this->getPrenomClientAttribute()." ".$this->getNomClientAttribute();
         }
 
         public function getFormattedMobileClientAttribute(){

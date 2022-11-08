@@ -62,7 +62,7 @@
                                                     {{number_format($data->getMargePrixAttribute(), 2)}} %
                                                 </p>
                                             </td>
-                                            <td class = "cell">
+                                            <td class = "cell text-center">
                                                 <p>
                                                     <a href = "{{url('/article?reference_article='.$data->getReferenceArticleAttribute())}}" class = "btn app-btn-secondary">Consulter</a>
                                                     <a href = "{{url('/edit-article?reference_article='.$data->getReferenceArticleAttribute())}}" class = "btn app-btn-secondary">Modifier</a>

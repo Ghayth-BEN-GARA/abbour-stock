@@ -13,11 +13,11 @@
                         <table class = "table app-table-hover mb-0 text-left">
                             <thead>
 							    <tr>
-									<th class = "cell">#</th>
-									<th class = "cell">Nom et prénom</th>
+									<th class = "cell">Matricule</th>
+									<th class = "cell">Client</th>
 									<th class = "cell">Adresse email</th>
 									<th class = "cell">Numéro mobile</th>
-									<th class = "cell">Action</th>
+									<th class = "cell text-center">Action</th>
 								</tr>
 							</thead>
                             <tbody>
@@ -41,10 +41,10 @@
                                             </td>
                                             <td class = "cell">
                                                 <p>
-                                                    (+216) {{$data->getMobileClientAttribute()}}
+                                                    (+216) {{$data->getFormattedMobileClientAttribute()}}
                                                 </p>
                                             </td>
-                                            <td class = "cell">
+                                            <td class = "cell text-center">
                                                 <p>
                                                     <a href = "{{url('/client?matricule_client='.$data->getMatriculeClientAttribute())}}" class = "btn app-btn-secondary">Consulter</a>
                                                     <a href = "{{url('/edit-client?matricule_client='.$data->getMatriculeClientAttribute())}}" class = "btn app-btn-secondary">Modifier</a>
