@@ -29,3 +29,13 @@ function validerPrixMarge(){
         $('#f2').submit();
     }
 }
+
+function disableInputMontant() {
+    document.getElementById('montant').setAttribute('disabled',true);
+}
+
+
+function enableInputMontant() {
+    document.getElementById('montant').removeAttribute('disabled');
+    document.getElementById('montant').focus();
+}

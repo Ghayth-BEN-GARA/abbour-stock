@@ -182,11 +182,11 @@
                                                 <div class = "col-auto col-lg-12">
                                                     <div class = "container row item-label">
                                                         <div class = "form-check mb-3 col-lg-6">
-                                                            <input class = "form-check-input" type = "radio" value = "Totale" id = "totale" name = "paiement" checked/>
+                                                            <input class = "form-check-input" type = "radio" value = "Totale" id = "totale" name = "paiement" onclick = "disableInputMontant()" checked/>
                                                             <strong class = "form-check-label">Totale</strong>
                                                         </div>
                                                         <div class = "form-check mb-3 col-lg-6">
-                                                            <input class = "form-check-input" type = "radio" value = "Tranche" id = "tranche" name = "paiement"/>
+                                                            <input class = "form-check-input" type = "radio" value = "Tranche" id = "tranche" name = "paiement" onclick = "enableInputMontant()"/>
                                                             <strong class = "form-check-label">Tranche</strong>
                                                         </div>
                                                     </div>
@@ -257,6 +257,12 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class = "item py-3">
+                                <div class = "item-data">
+                                    <button type = "submit" class = "btn app-btn-primary">Créer une nouvelle facture d'achat</button>
+                                    <button type = "reset" class = "btn app-btn-info">Annuler</button>
                                 </div>
                             </div>
                         </div>

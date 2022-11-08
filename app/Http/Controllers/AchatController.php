@@ -84,7 +84,7 @@
             $last_reference = $this->getLastReferenceArticle();
             $fournisseurs = $this->getListeFournisseur();
 
-            return view('Achats.add_facture_achat', compact('last_reference', 'fournisseurs'));
+            return view('Achats.add_facture_achat1', compact('last_reference', 'fournisseurs'));
         }
 
         public function getListeFournisseur(){
