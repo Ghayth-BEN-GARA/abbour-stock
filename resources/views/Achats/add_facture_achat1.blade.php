@@ -63,9 +63,11 @@
                                                     <div class = "item-data">
                                                         <select class = "form-control" name = "nom_fournisseur" id = "nom_fournisseur" required>
                                                             <option value = "Titre" disabled selected>Sélectionnez le fournisseur..</option>
-                                                            @foreach ($fournisseurs as $data)
-                                                                <option value = "{{$data->getMatriculeFournisseurAttribute()}}">{{$data->getFullNameFournisseurAttribute()}}</option>
-                                                            @endforeach
+                                                            @if(!empty($fournisseurs))
+                                                                @foreach ($fournisseurs as $data)
+                                                                    <option value = "{{$data->getMatriculeFournisseurAttribute()}}">{{$data->getFullNameFournisseurAttribute()}}</option>
+                                                                @endforeach
+                                                            @endif
                                                         </select>
                                                     </div>
                                                 </div>

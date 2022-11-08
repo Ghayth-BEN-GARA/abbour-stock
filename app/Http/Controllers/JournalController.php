@@ -5,9 +5,9 @@
 
     class JournalController extends Controller{
 
-        public function ouvrirParametres(){
+        public function ouvrirJournales(){
             $journal = $this->getListeJournal(auth()->user()->getIdUserAttribute());
-            return view('User.parametres', compact('journal'));
+            return view('User.journales', compact('journal'));
         }
 
         public function getListeJournal($id_user){

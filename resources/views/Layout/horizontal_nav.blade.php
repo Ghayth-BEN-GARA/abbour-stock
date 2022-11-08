@@ -60,6 +60,12 @@
                             <hr class = "dropdown-divider">
                         </li>
                         <li>
+                            <a class = "dropdown-item" href = "{{url('/journales')}}">Journales</a>
+                        </li>
+                        <li>
+                            <hr class = "dropdown-divider">
+                        </li>
+                        <li>
                             <a class = "dropdown-item" href = "{{url('/parametres')}}">Paramétres</a>
                         </li>
                         <li>

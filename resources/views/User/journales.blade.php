@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en"> 
     <head>
-        <title>Abbour'Stock Dépôt | Paramétres</title> 
+        <title>Abbour'Stock Dépôt | Journales</title> 
         @include('Layout.head_app')
         <link rel = "stylesheet" href = "{{asset('css/pagination.css')}}">
     </head> 
@@ -19,7 +19,7 @@
                 <div class = "container-xl">
                     <div class = "row g-3 mb-4 align-items-center justify-content-between">
                         <div class = "col-auto">
-			                <h1 class = "app-page-title mb-0">Paramétres</h1>
+			                <h1 class = "app-page-title mb-0">Journales</h1>
 				        </div>
                     </div>
                     @if (Session::has('erreur'))
