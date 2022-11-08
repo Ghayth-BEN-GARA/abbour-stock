@@ -145,7 +145,7 @@
         }
 
         public function updateArticle($reference_article, $designation, $description, $categorie, $prix_achat, $marge){
-            return (Article::join('stocks','articles.reference_article','=','stocks.reference_article')
+            return Article::join('stocks','articles.reference_article','=','stocks.reference_article')
                 ->where('articles.reference_article', '=', $reference_article)
                 ->update([
                     'designation' => $designation, 
@@ -153,7 +153,7 @@
                     'categorie' => $categorie,
                     'prix_achat_article' => $prix_achat, 
                     'marge_prix' => $marge
-                ]));
+                ]);
         }
     }
 ?>

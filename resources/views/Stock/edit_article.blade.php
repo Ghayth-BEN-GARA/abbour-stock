@@ -51,7 +51,7 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <form class = "settings-form" name = "f" id = "f" method = "post" action = "{{url('/update-article')}}">
+                                        <form class = "settings-form" name = "f2" id = "f2" method = "post" action = "{{url('/update-article')}}" onsubmit = "validerPrixMarge()">
                                             @csrf
                                             @if (Session::has('erreur'))
                                                 <div class = "alert alert-danger d-flex align-items-center" role = "alert">
@@ -149,6 +149,7 @@
                                                         </div>
                                                         <div class = "item-data">
                                                             <input type = "text" class = "form-control" id = "prix_achat" name = "prix_achat" placeholder = "Entrez le prix d'achat d'article.." value = "{{str_replace( ',', '', $article->getPrixAchatArticleAttribute())}}" onkeypress = "return (event.charCode>=46 && event.charCode<=57)" required>
+                                                            <p class = "form-text text-danger" id = "erreur_prix"></p>
                                                         </div>
                                                     </div>
                                                     <div class = "col-auto col-lg-6">
@@ -157,6 +158,7 @@
                                                         </div>
                                                         <div class = "item-data">
                                                             <input type = "text" class = "form-control" id = "marge" name = "marge" placeholder = "Entrez la marge d'article.." value = "{{number_format($article->getMargePrixAttribute(),2)}}" onkeypress = "return (event.charCode>=46 && event.charCode<=57)" required>
+                                                            <p class = "form-text text-danger" id = "erreur_marge"></p>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -88,5 +88,6 @@
     Route::get('/article', [StockController::class, 'ouvrirArticle'])->middleware('session_not_open_user');
     Route::get('/edit-article', [StockController::class, 'ouvrirEditArticle'])->middleware('session_not_open_user');
     Route::post('/update-article', [StockController::class, 'gestionUpdateArticle']);
+    Route::get('/add-facture-achat', [AchatController::class, 'ouvrirAddFactureAchat'])->middleware('session_not_open_user');
 ?>
 

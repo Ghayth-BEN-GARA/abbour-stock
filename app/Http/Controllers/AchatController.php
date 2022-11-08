@@ -3,6 +3,7 @@
     use Illuminate\Http\Request;
     use App\Models\Categorie;
     use App\Models\Article;
+    use App\Models\Fournisseur;
 
     class AchatController extends Controller{
         public function ouvrirAutres(){
@@ -77,6 +78,17 @@
 
             $article->setCategorieArticleAttribute($categorie);
             return $article->save();
+        }
+
+        public function ouvrirAddFactureAchat(){
+            $last_reference = $this->getLastReferenceArticle();
+            $fournisseurs = $this->getListeFournisseur();
+
+            return view('Achats.add_facture_achat', compact('last_reference', 'fournisseurs'));
+        }
+
+        public function getListeFournisseur(){
+            return Fournisseur::all();
         }
     }
 ?>
