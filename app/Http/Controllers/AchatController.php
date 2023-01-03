@@ -104,7 +104,7 @@
 
             else if($this->creerFactureAchat($request->reference_facture, $request->matricule, $request->date, $request->heure, $request->type, $request->responsable, auth()->user()->getIdUserAttribute())){
                 if($this->creerReglementAchat($request->montant, $request->date, "Facture", $request->reference_facture, $request->matricule)){
-                    return redirect('/add-articles-facture-achat/'.$request->reference_facture);
+                    return redirect('/add-articles-facture-achat?reference_facture='.$request->reference_facture);
                 }
 
                 else{
@@ -140,6 +140,7 @@
             else{
                 $reglementAchat->setPayeReglementAchatAttribute($paye);
             }
+
             $reglementAchat->setDateReglementAchatAttribute($date);
             $reglementAchat->setTypeReglementAchatAttribute($type);
             $reglementAchat->setReferenceFactureAchatAttribute($reference_facture);
@@ -148,8 +149,74 @@
             return $reglementAchat->save();
         }
 
-        public function ouvrirAddArticleFactureAchat($reference_facture){
-            return view('Achats.add_facture_achat2', compact('reference_facture'));
+        public function ouvrirAddArticleFactureAchat(Request $request){
+            $fournisseurs = $this->getInformationsFournisseurFactureAchat($request->input('reference_facture'));
+            $reference_facture = $request->input('reference_facture');
+            $categories = $this->listeCategorieAvecAucun();
+
+            return view('Achats.add_facture_achat2', compact('fournisseurs', 'reference_facture', 'categories'));
+        }
+
+        public function getInformationsFournisseurFactureAchat($reference_facture){
+            return FactureAchat::join('fournisseurs', 'factures_achats.matricule_fournisseur', '=', 'fournisseurs.matricule_fournisseur')
+            ->where('factures_achats.reference_facture', '=', $reference_facture)
+            ->first();
+        }
+
+        public function listeCategorieAvecAucun(){
+            return Categorie::all();
+        }
+
+        public function getArticleSearchByDesignation(Request $request){
+            if($request->get('query') != ''){
+                $article = Article::where('designation', 'LIKE', '%'.$request->get('query').'%')->get();
+            }
+            
+            $data = array();
+            foreach ($article as $art){
+                $data[] = $art->getDesignationArticleAttribute(); 
+            }
+            echo json_encode($data);
+        }
+
+        public function getInformationsArticleByDesignation(Request $request){
+            $article = Article::join('stocks','stocks.reference_article','=','articles.reference_article')
+            ->where('articles.designation', 'LIKE', $request->designation)->first();
+
+            $data = array(
+                'designation' => $article->getDesignationArticleAttribute(),
+                'reference' => $article->getReferenceArticleAttribute(),
+                'categorie' => $article->getCategorieArticleAttribute(),
+                'prix' => $article->prix_achat_article
+            );
+
+            echo json_encode($data);
+        }
+
+        public function getArticleSearchByReference(Request $request){
+            if($request->get('query') != ''){
+                $article = Article::where('reference_article', 'LIKE', '%'.$request->get('query').'%')->get();
+            }
+            
+            $data = array();
+            foreach ($article as $art){
+                $data[] = $art->getReferenceArticleAttribute().""; 
+            }
+            echo json_encode($data);
+        }
+
+        public function getInformationsArticleByReference(Request $request){
+            $article = Article::join('stocks','stocks.reference_article','=','articles.reference_article')
+            ->where('articles.reference_article', 'LIKE', $request->reference)->first();
+
+            $data = array(
+                'reference' => $article->getReferenceArticleAttribute(),
+                'designation' => $article->getDesignationArticleAttribute(),
+                'categorie' => $article->getCategorieArticleAttribute(),
+                'prix' => $article->prix_achat_article
+            );
+
+            echo json_encode($data);
         }
     }
 ?>

@@ -2840,6 +2840,7 @@ fieldset:disabled .btn {
     --bs-btn-disabled-bg: #5cb377;
     --bs-btn-disabled-border-color: #5cb377;
 }
+
 .btn-danger {
     --bs-btn-color: #000;
     --bs-btn-bg: #d26d69;
@@ -2856,6 +2857,7 @@ fieldset:disabled .btn {
     --bs-btn-disabled-bg: #d26d69;
     --bs-btn-disabled-border-color: #d26d69;
 }
+
 .btn-warning {
     --bs-btn-color: #000;
     --bs-btn-bg: #eebf41;
@@ -10525,6 +10527,7 @@ button.close:focus {
     position: relative;
     top: -2px;
 }
+
 .btn:focus,
 .btn.focus {
     box-shadow: none !important;
@@ -10540,6 +10543,45 @@ button.close:focus {
     background: none;
     color: #F7941E;
     border-color: #F7941E;
+}
+
+.app-btn-danger {
+    background: none;
+    color: #d26d69;
+    border-color: #d26d69;
+}
+
+
+.btn3 {
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    border: none;
+}
+
+.btn3:hover,
+.btn3:active,
+.btn3:focus {
+    text-decoration: none;
+}
+
+.btn3:focus,
+.btn3.focus {
+    box-shadow: none !important;
+}
+
+.app-btn-primary3 {
+    background: #F7941E;
+    color: #fff;
+    border-color: #F7941E;
+    border-radius: 8px;
+}
+
+.app-btn-primary3:hover,
+.app-btn-primary3:active {
+    color: #fff;
+    background: #fbc98e;
+    border-color: #fbc98e;
 }
 
 .app-btn-primary:hover,

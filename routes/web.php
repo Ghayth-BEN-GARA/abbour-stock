@@ -93,6 +93,10 @@
     Route::get('/parametres', [UserController::class, 'ouvrirParametres'])->middleware('session_not_exist');
     Route::get('/update-state', [UserController::class, 'gestionUpdateState']);
     Route::post('/creer-facture-achat', [AchatController::class, 'gestionCreerFactureAchat']);
-    Route::get('/add-articles-facture-achat/{reference}', [AchatController::class, 'ouvrirAddArticleFactureAchat'])->middleware('session_not_open_user');
+    Route::get('/add-articles-facture-achat', [AchatController::class, 'ouvrirAddArticleFactureAchat'])->middleware('session_not_open_user');
+    Route::get('/autocomplete-designation-facture-achat', [AchatController::class, 'getArticleSearchByDesignation']);
+    Route::get('/informations-article-search-designation', [AchatController::class, 'getInformationsArticleByDesignation']);
+    Route::get('/autocomplete-reference-facture-achat', [AchatController::class, 'getArticleSearchByReference']);
+    Route::get('/informations-article-search-reference', [AchatController::class, 'getInformationsArticleByReference']);
 ?>
 
