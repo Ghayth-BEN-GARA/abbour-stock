@@ -21,6 +21,7 @@
             'date_facture',
             'heure_facture',
             'type_facture',
+            'paiement_facture',
             'responsable_facture',
             'id_user'
         ];
@@ -63,6 +64,14 @@
 
         public function setTypeFactureAttribute($value){
             $this->attributes['type_facture'] = $value;
+        }
+
+        public function getPaiementFactureAttribute(){
+            return $this->attributes['paiement_facture'];
+        }
+
+        public function setPaiementFactureAttribute($value){
+            $this->attributes['paiement_facture'] = $value;
         }
 
         public function getResponsableFactureAttribute(){

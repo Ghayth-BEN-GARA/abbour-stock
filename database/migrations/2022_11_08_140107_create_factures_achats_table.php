@@ -18,6 +18,7 @@
                 $table->date('date_facture')->default(DB::raw('CURRENT_TIMESTAMP'));
                 $table->time('heure_facture')->default(DB::raw('CURRENT_TIMESTAMP'))->setTimezone('GMT');
                 $table->string('type_facture', 4)->default('FACT');
+                $table->string('paiement_facture', 100)->default('Totale');
                 $table->string('responsable_facture', 999)->default('Aucun');
                 $table->bigInteger('id_user')->unsigned()->nullable();
                 $table->foreign('matricule_fournisseur')->references('matricule_fournisseur')->on('fournisseurs')->onDelete('cascade')->onUpdate('cascade');

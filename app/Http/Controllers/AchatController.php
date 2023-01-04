@@ -6,6 +6,9 @@
     use App\Models\Fournisseur;
     use App\Models\FactureAchat;
     use App\Models\ReglementAchat;
+    use App\Models\FactureArticleAchat;
+    use App\Models\ValidationPrixArticleFactureAchat;
+    use App\Models\Stock;
 
     class AchatController extends Controller{
         public function ouvrirAutres(){
@@ -102,7 +105,7 @@
                 return back()->with('erreur', "Une autre facture d'achat identifié par cette référence est déjà créé.");
             }
 
-            else if($this->creerFactureAchat($request->reference_facture, $request->matricule, $request->date, $request->heure, $request->type, $request->responsable, auth()->user()->getIdUserAttribute())){
+            else if($this->creerFactureAchat($request->reference_facture, $request->matricule, $request->date, $request->heure, $request->type, $request->paiement, $request->responsable, auth()->user()->getIdUserAttribute())){
                 if($this->creerReglementAchat($request->montant, $request->date, "Facture", $request->reference_facture, $request->matricule)){
                     return redirect('/add-articles-facture-achat?reference_facture='.$request->reference_facture);
                 }
@@ -117,13 +120,14 @@
             }
         }
 
-        public function creerFactureAchat($reference_facture, $matricule, $date, $heure, $type, $responsable, $id_user){
+        public function creerFactureAchat($reference_facture, $matricule, $date, $heure, $type, $paiement, $responsable, $id_user){
             $facture_achat = new FactureAchat();
             $facture_achat->setReferenceFactureAttribute($reference_facture);
             $facture_achat->setMatriculeFournisseurAttribute($matricule);
             $facture_achat->setDateFactureAttribute($date);
             $facture_achat->setHeureFactureAttribute($heure);
             $facture_achat->setTypeFactureAttribute($type);
+            $facture_achat->setPaiementFactureAttribute($paiement);
             $facture_achat->setResponsableFactureAttribute($responsable);
             $facture_achat->setIdUserAttribute($id_user);
 
@@ -218,6 +222,118 @@
             );
 
             echo json_encode($data);
+        }
+
+        public function storeArticlesToFactureAchat(Request $request){
+            $designation_article = $request->designation_achat;
+            $reference_article = $request->reference_achat;
+            $categorie_article = $request->categorie_achat;
+            $quantite_article = $request->quantite_achat;
+            $prix_article = $request->prix_achat;
+            $reference_facture = $request->reference_facture;
+            $somme_facture_achat = 0;
+
+            foreach($reference_article as $key => $insert){
+                if(!$this->checkArticleExist($reference_article[$key])){
+                    $enregistrementArticle = [
+                        'reference_article' => $reference_article[$key],
+                        'designation' => $designation_article[$key],
+                        'categorie' => $categorie_article[$key]
+                    ];
+
+                    Article::insert([$enregistrementArticle]);
+                }
+
+                $enregistrementListeArticles = [
+                    'quantite_article' => $quantite_article[$key],
+                    'prix_unitaire_article' => $prix_article[$key],
+                    'reference_article' => $reference_article[$key],
+                    'reference_facture' => $request->reference_facture                   
+                ];
+
+                FactureArticleAchat::insert([$enregistrementListeArticles]); 
+                $somme_facture_achat = $somme_facture_achat + ($prix_article[$key] * $quantite_article[$key]);
+            
+                if(!$this->checkArticleCreerDansStock($reference_article[$key])){
+                    $this->creerStock($quantite_article[$key], $prix_article[$key], $reference_article[$key]);
+                }
+
+                else{
+                    if($prix_article[$key] == $this->getPrixAchatArticle($reference_article[$key])){
+                        $this->updateQuantiteStock($reference_article[$key],$quantite_article[$key]);
+                    }
+
+                    else{
+                        if($this->checkValidationNewPrixArticleAchatExiste($reference_article[$key])){
+                            $this->updateValidationNewPrixArticleAchatExiste($reference_article[$key],$prix_article[$key]);
+                            $this->updateQuantiteStock($reference_article[$key],$quantite_article[$key]);
+                        }
+
+                        else{
+                            $this->creerValidationNewPrixArticleAchatExiste($reference_article[$key], $prix_article[$key], $reference_facture);
+                            $this->updateQuantiteStock($reference_article[$key],$quantite_article[$key]);
+                        }
+                    }
+                }
+            }
+
+            if($this->getPaiementFactureAchat($reference_facture) == "Totale"){
+                $this->updatePaiementFactureAchat($reference_facture, $somme_facture_achat);
+            }
+
+            return redirect('/add-facture-achat')->with('success', "Bravo ! La nouvelle facture d'achat a été enregistrée avec succès.");
+        }
+
+        public function checkArticleExist($reference_article){
+            return (Article::where('reference_article', '=', $reference_article)->exists());
+        }
+
+        public function getPaiementFactureAchat($reference_facture){
+            return FactureAchat::where('reference_facture', '=', $reference_facture)->first()->getPaiementFactureAttribute();
+        }
+
+        public function updatePaiementFactureAchat($reference_facture, $montant_paye){
+            return ReglementAchat::where('reference_facture_achat', '=', $reference_facture)->update([
+                'paye_reglement_achat' => $montant_paye
+            ]);
+        }
+
+        public function checkArticleCreerDansStock($reference_article){
+            return Stock::where('reference_article', '=', $reference_article)->exists();
+        }
+
+        public function creerStock($quantite_article, $prix_article, $reference_article){
+            $stock_table = new Stock();
+            $stock_table->setQuantiteStockAttribute($quantite_article);
+            $stock_table->setPrixAchatArticleAttribute($prix_article);
+            $stock_table->setReferenceArticleAttribute($reference_article);
+            return $stock_table->save();
+        }
+
+        public function getPrixAchatArticle($reference_article){
+            return Stock::where('reference_article','=',$reference_article)->first()->getPrixAchatArticleAttribute();
+        }
+
+        public function updateQuantiteStock($reference_article, $quantite_article){
+            return Stock::where('reference_article', '=', $reference_article)->increment('quantite_stock', $quantite_article);
+        }
+
+        public function checkValidationNewPrixArticleAchatExiste($reference_article){
+            return ValidationPrixArticleFactureAchat::where('reference_article', '=', $reference_article)->exists();
+        }
+
+        public function updateValidationNewPrixArticleAchatExiste($reference_article, $prix_article){
+            return ValidationPrixArticleFactureAchat::where('reference_article',$reference_article)->update([
+                'new_prix_unitaire_article' => $prix_article
+            ]);
+        }
+
+        public function creerValidationNewPrixArticleAchatExiste($reference_article, $prix_article, $reference_facture){
+            $validation = new ValidationPrixArticleFactureAchat();
+            $validation->setNewPrixArticleAttribute($prix_article);
+            $validation->setReferenceArticleAttribute($reference_article);
+            $validation->setReferenceFactureAchatAttribute($reference_facture);
+            return $validation->save();
         }
     }
 ?>

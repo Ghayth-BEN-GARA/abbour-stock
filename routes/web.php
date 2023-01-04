@@ -98,5 +98,6 @@
     Route::get('/informations-article-search-designation', [AchatController::class, 'getInformationsArticleByDesignation']);
     Route::get('/autocomplete-reference-facture-achat', [AchatController::class, 'getArticleSearchByReference']);
     Route::get('/informations-article-search-reference', [AchatController::class, 'getInformationsArticleByReference']);
+    Route::post('/creer-articles-facture-achat', [AchatController::class, 'storeArticlesToFactureAchat']);
 ?>
 

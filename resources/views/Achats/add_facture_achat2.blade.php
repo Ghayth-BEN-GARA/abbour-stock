@@ -102,6 +102,7 @@
                                                         </div>
                                                         <div class = "item-data">
                                                             <p>{{$reference_facture}}</p>
+                                                            <input type = "hidden" value = "{{$reference_facture}}" name = "reference_facture" id = "reference_facture" required>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -284,7 +285,7 @@
                                                                     <th>Catégorie</th>
                                                                     <th>Quantité</th>
                                                                     <th>Prix Unitaire</th>
-                                                                    <th>Prix Total</th>
+                                                                    <th>Prix Totale</th>
                                                                     <th>Action</th>
                                                                 </tr>
                                                             </thead>

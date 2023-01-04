@@ -228,7 +228,7 @@ function deleteEmptyLigne(){
 function ajouterLigne() {
     var designation = document.getElementById('designation').value;
     var reference = document.getElementById('reference').value;
-    var categorie = document.getElementById('categorie').selectedIndex;
+    var categorie = document.getElementById('categorie').value;
     var quantite = document.getElementById('quantite').value;
     var prix = document.getElementById('prix').value;
 
