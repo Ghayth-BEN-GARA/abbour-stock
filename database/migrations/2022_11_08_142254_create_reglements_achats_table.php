@@ -16,7 +16,7 @@
                 $table->id('id_reglement_achat');
                 $table->decimal('net_reglement_achat', 10,3)->default(0.000);
                 $table->decimal('paye_reglement_achat', 10,3)->default(0.000);
-                $table->date('date_reglement_achat')->default(DB::raw('CURRENT_TIMESTAMP'));
+                $table->date('date_reglement_achat')->default(DB::raw('CURRENT_TIMESTAMP'))->setTimezone('GMT');
                 $table->string('type_reglement_achat')->default('Facture');
                 $table->string('reference_facture_achat', 999);
                 $table->string('matricule_fournisseur' ,999);

@@ -153,8 +153,9 @@
             $fournisseurs = $this->getInformationsFournisseurFactureAchat($request->input('reference_facture'));
             $reference_facture = $request->input('reference_facture');
             $categories = $this->listeCategorieAvecAucun();
+            $last_reference_article = $this->getLastReferenceArticle();
 
-            return view('Achats.add_facture_achat2', compact('fournisseurs', 'reference_facture', 'categories'));
+            return view('Achats.add_facture_achat2', compact('fournisseurs', 'reference_facture', 'categories', 'last_reference_article'));
         }
 
         public function getInformationsFournisseurFactureAchat($reference_facture){

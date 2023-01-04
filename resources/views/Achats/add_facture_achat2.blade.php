@@ -17,7 +17,7 @@
             <div class = "app-content pt-3 p-md-3 p-lg-4">
                 <div class = "container-xl">
                     <h1 class = "app-page-title">Achats</h1>
-                    @if(is_null($reference_facture) || is_null($fournisseurs) || is_null($categories))
+                    @if(is_null($reference_facture) || is_null($fournisseurs) || is_null($categories) || is_null($last_reference_article))
                         <div class="alert alert-warning d-flex align-items-center" role = "alert">
                             <svg xmlns = "http://www.w3.org/2000/svg" width = "24" height = "24" fill = "currentColor" class = "bi flex-shrink-0 me-2" viewBox = "0 0 16 16" role = "img" aria-label = "Warning:">
                                 <path d = "M8.982 1.566a1.13 1.13 0 0 0-1.96 0L.165 13.233c-.457.778.091 1.767.98 1.767h13.713c.889 0 1.438-.99.98-1.767L8.982 1.566zM8 5c.535 0 .954.462.9.995l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 5.995A.905.905 0 0 1 8 5zm.002 6a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/>
@@ -120,6 +120,21 @@
                                                 </div>
                                                 <div class = "col-auto">
                                                     <h4 class = "app-card-title">Article</h4>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class = "app-card alert alert-dismissible shadow-sm mb-4 border-left-decoration" role="alert">
+                                            <div class = "inner">
+                                                <div class = "app-card-body p-3 p-lg-4">
+                                                    <h6 class = "mb-3">Bonjour, {{auth()->user()->getFullNameUserAttribute()}} !</h6>
+                                                    <div class = "row gx-5 gy-3">
+                                                        <div class = "col-12 col-lg-12">
+                                                            <div>
+                                                                Il faut savoir que la dernière référence de l'article enregistrée dans votre base de données est <b>{{$last_reference_article}}</b>. Veuillez tenir compte de cette notification lorsque vous ajoutez un nouvel article à partir de cette interface.
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button type = "button" class = "btn-close" data-bs-dismiss = "alert" aria-label = "Close"></button>
                                                 </div>
                                             </div>
                                         </div>

@@ -18,7 +18,7 @@
         protected $fillable = [
             'id_facture_article_achat',
             'quantite_article',
-            'prix_unitaire',
+            'prix_unitaire_article',
             'reference_article',
             'reference_facture'
         ];
@@ -36,11 +36,11 @@
         }
 
         public function getPrixUnitaireArticleAttribute(){
-            return $this->attributes['prix_unitaire'];
+            return $this->attributes['prix_unitaire_article'];
         }
 
         public function setPrixUnitaireArticleAttribute($value){
-            $this->attributes['prix_unitaire'] = $value;
+            $this->attributes['prix_unitaire_article'] = $value;
         }
 
         public function getReferenceArticleAttribute(){
