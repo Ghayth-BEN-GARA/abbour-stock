@@ -79,7 +79,13 @@
                                                             </td>
                                                             <td class = "cell">
                                                                 <p>
-                                                                    {{$article->getPrixAchatArticleAttribute()}} DT
+                                                                    @if(Session::has('success'))
+                                                                        <span class = "badge bg-success">{{$article->getPrixAchatArticleAttribute()}} DT</span>
+                                                                    @elseif(Session::has('erreur'))
+                                                                        <span class = "badge bg-danger">{{$article->getPrixAchatArticleAttribute()}} DT</span>
+                                                                    @else
+                                                                        {{$article->getPrixAchatArticleAttribute()}} DT
+                                                                    @endif
                                                                 </p>
                                                             </td>
                                                             <td class = "cell">

@@ -306,3 +306,20 @@ function createEmptyLigne(){
         "</tr>"
     );
 }
+
+function validerValidationPrixArticle() {
+    var new_prix_article_achat = document.getElementById('new_prix_article').value;
+
+    if(!new_prix_article_achat.includes('.')){
+        event.preventDefault();
+        document.getElementById('erreur_prix_achat').innerHTML = "Veuillez entrer un nouveau prix d'achat valide.";
+    }
+
+    else{
+        $('#f-validation-prix-achat').submit();
+    }
+}
+
+function effacerErreurPrixArticle() {
+    document.getElementById('erreur_prix_achat').innerHTML = null;
+}

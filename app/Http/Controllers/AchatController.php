@@ -9,6 +9,7 @@
     use App\Models\FactureArticleAchat;
     use App\Models\ValidationPrixArticleFactureAchat;
     use App\Models\Stock;
+    use App\Models\HistoriquePrixArticle;
 
     class AchatController extends Controller{
         public function ouvrirAutres(){
@@ -334,6 +335,50 @@
             $validation->setReferenceArticleAttribute($reference_article);
             $validation->setReferenceFactureAchatAttribute($reference_facture);
             return $validation->save();
+        }
+
+        public function gestionValidationNewPrixAchat(Request $request){
+            $detailsValidation = $this->getDetailsNewValidation($request->id_validation_prix_article);
+
+            if($this->creerHistoriquePrixAchat($detailsValidation->getNewPrixArticleAttribute(), $detailsValidation->getDateValidationNewPrixArticleAttribute(), $detailsValidation->getReferenceArticleAttribute(), $detailsValidation->getReferenceFactureAchatAttribute())){
+                $this->deleteValidationArticlePrixAchat($request->id_validation_prix_article);
+
+                if($this->updatePrixAchat($request->reference_article, $request->new_prix_article)){
+                    return redirect('/article?reference_article='.$request->reference_article)->with('success', ''); 
+                }
+
+                else{
+                    return redirect('/article?reference_article='.$request->reference_article)->with('erreur', ''); 
+                }
+            }
+
+            else{
+                return redirect('/article?reference_article='.$request->reference_article)->with('erreur'); 
+            }
+        }
+
+        public function getDetailsNewValidation($id_validation){
+            return ValidationPrixArticleFactureAchat::where('id_validation_prix_article', '=', $id_validation)->first();
+        }
+
+        public function creerHistoriquePrixAchat($prix, $date_creation, $reference_article, $reference_facture){
+            $historique_prix = new HistoriquePrixArticle();
+            $historique_prix->setPrixUnitaireArticleAttribute($prix);
+            $historique_prix->setDateCreationPrixAttribute($date_creation);
+            $historique_prix->setReferenceArticleAttribute($reference_article);
+            $historique_prix->setReferenceFactureAttribute($reference_facture);
+
+            return $historique_prix->save();
+        }
+
+        public function deleteValidationArticlePrixAchat($id_validation){
+            return ValidationPrixArticleFactureAchat::where('id_validation_prix_article', '=', $id_validation)->delete();
+        }
+
+        public function updatePrixAchat($reference_article, $new_prix){
+            return Stock::where('reference_article', '=', $reference_article)->update([
+                'prix_achat_article' => $new_prix
+            ]);
         }
     }
 ?>

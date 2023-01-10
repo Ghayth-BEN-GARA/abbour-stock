@@ -23,7 +23,7 @@
                                 <div class = "col">
                                     <div class = "info">
                                         <div class = "desc">
-                                            <a href = "#" style = "color:inherit">
+                                            <a href = "javascript:void(0)" style = "color:inherit" data-bs-toggle = "modal" data-bs-target = "#validation-prix-achat-modal" type = "button" data-id-reference-article = "{{$data->reference_article}}" data-designation-article = "{{$data->designation}}" data-new-prix-article = "{{$data->new_prix_unitaire_article}}" data-id-validation-prix-article = "{{$data->id_validation_prix_article}}" class = "open_modal">
                                                 Suite à la création du facture d'achat référencée par <b>{{$data->reference_facture}}</b>, vous devez valider un article nommé <b>{{$data->designation}}</b> et référence par <b>{{$data->reference_article}}</b> en raison de modification de prix d'achat pour cet article.
                                             </a>
                                         </div>
@@ -58,3 +58,86 @@
         </div>
     @endif
 </div>
+<div id = "validation-prix-achat-modal" class = "modal fade" tabindex = "-1" role = "dialog" aria-hidden = "true">
+    <div class = "modal-dialog">
+        <div class = "modal-content">
+            <div class = "modal-header">
+                <h5 class = "modal-title">Prix d'achat</h5>
+                <button type = "button" class = "btn-close" data-bs-dismiss = "modal" aria-label = "Close"></button>
+            </div>
+            <div class = "modal-body">
+                <div class = "text-center mt-2 mb-4">
+                    <a href = "javascript:void(0)" class = "text-success">
+                        <span>
+                            <img src = "{{URL::asset('/images/favicon.png')}}" alt = "Logo de l'application" height = 80/>
+                        </span>
+                        <h6 class = "mt-1">Validation de prix</h6>
+                    </a>
+                </div>
+                <form action = "{{url('/valider-new-prix-article')}}" class = "ps-3 pe-3" method = "post" name = "f-validation-prix-achat" id = "f-validation-prix-achat" onsubmit = "validerValidationPrixArticle()">
+                    @csrf
+                    <div class = "item border-bottom py-3">
+                        <div class = "row justify-content-between align-items-center">
+                            <div class = "col-auto col-lg-6">
+                                <div class = "item-label">
+                                    <strong>Référence</strong>
+                                </div>
+                                <div class = "item-data">
+                                    <input type = "number" class = "form-control" id = "reference_article" name = "reference_article" placeholder = "Entrez la référence de l'article.." readonly required>
+                                </div>
+                            </div>
+                            <div class = "col-auto col-lg-6">
+                                <div class = "item-label">
+                                    <strong>Article</strong>
+                                </div>
+                                <div class = "item-data">
+                                    <input type = "text" class = "form-control" id = "designation_article" name = "designation_article" placeholder = "Entrez la désignation de l'article.." readonly required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class = "item border-bottom py-3">
+                        <div class = "row justify-content-between align-items-center">
+                            <div class = "col-auto col-lg-6">
+                                <div class = "item-label">
+                                    <strong>Nouveaux Prix</strong>
+                                </div>
+                                <div class = "item-data">
+                                    <input type = "text" class = "form-control" id = "new_prix_article" name = "new_prix_article" placeholder = "Entrez le prix de l'article.." onkeypress = "return (event.charCode>=46 && event.charCode<=57)" oninput = "effacerErreurPrixArticle()" required>
+                                </div>
+                            </div>
+                            <div class = "col-auto col-lg-6">
+                                <div class = "item-label">
+                                    <strong>&ensp;</strong>
+                                </div>
+                                <div class = "item-data">
+                                    <button type = "submit" class = "btn app-btn-primary">Valider le prix</button>
+                                </div>
+                            </div>
+                            <p class = "form-text text-danger mt-2" id = "erreur_prix_achat"></p>
+                        </div>
+                    </div>
+                    <input type = "hidden" class = "form-control" id = "id_validation_prix_article" name = "id_validation_prix_article" placeholder = "Entrez l'identifiant de validation de prix de l'article.." readonly required>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src = "{{asset('js/jquery.js')}}"></script>
+<script> 
+    $(function () {
+        $(".open_modal").click(function () {
+            var reference_article = $(this).data('id-reference-article');
+            var designation_article = $(this).data('designation-article');
+            var new_prix_article = $(this).data('new-prix-article');
+            var id_validation_prix_article = $(this).data('id-validation-prix-article');
+
+            $("#reference_article").val(reference_article);
+            $("#designation_article").val(designation_article);
+            $("#new_prix_article").val(new_prix_article);
+            $("#id_validation_prix_article").val(id_validation_prix_article);
+            $('.modal').appendTo("body") 
+        })
+    });
+</script>
