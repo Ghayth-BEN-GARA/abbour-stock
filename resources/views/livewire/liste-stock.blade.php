@@ -15,7 +15,6 @@
 							    <tr>
 									<th class = "cell">Référence</th>
 									<th class = "cell">Désignation</th>
-									<th class = "cell">Catégorie</th>
                                     <th class = "cell">Quantité</th>
                                     <th class = "cell">Achat</th>
                                     <th class = "cell">Vente</th>
@@ -35,11 +34,6 @@
                                             <td class = "cell">
                                                 <p>
                                                     {{$data->designation}}
-                                                </p>
-                                            </td>
-                                            <td class = "cell">
-                                                <p>
-                                                    {{$data->categorie}}
                                                 </p>
                                             </td>
                                             <td class = "cell">

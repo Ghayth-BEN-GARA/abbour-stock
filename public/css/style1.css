@@ -10714,9 +10714,10 @@ button.close:focus {
     top: 23px !important;
 }
 .app-utility-item .icon {
-    font-size: 1.25rem;
+    font-size: 1.37rem;
     width: 24px;
     height: 24px;
+    color: #828d9f;
 }
 .app-utility-item .icon-badge {
     display: inline-block;
@@ -10792,7 +10793,7 @@ button.close:focus {
 }
 .app-notifications-dropdown .app-icon-holder {
     display: inline-block;
-    background: #edfdf6;
+    background: #fbc98e;
     color: #15a362;
     width: 36px;
     height: 36px;
@@ -10801,11 +10802,13 @@ button.close:focus {
     text-align: center;
     border-radius: 50%;
 }
+
 .app-notifications-dropdown .app-icon-holder.icon-holder-mono {
     background: #f5f6fe;
     color: #828d9f;
 }
-.app-notifications-dropdown .app-icon-holder svg {
+
+.app-notifications-dropdown .app-icon-holder .profile-image {
     width: 20px;
     height: 20px;
 }

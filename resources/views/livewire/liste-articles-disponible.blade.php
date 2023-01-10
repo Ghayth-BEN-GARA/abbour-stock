@@ -15,7 +15,6 @@
 							    <tr>
 									<th class = "cell">Référence</th>
 									<th class = "cell">Désignation</th>
-									<th class = "cell">Catégorie</th>
                                     <th class = "cell">Quantité</th>
                                     @if(session('type') != "Utilisateur")
                                         <th class = "cell">Prix d'achat</th>
@@ -36,11 +35,6 @@
                                             <td class = "cell">
                                                 <p>
                                                     {{$data->designation}}
-                                                </p>
-                                            </td>
-                                            <td class = "cell">
-                                                <p>
-                                                    {{$data->categorie}}
                                                 </p>
                                             </td>
                                             <td class = "cell">

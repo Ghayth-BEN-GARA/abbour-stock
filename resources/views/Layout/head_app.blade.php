@@ -7,3 +7,4 @@
 <link rel = "stylesheet" href = "{{asset('css/style1.css')}}">
 <link rel = "stylesheet" href = "{{asset('css/lineicons.css')}}">
 <link rel = "stylesheet" href = "{{asset('css/pagination.css')}}">
+<link rel = "stylesheet" href = "{{asset('css/materialdesignicons.min.css')}}" />

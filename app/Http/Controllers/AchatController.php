@@ -105,9 +105,9 @@
                 return back()->with('erreur', "Une autre facture d'achat identifié par cette référence est déjà créé.");
             }
 
-            else if($this->creerFactureAchat($request->reference_facture, $request->matricule, $request->date, $request->heure, $request->type, $request->paiement, $request->responsable, auth()->user()->getIdUserAttribute())){
-                if($this->creerReglementAchat($request->montant, $request->date, "Facture", $request->reference_facture, $request->matricule)){
-                    return redirect('/add-articles-facture-achat?reference_facture='.$request->reference_facture);
+            else if($this->creerFactureAchat($request->reference_facture, $request->matricule, $request->date, $request->heure, $request->type, $request->paiement, $request->responsable, $request->nom_fournisseur, auth()->user()->getIdUserAttribute())){
+                if($this->creerReglementAchat($request->montant, $request->date, "Facture", $request->reference_facture, $request->matricule, $request->nom_fournisseur)){
+                    return redirect('/add-articles-facture-achat?reference_facture='.$request->reference_facture."/".$request->nom_fournisseur);
                 }
 
                 else{
@@ -120,9 +120,9 @@
             }
         }
 
-        public function creerFactureAchat($reference_facture, $matricule, $date, $heure, $type, $paiement, $responsable, $id_user){
+        public function creerFactureAchat($reference_facture, $matricule, $date, $heure, $type, $paiement, $responsable, $id_user, $nom_fournisseur){
             $facture_achat = new FactureAchat();
-            $facture_achat->setReferenceFactureAttribute($reference_facture);
+            $facture_achat->setReferenceFactureAttribute($reference_facture."/".$nom_fournisseur);
             $facture_achat->setMatriculeFournisseurAttribute($matricule);
             $facture_achat->setDateFactureAttribute($date);
             $facture_achat->setHeureFactureAttribute($heure);
@@ -134,7 +134,7 @@
             return $facture_achat->save();
         }
 
-        public function creerReglementAchat($paye, $date, $type, $reference_facture, $matricule){
+        public function creerReglementAchat($paye, $date, $type, $reference_facture, $matricule, $nom_fournisseur){
             $reglementAchat = new ReglementAchat();
 
             if($paye == null || $paye == ""){
@@ -147,7 +147,7 @@
 
             $reglementAchat->setDateReglementAchatAttribute($date);
             $reglementAchat->setTypeReglementAchatAttribute($type);
-            $reglementAchat->setReferenceFactureAchatAttribute($reference_facture);
+            $reglementAchat->setReferenceFactureAchatAttribute($reference_facture."/".$nom_fournisseur);
             $reglementAchat->setMatriculeFournisseurAttribute($matricule);
 
             return $reglementAchat->save();
