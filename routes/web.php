@@ -8,7 +8,8 @@
     use App\Http\Controllers\ClientController;
     use App\Http\Controllers\AchatController;
     use App\Http\Controllers\StockController;
-    
+    use App\Http\Controllers\EmplacementController;
+
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -100,5 +101,6 @@
     Route::get('/informations-article-search-reference', [AchatController::class, 'getInformationsArticleByReference']);
     Route::post('/creer-articles-facture-achat', [AchatController::class, 'storeArticlesToFactureAchat']);
     Route::post('/valider-new-prix-article', [AchatController::class, 'gestionValidationNewPrixAchat']);
+    Route::get('/add-emplacement-article', [EmplacementController::class, 'ouvrirAddEmplacementArticle'])->middleware('session_not_open_user');
 ?>
 

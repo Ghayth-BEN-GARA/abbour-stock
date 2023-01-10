@@ -65,7 +65,7 @@
             }
 
             else if($this->creerArticle($request->reference, $request->designation, $request->description, $request->cat)){
-                return back()->with('success', "Le nouveau article a été créée avec succès.");
+                return back()->with('success', $request->reference);
             }
 
             else{
