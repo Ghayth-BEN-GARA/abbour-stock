@@ -70,5 +70,15 @@
         public function ouvrirListeEmplacementsArticle(){
             return view("Emplacements.liste_emplacement_article");
         }
+
+        public function ouvrirEmplacement(Request $request){
+            $details_article = $this->getDetailsArticleEmplacement($request->reference_article);
+            return view("Emplacements.emplacement", compact("details_article"));
+        }
+
+        public function getDetailsArticleEmplacement($reference_article){
+            return Article::join("emplacements_articles", "articles.reference_article", "=", "emplacements_articles.reference_article")
+            ->where("articles.reference_article", "=", $reference_article)->first();
+        }
     }
 ?>

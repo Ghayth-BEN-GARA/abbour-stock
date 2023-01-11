@@ -106,5 +106,6 @@
     Route::get('/add-emplacement-article-par-reference', [EmplacementController::class, 'ouvrirAddEmplacementArticleParReference'])->middleware('session_not_open_user');
     Route::post('/creer-emplacement-article-par-reference', [EmplacementController::class, 'gestionCreerEmplacementArticleParReference']);
     Route::get('/liste-emplacements-article', [EmplacementController::class, 'ouvrirListeEmplacementsArticle'])->middleware('session_not_open_user');
+    Route::get('/emplacement', [EmplacementController::class, 'ouvrirEmplacement'])->middleware('session_not_open_user');
 ?>
 
