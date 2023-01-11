@@ -66,5 +66,9 @@
         public function checkEmplacementArticle($reference_article){
             return (EmplacementArticle::where('reference_article', '=', $reference_article)->exists());
         }
+
+        public function ouvrirListeEmplacementsArticle(){
+            return view("Emplacements.liste_emplacement_article");
+        }
     }
 ?>

@@ -49,7 +49,7 @@
                                                     @endif
                                                 </p>
                                             </td>
-                                            <td class = "cell text-center">
+                                            <td class = "cell text-end">
                                                 <p>
                                                     <a href = "{{url('/user?id_user='.$data->getIdUserAttribute())}}" class = "btn app-btn-secondary">Consulter</a>
                                                     <a href = "{{url('/edit-user?id_user='.$data->getIdUserAttribute())}}" class = "btn app-btn-secondary">Modifier</a>

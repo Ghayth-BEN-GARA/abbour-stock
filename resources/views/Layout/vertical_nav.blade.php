@@ -215,7 +215,7 @@
                                 <a class = "submenu-link" href = "{{url('/add-emplacement-article-par-reference')}}">Créer</a>
                             </li>
                             <li class = "submenu-item">
-                                <a class = "submenu-link" href = "#">Gérer</a>
+                                <a class = "submenu-link" href = "{{url('/liste-emplacements-article')}}">Gérer</a>
                             </li>
                         </ul>
                 </div>

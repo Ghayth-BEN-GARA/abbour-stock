@@ -41,7 +41,7 @@
                                 </div>
                             </div>         
                         @endif
-                        <div class = "col-12 col-lg-12">
+                        <div class = "col-12 col-lg-12 mb-5">
                             <div class = "app-card app-card-settings shadow-sm p-4">
                                 <div class = "app-card-body">
                                     <p class = "form-text text-dark">Gérez la liste des fournisseurs enregistrés dans l'application en toute sécurité. Vous pouvez consulter, modifier et rechercher un fournisseur existant à tout moment.</p>      

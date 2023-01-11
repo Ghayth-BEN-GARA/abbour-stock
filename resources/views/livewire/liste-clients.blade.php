@@ -44,7 +44,7 @@
                                                     (+216) {{$data->getFormattedMobileClientAttribute()}}
                                                 </p>
                                             </td>
-                                            <td class = "cell text-center">
+                                            <td class = "cell text-end">
                                                 <p>
                                                     <a href = "{{url('/client?matricule_client='.$data->getMatriculeClientAttribute())}}" class = "btn app-btn-secondary">Consulter</a>
                                                     <a href = "{{url('/edit-client?matricule_client='.$data->getMatriculeClientAttribute())}}" class = "btn app-btn-secondary">Modifier</a>
