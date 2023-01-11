@@ -102,5 +102,8 @@
     Route::post('/creer-articles-facture-achat', [AchatController::class, 'storeArticlesToFactureAchat']);
     Route::post('/valider-new-prix-article', [AchatController::class, 'gestionValidationNewPrixAchat']);
     Route::get('/add-emplacement-article', [EmplacementController::class, 'ouvrirAddEmplacementArticle'])->middleware('session_not_open_user');
+    Route::post('/creer-emplacement-article', [EmplacementController::class, 'gestionCreerEmplacementArticle']);
+    Route::get('/add-emplacement-article-par-reference', [EmplacementController::class, 'ouvrirAddEmplacementArticleParReference'])->middleware('session_not_open_user');
+    Route::post('/creer-emplacement-article-par-reference', [EmplacementController::class, 'gestionCreerEmplacementArticleParReference']);
 ?>
 

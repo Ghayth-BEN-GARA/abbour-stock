@@ -323,3 +323,20 @@ function validerValidationPrixArticle() {
 function effacerErreurPrixArticle() {
     document.getElementById('erreur_prix_achat').innerHTML = null;
 }
+
+function effacerErreurArticle() {
+    document.getElementById('erreur_article').innerHTML = null;
+}
+
+function validerCreationEmplacement() {
+    var reference_article = document.getElementById('article').selectedIndex;
+    
+    if(reference_article == 0){
+        event.preventDefault();
+        document.getElementById('erreur_article').innerHTML = "Veuillez sélectionner le fournisseur de la facture d'achat.";
+    }
+
+    else{
+        $('#f-add-emplacement-article-par-reference').submit();       
+    }
+}
