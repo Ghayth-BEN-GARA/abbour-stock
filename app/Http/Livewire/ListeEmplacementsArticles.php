@@ -8,12 +8,12 @@
 
     class ListeEmplacementsArticles extends Component{
         public $search;
-        public $emplacement = "All";
+        public $emplacement_artice = "Tout";
         public $currentPage = 1;
         use WithPagination;
 
         public function render(){
-            if($this->emplacement = "All"){
+            if($this->emplacement_artice == "Tout"){
                 return view('livewire.liste-emplacements-articles', [
                     'articles' => Article::join('emplacements_articles', 'articles.reference_article', 'emplacements_articles.reference_article')
                     ->where('articles.reference_article', 'like', '%'.$this->search.'%')
@@ -24,7 +24,19 @@
             }
 
             else{
-
+                return view('livewire.liste-emplacements-articles', [
+                    'articles' => Article::where([
+                        ['articles.reference_article', 'like', '%'.$this->search.'%'],
+                        ['emplacements_articles.emplacement_article_creer', '=', $this->emplacement_artice],
+                    ])
+                    ->orWhere([
+                        ['articles.designation', 'like', '%'.$this->search.'%'],
+                        ['emplacements_articles.emplacement_article_creer', '=', $this->emplacement_artice],
+                    ])
+                    ->join('emplacements_articles', 'articles.reference_article', 'emplacements_articles.reference_article')
+                    ->orderBy('articles.reference_article', 'asc')
+                    ->paginate(10, array('articles.*', 'emplacements_articles.*'))
+                ]);
             }
         }
 

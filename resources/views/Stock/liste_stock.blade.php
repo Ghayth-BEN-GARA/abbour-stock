@@ -3,7 +3,6 @@
     <head>
         <title>Abbour'Stock Dépôt | Stock</title> 
         @include('Layout.head_app')
-        @livewireStyles
     </head> 
     <body class = "app">
         <header class = "app-header fixed-top">
@@ -37,6 +36,5 @@
             @include('Layout.footer')
         </footer>
         @include('Layout.script')
-        @livewireScripts
     </body>
 </html>

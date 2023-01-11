@@ -10,8 +10,8 @@
                         </span>
                     </div>
                     <div class = "col-md-2">
-						<select class = "form-select" name = "emplacement" id = "emplacement" wire:model = "emplacement" required>
-							<option selected disabled value = "All">Tout</option>
+						<select class = "form-select" name = "emplacement_artice" id = "emplacement_artice" wire:model = "emplacement_artice" required>
+							<option value = "Tout">Tout</option>
 							@foreach(range('A', 'Z') as $i)
                                 <option value = "{{$i}}"> {{$i}}</option>
                             @endforeach  
