@@ -6,6 +6,7 @@
     use Illuminate\Support\Facades\Mail;
     use App\Models\User;
     use App\Models\Journal;
+    use App\Models\TempUser;
     use App\Models\PasswordReset;
     use Session;
     use App\Mail\EnvoyerMailResetPassword;
@@ -212,6 +213,34 @@
             return User::where('id_user', '=',$id_user)->update([
                 'password' => bcrypt($password)
             ]);
+        }
+
+        public function gestionSignup(Request $request){
+            if($this->checkUser($request->email)){
+                return back()->with('erreur', "Un autre compte a été trouvé avec cette adresse email.");
+            }
+
+            else if($this->creerCompteSignup($request->email, $request->password, $request->nom, $request->prenom)){
+                return redirect("/confirm-signup")->with('success', "Nous sommes très heureux de confirmer que votre demande de création d'un nouveau compte de type administrateur a été envoyée avec succès. Vous recevrez un e-mail avec la décision de l'administrateur dès que possible.");
+            }
+
+            else{
+                return redirect('/erreur');
+            }
+        }
+
+        public function creerCompteSignup($email, $password, $nom, $prenom){
+            $temp_user = new TempUser();
+            $temp_user->setEmailUserAttribute($email);
+            $temp_user->setPasswordUserAttribute(bcrypt($password));
+            $temp_user->setNomUserAttribute($nom);
+            $temp_user->setPrenomUserAttribute($prenom);
+
+            return $temp_user->save();
+        }
+
+        public function ouvrirConfirmSignup(){
+            return view("Authentification.confirm_signup");
         }
     }
 ?>

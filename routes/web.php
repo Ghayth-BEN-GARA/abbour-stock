@@ -109,5 +109,7 @@
     Route::get('/emplacement-article', [EmplacementController::class, 'ouvrirEmplacementArticle'])->middleware('session_not_open_user');
     Route::get('/edit-emplacement-article', [EmplacementController::class, 'ouvrirEditEmplacement'])->middleware('session_not_open_user');
     Route::post('/update-emplacement-article', [EmplacementController::class, 'gestionUpdateEmplacementArticle']);
+    Route::post('/creer-compte-signup', [AuthentificationUserController::class, 'gestionSignup']);
+    Route::get('/confirm-signup', [AuthentificationUserController::class, 'ouvrirConfirmSignup'])->middleware('session_exist');
 ?>
 
