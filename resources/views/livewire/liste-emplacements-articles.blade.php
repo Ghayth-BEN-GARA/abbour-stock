@@ -54,8 +54,8 @@
                                             </td>
                                             <td class = "cell text-end">
                                                 <p>
-                                                    <a href = "{{url('/emplacement?reference_article='.$data->reference_article)}}" class = "btn app-btn-secondary">Consulter</a>
-                                                    <a href = "#" class = "btn app-btn-secondary">Modifier</a>
+                                                    <a href = "{{url('/emplacement-article?reference_article='.$data->reference_article)}}" class = "btn app-btn-secondary">Consulter</a>
+                                                    <a href = "{{url('/edit-emplacement-article?reference_article='.$data->reference_article)}}" class = "btn app-btn-secondary">Modifier</a>
                                                 </p>
                                             </td>
                                         </tr>

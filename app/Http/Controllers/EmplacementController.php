@@ -71,14 +71,36 @@
             return view("Emplacements.liste_emplacement_article");
         }
 
-        public function ouvrirEmplacement(Request $request){
+        public function ouvrirEmplacementArticle(Request $request){
             $details_article = $this->getDetailsArticleEmplacement($request->reference_article);
-            return view("Emplacements.emplacement", compact("details_article"));
+            return view("Emplacements.emplacement_article", compact("details_article"));
         }
 
         public function getDetailsArticleEmplacement($reference_article){
             return Article::join("emplacements_articles", "articles.reference_article", "=", "emplacements_articles.reference_article")
             ->where("articles.reference_article", "=", $reference_article)->first();
+        }
+
+        public function ouvrirEditEmplacement(Request $request){
+            $details_article = $this->getDetailsArticleEmplacement($request->reference_article);
+            return view("Emplacements.edit_emplacement_article", compact("details_article"));
+        }
+
+        public function gestionUpdateEmplacementArticle(Request $request){
+           if($this->updateEmplacementArticle($request->reference, $request->emplacement, $request->stock)){
+                return back()->with('success', "L'emplacement de l'article a été bien modifié avec succés.");
+           }
+
+           else{
+                return redirect('/erreur');
+           }
+        }
+
+        public function updateEmplacementArticle($reference_article, $emplacement, $stock){
+            return EmplacementArticle::where('reference_article', '=', $reference_article)->update([
+                'emplacement_article_creer' => $emplacement,
+                'stock_article_creer' => $stock
+            ]);
         }
     }
 ?>
