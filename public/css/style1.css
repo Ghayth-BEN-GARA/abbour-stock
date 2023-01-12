@@ -11539,10 +11539,9 @@ button.close:focus {
     background-size: cover;
     height: 100vh;
     min-height: 100%;
-    opacity: 0.6;
 }
 .app-signup .auth-background-holder {
-    background: url("../images/background/background-2.jpg") no-repeat center
+    background: url("../images/e_commerce.jpg") no-repeat center
         center;
     background-size: cover;
     height: 100vh;

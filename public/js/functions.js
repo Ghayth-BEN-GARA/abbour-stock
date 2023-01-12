@@ -340,3 +340,16 @@ function validerCreationEmplacement() {
         $('#f-add-emplacement-article-par-reference').submit();       
     }
 }
+
+function disabledEnabledButtonSignup() {
+    var checkBox = document.getElementById('RememberPassword');
+    var btn = document.getElementById('submit');
+
+    if(checkBox.checked){
+        $(btn).removeAttr("disabled");
+    }
+
+    else{
+        $(btn).attr("disabled", true);
+    }
+}

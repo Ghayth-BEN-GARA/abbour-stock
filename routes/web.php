@@ -22,7 +22,7 @@
     */
 
     Route::get('/', [AuthentificationUserController::class, 'ouvrirSignin'])->middleware('session_exist');
-    Route::get('/signup', [AuthentificationUserController::class, 'ouvrirNotExist']);
+    Route::get('/signup', [AuthentificationUserController::class, 'ouvrirSignup']);
     Route::post('/login', [AuthentificationUserController::class, 'gestionConnexion']);
     Route::get('/home', [AuthentificationUserController::class, 'ouvrirHome'])->middleware('session_not_exist');
     Route::get('/logout', [AuthentificationUserController::class, 'gestionDeconnexion']);

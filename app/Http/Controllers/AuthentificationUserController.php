@@ -16,8 +16,8 @@
             return view('Authentification.signin');
         }
 
-        public function ouvrirNotExist(){
-            return view('Errors.not_exist');
+        public function ouvrirSignup(){
+            return view('Authentification.signup');
         }
 
         public function gestionConnexion(Request $request){

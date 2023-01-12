@@ -54,8 +54,7 @@
                                 </div>
                             </form>
                             <div class = "auth-option text-center pt-5">Pas de compte? S'inscrire
-                                <a class = "text-link" href = "{{url('/signup')}}" >içi</a>
-                                .
+                                <a class = "text-link" href = "{{url('/signup')}}" >içi</a>.
                             </div>
                         </div>
                     </div>
