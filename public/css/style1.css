@@ -7721,6 +7721,7 @@ fieldset:disabled .btn {
 .text-opacity-100 {
     --bs-text-opacity: 1;
 }
+
 .bg-primary {
     --bs-bg-opacity: 1;
     background-color: rgba(
@@ -10760,9 +10761,15 @@ button.close:focus {
 }
 
 .app-notifications-dropdown .dropdown-menu .info {
-    padding-right: 80px;
+    padding-right: 100px;
     position: relative;
 }
+
+.app-notifications-dropdown .dropdown-menu-content{
+    overflow-y: auto;
+    height:400px;
+}
+
 .app-notifications-dropdown .dropdown-menu .meta {
     color: #828d9f;
     position: absolute;

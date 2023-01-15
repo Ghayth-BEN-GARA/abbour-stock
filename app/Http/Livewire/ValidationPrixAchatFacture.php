@@ -3,6 +3,7 @@
     use Livewire\Component;
     use App\Models\ValidationPrixArticleFactureAchat;
     use App\Models\Article;
+    use App\Models\Stock;
 
     class ValidationPrixAchatFacture extends Component{
         public function render(){
@@ -21,6 +22,10 @@
                 ->join('factures_achats', 'factures_achats.reference_facture', '=', 'validation_prix_articles_factures.reference_facture')
                 ->orderBy('validation_prix_articles_factures.date_validation_new_prix_article','desc')
                 ->get();
+        }
+
+        public function getAncienPrixAchat($reference_article){
+            return Stock::where("reference_article", "=", $reference_article)->first()->getPrixAchatArticleAttribute();
         }
     }
 ?>

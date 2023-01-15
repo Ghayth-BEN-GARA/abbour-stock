@@ -83,6 +83,8 @@
                                                                         <span class = "badge bg-success">{{$article->getPrixAchatArticleAttribute()}} DT</span>
                                                                     @elseif(Session::has('erreur'))
                                                                         <span class = "badge bg-danger">{{$article->getPrixAchatArticleAttribute()}} DT</span>
+                                                                    @elseif(Session::has('primary'))
+                                                                        <span class = "badge bg-warning">{{$article->getPrixAchatArticleAttribute()}} DT</span>
                                                                     @else
                                                                         {{$article->getPrixAchatArticleAttribute()}} DT
                                                                     @endif

@@ -353,3 +353,7 @@ function disabledEnabledButtonSignup() {
         $(btn).attr("disabled", true);
     }
 }
+
+function annulerValidationPrixAchat(id_validation, reference_article) {
+    window.location.href = "/annuler-validation-new-prix-article?id_validation="+id_validation+"&reference_article="+reference_article;
+}

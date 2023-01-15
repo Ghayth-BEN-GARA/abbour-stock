@@ -121,7 +121,7 @@
             }
         }
 
-        public function creerFactureAchat($reference_facture, $matricule, $date, $heure, $type, $paiement, $responsable, $id_user, $nom_fournisseur){
+        public function creerFactureAchat($reference_facture, $matricule, $date, $heure, $type, $paiement, $responsable, $nom_fournisseur, $id_user){
             $facture_achat = new FactureAchat();
             $facture_achat->setReferenceFactureAttribute($reference_facture."/".$nom_fournisseur);
             $facture_achat->setMatriculeFournisseurAttribute($matricule);
@@ -379,6 +379,42 @@
             return Stock::where('reference_article', '=', $reference_article)->update([
                 'prix_achat_article' => $new_prix
             ]);
+        }
+
+        public function ouvrirListeEmplacementAchat(){
+            $liste_validations_prix_achats = $this->getListeValidationNewPrixAchat();
+            return view("Achats.liste_validations_prix_achat", compact("liste_validations_prix_achats"));
+        }
+
+        public function getListeValidationNewPrixAchat(){
+            return ValidationPrixArticleFactureAchat::join("articles", "articles.reference_article", "=", "validation_prix_articles_factures.reference_article")
+            ->get();
+        }
+
+        public function ouvrirValidationPrixArticle(Request $request){
+            $details_validation = $this->getValidationPrixAchatArticleNewPrixAchat($request->input("id_validation"));
+            return view("Achats.validation_prix_article", compact("details_validation"));
+        }
+
+        public function getValidationPrixAchatArticleNewPrixAchat($id_validation){
+            return ValidationPrixArticleFactureAchat::join("articles", "articles.reference_article", "=", "validation_prix_articles_factures.reference_article")
+            ->where("validation_prix_articles_factures.id_validation_prix_article", "=", $id_validation)
+            ->first();
+        }
+
+        public static function getAncienPrixAchat($reference_article){
+            return Stock::where("reference_article", "=", $reference_article)
+            ->first()->getPrixAchatArticleAttribute();
+        }
+
+        public function gestionAnnulerValidationNewPrixArticle(Request $request){
+            if($this->deleteValidationArticlePrixAchat($request->input('id_validation'))){
+                return redirect('/article?reference_article='.$request->input('reference_article'))->with('primary', ''); 
+            }
+
+            else{
+                return redirect('/article?reference_article='.$request->input('reference_article'))->with('erreur'); 
+            }
         }
     }
 ?>

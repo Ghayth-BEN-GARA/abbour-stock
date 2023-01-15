@@ -111,5 +111,8 @@
     Route::post('/update-emplacement-article', [EmplacementController::class, 'gestionUpdateEmplacementArticle']);
     Route::post('/creer-compte-signup', [AuthentificationUserController::class, 'gestionSignup']);
     Route::get('/confirm-signup', [AuthentificationUserController::class, 'ouvrirConfirmSignup'])->middleware('session_exist');
+    Route::get('/liste-validations-prix-achat', [AchatController::class, 'ouvrirListeEmplacementAchat'])->middleware('session_not_open_user');
+    Route::get('/valider-prix-article', [AchatController::class, 'ouvrirValidationPrixArticle'])->middleware('session_not_open_user');
+    Route::get('/annuler-validation-new-prix-article', [AchatController::class, 'gestionAnnulerValidationNewPrixArticle']);
 ?>
 

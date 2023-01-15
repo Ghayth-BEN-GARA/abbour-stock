@@ -23,7 +23,7 @@
                                 <div class = "col">
                                     <div class = "info">
                                         <div class = "desc">
-                                            <a href = "javascript:void(0)" style = "color:inherit" data-bs-toggle = "modal" data-bs-target = "#validation-prix-achat-modal" type = "button" data-id-reference-article = "{{$data->reference_article}}" data-designation-article = "{{$data->designation}}" data-new-prix-article = "{{$data->new_prix_unitaire_article}}" data-id-validation-prix-article = "{{$data->id_validation_prix_article}}" class = "open_modal">
+                                            <a href = "javascript:void(0)" style = "color:inherit;" data-bs-toggle = "modal" data-bs-target = "#validation-prix-achat-modal" type = "button" data-id-reference-article = "{{$data->reference_article}}" data-designation-article = "{{$data->designation}}" data-new-prix-article = "{{$data->new_prix_unitaire_article}}" data-id-validation-prix-article = "{{$data->id_validation_prix_article}}" data-ancien-prix-article = "{{$this->getAncienPrixAchat($data->reference_article)}}" class = "open_modal">
                                                 Suite à la création du facture d'achat référencée par <b>{{$data->reference_facture}}</b>, vous devez valider un article nommé <b>{{$data->designation}}</b> et référence par <b>{{$data->reference_article}}</b> en raison de modification de prix d'achat pour cet article.
                                             </a>
                                         </div>
@@ -55,6 +55,9 @@
                     </div>
                 @endif
             </div>
+            <div class = "dropdown-menu-footer p-2 text-center">
+				<a href = "{{url('/liste-validations-prix-achat')}}" style = "color:black">Afficher toutes les validations</a>
+		    </div>
         </div>
     @endif
 </div>
@@ -100,22 +103,26 @@
                         <div class = "row justify-content-between align-items-center">
                             <div class = "col-auto col-lg-6">
                                 <div class = "item-label">
-                                    <strong>Nouveaux Prix</strong>
+                                    <strong>Ancien Prix</strong>
                                 </div>
                                 <div class = "item-data">
-                                    <input type = "text" class = "form-control" id = "new_prix_article" name = "new_prix_article" placeholder = "Entrez le prix de l'article.." onkeypress = "return (event.charCode>=46 && event.charCode<=57)" oninput = "effacerErreurPrixArticle()" required>
+                                    <input type = "text" class = "form-control" id = "ancien_prix_article" name = "ancien_prix_article" placeholder = "Entrez l'ancien prix de l'article.." onkeypress = "return (event.charCode>=46 && event.charCode<=57)" readonly required>
                                 </div>
                             </div>
                             <div class = "col-auto col-lg-6">
                                 <div class = "item-label">
-                                    <strong>&ensp;</strong>
+                                    <strong>Nouveaux Prix</strong>
                                 </div>
                                 <div class = "item-data">
-                                    <button type = "submit" class = "btn app-btn-primary">Valider le prix</button>
+                                    <input type = "text" class = "form-control" id = "new_prix_article" name = "new_prix_article" placeholder = "Entrez le nouveaux prix de l'article.." onkeypress = "return (event.charCode>=46 && event.charCode<=57)" oninput = "effacerErreurPrixArticle()" required>
                                 </div>
                             </div>
                             <p class = "form-text text-danger mt-2" id = "erreur_prix_achat"></p>
                         </div>
+                    </div>
+                    <div class = "item py-2 mx-auto text-center">
+                        <button type = "submit" class = "btn app-btn-primary">Valider le prix</button>
+                        <a href = "javascript:void(0)" type = "button" class = "btn app-btn-secondary" onclick = "annulerValidationPrixAchat($('#id_validation_prix_article').val(), $('#reference_article').val())">Annuler</a>
                     </div>
                     <input type = "hidden" class = "form-control" id = "id_validation_prix_article" name = "id_validation_prix_article" placeholder = "Entrez l'identifiant de validation de prix de l'article.." readonly required>
                 </form>
@@ -132,11 +139,13 @@
             var designation_article = $(this).data('designation-article');
             var new_prix_article = $(this).data('new-prix-article');
             var id_validation_prix_article = $(this).data('id-validation-prix-article');
+            var ancien_prix_article = $(this).data('ancien-prix-article');
 
             $("#reference_article").val(reference_article);
             $("#designation_article").val(designation_article);
             $("#new_prix_article").val(new_prix_article);
             $("#id_validation_prix_article").val(id_validation_prix_article);
+            $("#ancien_prix_article").val(ancien_prix_article);
             $('.modal').appendTo("body") 
         })
     });
