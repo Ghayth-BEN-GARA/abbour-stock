@@ -116,5 +116,6 @@
     Route::get('/annuler-validation-new-prix-article', [AchatController::class, 'gestionAnnulerValidationNewPrixArticle']);
     Route::get('/accept-new-user', [UserController::class, 'gestionAccepterNewUser']);
     Route::get('/annuler-new-user', [UserController::class, 'gestionAnnulerNewUser']);
+    Route::get('/liste-new-users', [UserController::class, 'ouvrirListeNewUsers']);
 ?>
 

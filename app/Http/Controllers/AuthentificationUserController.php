@@ -221,7 +221,7 @@
             }
 
             else if($this->creerCompteSignup($request->email, $request->password, $request->nom, $request->prenom)){
-                return redirect("/confirm-signup")->with('success', "Nous sommes très heureux de confirmer que votre demande de création d'un nouveau compte de type administrateur a été envoyée avec succès. Vous recevrez un e-mail avec la décision de l'administrateur dès que possible.");
+                return redirect("/confirm-signup")->with('success', "Nous sommes très heureux de confirmer que votre demande de création d'un nouveau compte de type administrateur a été envoyée avec succès.");
             }
 
             else{

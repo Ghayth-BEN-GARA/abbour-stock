@@ -550,5 +550,14 @@
                 return redirect("/erreur");
             }
         }
+
+        public function ouvrirListeNewUsers(){
+            $liste_new_users = $this->getListeNewUsers();
+            return view("User.liste_new_users", compact("liste_new_users"));
+        }
+
+        public function getListeNewUsers(){
+            return TempUser::get();
+        }
     }
 ?>

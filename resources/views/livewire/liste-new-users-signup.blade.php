@@ -53,7 +53,7 @@
                 @endif
             </div>
             <div class = "dropdown-menu-footer p-2 text-center">
-				<a href = "#" style = "color:black">Afficher toutes les utilisateurs</a>
+				<a href = "{{url('/liste-new-users')}}" style = "color:black">Afficher toutes les utilisateurs</a>
 		    </div>
         </div>
     @endif
