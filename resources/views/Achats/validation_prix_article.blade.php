@@ -43,7 +43,7 @@
                                             </div>
                                         </div>
                                     @else
-                                        <form class = "settings-form" name = "f-valider-prix-achat" id = "f-valider-prix-achat" method = "post" action = "#">
+                                        <form class = "settings-form" name = "f-validation-prix-achat2" id = "f-validation-prix-achat2" method = "post" action = "valider-new-prix-article" onsubmit = "validerValidationPrixArticle2()">
                                             @csrf
                                             @if (Session::has('erreur'))
                                                 <div class = "alert alert-danger d-flex align-items-center" role = "alert">
@@ -71,7 +71,7 @@
                                                             <strong>Référence</strong>
                                                         </div>
                                                         <div class = "item-data">
-                                                            <input type = "number" class = "form-control" id = "reference_article" name = "reference_article" placeholder = "Entrez la référence de l'article.." value = "{{$details_validation->reference_article}}" required readonly>
+                                                            <input type = "number" class = "form-control" id = "reference_article2" name = "reference_article" placeholder = "Entrez la référence de l'article.." value = "{{$details_validation->reference_article}}" required readonly>
                                                         </div>
                                                     </div>
                                                     <div class = "col-auto col-lg-6">
@@ -99,9 +99,23 @@
                                                             <strong>Nouveau prix</strong>
                                                         </div>
                                                         <div class = "item-data">
-                                                            <input type = "text" class = "form-control" id = "new_prix" name = "new_prix" placeholder = "Entrez la nouveau prix de l'article.." value = "{{$details_validation->new_prix_article}}" required>
+                                                            <input type = "text" class = "form-control" id = "new_prix" name = "new_prix_article" placeholder = "Entrez la nouveau prix de l'article.." value = "{{$details_validation->new_prix_article}}"  onkeypress = "return (event.charCode>=46 && event.charCode<=57)" oninput = "effacerErreurPrixArticle2()" required>
                                                         </div>
                                                     </div>
+                                                    <div class = "col-auto col-lg-6">
+
+                                                    </div>
+
+                                                    <div class = "col-auto col-lg-6">
+                                                        <p class = "form-text text-danger mt-2" id = "erreur_prix_achat2"></p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <input type = "hidden" class = "form-control" id = "id_validation_prix_article2" name = "id_validation_prix_article" placeholder = "Entrez l'identifiant de validation de prix de l'article.." value = "{{$details_validation->id_validation_prix_article}}" readonly required>
+                                            <div class = "item py-3">
+                                                <div class = "item-data">
+                                                    <button type = "submit" class = "btn app-btn-primary">Valider le prix d'achat</button>
+                                                    <a href = "#" type = "button" class = "btn app-btn-info" onclick = "annulerValidationPrixAchat($('#id_validation_prix_article2').val(), $('#reference_article2').val())">Annuler</a>
                                                 </div>
                                             </div>
                                         </form>

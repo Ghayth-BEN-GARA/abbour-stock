@@ -357,3 +357,20 @@ function disabledEnabledButtonSignup() {
 function annulerValidationPrixAchat(id_validation, reference_article) {
     window.location.href = "/annuler-validation-new-prix-article?id_validation="+id_validation+"&reference_article="+reference_article;
 }
+
+function validerValidationPrixArticle2() {
+    var new_prix_article_achat = document.getElementById('new_prix').value;
+
+    if(!new_prix_article_achat.includes('.')){
+        event.preventDefault();
+        document.getElementById('erreur_prix_achat2').innerHTML = "Veuillez entrer un nouveau prix d'achat valide.";
+    }
+
+    else{
+        $('#f-validation-prix-achat2').submit();
+    }
+}
+
+function effacerErreurPrixArticle2() {
+    document.getElementById('erreur_prix_achat2').innerHTML = null;
+}
