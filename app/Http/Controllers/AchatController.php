@@ -416,5 +416,9 @@
                 return redirect('/article?reference_article='.$request->input('reference_article'))->with('erreur'); 
             }
         }
+
+        public function ouvrirListeFacturesAchats(){
+            return view("Achats.liste_factures_achats");
+        }
     }
 ?>

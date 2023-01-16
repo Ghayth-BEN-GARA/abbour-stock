@@ -117,5 +117,6 @@
     Route::get('/accept-new-user', [UserController::class, 'gestionAccepterNewUser']);
     Route::get('/annuler-new-user', [UserController::class, 'gestionAnnulerNewUser']);
     Route::get('/liste-new-users', [UserController::class, 'ouvrirListeNewUsers']);
+    Route::get('/liste-factures-achats', [AchatController::class, 'ouvrirListeFacturesAchats'])->middleware('session_not_open_user');
 ?>
 
