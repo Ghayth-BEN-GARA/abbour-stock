@@ -420,5 +420,10 @@
         public function ouvrirListeFacturesAchats(){
             return view("Achats.liste_factures_achats");
         }
+
+        public function ouvrirFactureAchat(Request $request){
+            $reference_facture = $request->input("reference_facture");
+            return view("Achats.achat", compact("reference_facture"));
+        }
     }
 ?>

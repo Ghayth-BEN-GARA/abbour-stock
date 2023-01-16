@@ -19,7 +19,7 @@
                     ->where('factures_achats.reference_facture', 'like', '%'.$this->search.'%')
                     ->orWhere('fournisseurs.fullname_fournisseur', 'like', '%'.$this->search.'%')
                     ->orWhere('fournisseurs.matricule_fournisseur', 'like', '%'.$this->search.'%')
-                    ->orderBy('factures_achats.date_facture', 'desc')
+                    ->orderBy('factures_achats.date_facture', 'asc')
                     ->paginate(10, array('factures_achats.*', 'fournisseurs.*'))
                 ]);
             }
@@ -39,7 +39,7 @@
                         ['factures_achats.type_facture', '=', $this->type_achats],
                     ])
                     ->join('fournisseurs', 'fournisseurs.matricule_fournisseur', "=", 'factures_achats.matricule_fournisseur')
-                    ->orderBy('factures_achats.date_facture', 'desc')
+                    ->orderBy('factures_achats.date_facture', 'asc')
                     ->paginate(10, array('factures_achats.*', 'fournisseurs.*'))
                 ]);
             }

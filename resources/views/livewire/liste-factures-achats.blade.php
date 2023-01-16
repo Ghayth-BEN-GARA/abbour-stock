@@ -4,7 +4,7 @@
             <div class = "app-card app-card-orders-table shadow-sm mb-5">
                 <div class = "row app-card-body">
                     <div class = "app-search-form mx-auto mb-2 col-md-10">
-                        <input type = "text" placeholder = "Chercher des chats.." name = "search_achats" id = "search_achats" class = "form-control search-input" wire:model = "search" required>
+                        <input type = "text" placeholder = "Chercher des achats.." name = "search_achats" id = "search_achats" class = "form-control search-input" wire:model = "search" required>
                         <span class = "btn search-btn btn-primary mx-3">
                             <i class = "fas fa-search"></i>
                         </span>
@@ -58,7 +58,7 @@
                                             </td>
                                             <td class = "cell text-end">
                                                 <p>
-                                                    <a href = "#" class = "btn app-btn-secondary">Consulter</a>
+                                                    <a href = "{{url('facture-achat?reference_facture='.$data->reference_facture)}}" class = "btn app-btn-secondary">Consulter</a>
                                                     <a href = "#" class = "btn app-btn-secondary">Supprimer</a>
                                                 </p>
                                             </td>
