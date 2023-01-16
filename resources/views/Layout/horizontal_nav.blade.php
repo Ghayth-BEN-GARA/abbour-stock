@@ -23,6 +23,9 @@
             </div>
             <div class = "app-utilities col-auto">
                 <div class = "app-utility-item app-notifications-dropdown dropdown"> 
+                    <livewire:liste-new-users-signup/>
+                </div>
+                <div class = "app-utility-item app-notifications-dropdown dropdown"> 
                     <livewire:validation-prix-achat-facture/>
                 </div>
                 <div class = "app-utility-item app-notifications-dropdown dropdown"> 

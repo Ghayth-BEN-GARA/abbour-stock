@@ -7,6 +7,7 @@
     use App\Models\User;
     use App\Models\Journal;
     use App\Models\DemandeModificationType;
+    use App\Models\TempUser;
     use Session;
 
     class UserController extends Controller{
@@ -506,6 +507,48 @@
             return User::where('id_user', '=', $id_user)->update([
                 'state' => $new_state
             ]);
+        }
+
+        public function gestionAccepterNewUser(Request $request){
+            $email = $this->getInformationsNewUser($request->input('id_temp_user'))->email;
+
+            if($this->creerNewUtilisateur($this->getInformationsNewUser($request->input('id_temp_user'))->nom, $this->getInformationsNewUser($request->input('id_temp_user'))->prenom, $this->getInformationsNewUser($request->input('id_temp_user'))->email, $this->getInformationsNewUser($request->input('id_temp_user'))->password)){
+                $this->deleteNewUser($request->input('id_temp_user'));
+                return redirect("/liste-users")->with("email", $email);
+            }
+
+            else{
+                return redirect("/erreur");
+            }
+        }
+
+        public function getInformationsNewUser($id_temp_user){
+            return TempUser::where('id_temp_users', '=', $id_temp_user)->first();
+        }
+
+        public function deleteNewUser($id_temp_user){
+            return TempUser::where('id_temp_users', '=', $id_temp_user)->delete();
+        }
+
+        public function creerNewUtilisateur($nom, $prenom, $email, $password){
+            $user = new User();
+            $user->setNomUserAttribute($nom);
+            $user->setPrenomUserAttribute($prenom);
+            $user->setEmailUserAttribute($email);
+            $user->setPasswordUserAttribute($password);
+            $user->setTypeUserAttribute("Admin");
+            
+            return $user->save();
+        }
+
+        public function gestionAnnulerNewUser(Request $request){
+            if($this->deleteNewUser($request->input('id_temp_user'))){
+                return redirect("/liste-users");
+            }
+
+            else{
+                return redirect("/erreur");
+            }
         }
     }
 ?>

@@ -23,7 +23,11 @@
                             <tbody>
                                 @if(!empty($users) && ($users->count()))
                                     @foreach($users as $data)
-                                        <tr>
+                                        @if(Session::has('email') && $data->getEmailUserAttribute() == session()->get('email'))
+                                            <tr class = "bg-success">
+                                        @else
+                                            <tr>
+                                        @endif
                                             <td class = "cell">
                                                 <p>
                                                     <img class = "profile-image-table" src = "{{$data->getImageUserAttribute()}}" alt = "Photo de profil">

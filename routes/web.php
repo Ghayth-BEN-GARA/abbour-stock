@@ -114,5 +114,7 @@
     Route::get('/liste-validations-prix-achat', [AchatController::class, 'ouvrirListeEmplacementAchat'])->middleware('session_not_open_user');
     Route::get('/valider-prix-article', [AchatController::class, 'ouvrirValidationPrixArticle'])->middleware('session_not_open_user');
     Route::get('/annuler-validation-new-prix-article', [AchatController::class, 'gestionAnnulerValidationNewPrixArticle']);
+    Route::get('/accept-new-user', [UserController::class, 'gestionAccepterNewUser']);
+    Route::get('/annuler-new-user', [UserController::class, 'gestionAnnulerNewUser']);
 ?>
 
