@@ -122,7 +122,7 @@
                     </div>
                     <div class = "item py-2 mx-auto text-center">
                         <button type = "submit" class = "btn app-btn-primary">Valider le prix</button>
-                        <a href = "javascript:void(0)" type = "button" class = "btn app-btn-secondary" onclick = "annulerValidationPrixAchat($('#id_validation_prix_article').val(), $('#reference_article').val())">Annuler</a>
+                        <a href = "javascript:void(0)" type = "button" class = "btn app-btn-secondary" onclick = "annulerValidationPrixAchat($('#id_validation_prix_article').val(), $('#reference_article').val())">Laisser le prix</a>
                     </div>
                     <input type = "hidden" class = "form-control" id = "id_validation_prix_article" name = "id_validation_prix_article" placeholder = "Entrez l'identifiant de validation de prix de l'article.." readonly required>
                 </form>

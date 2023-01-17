@@ -58,7 +58,7 @@
                                             <div class = "row justify-content-between align-items-center">
                                                 <div class = "col-auto col-lg-6">
                                                     <div class = "item-label">
-                                                        <strong>Référence</strong>
+                                                        <strong>Article</strong>
                                                     </div>
                                                     <div class = "item-data">
                                                         <select class = "form-control" name = "article" id = "article" onchange = "effacerErreurArticle()" required>
