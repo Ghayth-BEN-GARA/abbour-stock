@@ -432,5 +432,34 @@
             $reference_facture = $request->input("reference_facture");
             return view("Achats.achat", compact("reference_facture"));
         }
+
+        public function gestionDeleteFacture(Request $request){
+            $this->gestionDeleteStock($this->listeArticlesFactureAchat($request->input('reference_facture')));
+            $this->deleteReglementFactureAchat($request->input('reference_facture'));
+            $this->deleteFactureAchat($request->input('reference_facture'));
+            return back()->with('success', "La facture d'achat a été supprimer avec succés. Notez bien que vous pouvez créer une autre achat à tout moment.");
+        }
+
+        public function removeQuantiteFromStock($reference_article, $quantite_article){
+            return Stock::where('reference_article', '=', $reference_article)->increment('quantite_stock', -$quantite_article);
+        }
+
+        public function listeArticlesFactureAchat($reference_facture){
+            return FactureArticleAchat::where('reference_facture', '=', $reference_facture)->get();
+        }
+
+        public function gestionDeleteStock($articles){
+            foreach ($articles as $data) {
+                $this->removeQuantiteFromStock($data->getReferenceArticleAttribute(), $data->getQuantiteArticleAttribute());
+            }
+        }
+
+        public function deleteFactureAchat($reference_facture){
+            return FactureAchat::where('reference_facture', $reference_facture)->delete();
+        }
+
+        public function deleteReglementFactureAchat($reference_facture){
+            return ReglementAchat::where('reference_facture_achat', '=', $reference_facture)->delete();
+        }
     }
 ?>

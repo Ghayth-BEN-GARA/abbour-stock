@@ -374,3 +374,27 @@ function validerValidationPrixArticle2() {
 function effacerErreurPrixArticle2() {
     document.getElementById('erreur_prix_achat2').innerHTML = null;
 }
+
+function questionSupprimerFactureAchat(reference_facture) {
+    swal({
+        title: "Confirmation",
+        html: "Si vous avez décidé de supprimer cette facture d'achat, elle sera définitivement supprimée de votre base de données.",
+        type: 'warning',
+        showConfirmButton: true,
+        showCancelButton: true,
+        confirmButtonColor: '#fb7c1f',
+        confirmButtonText: "Supprimer",
+        cancelButtonText: 'Annuler',
+        padding: 45
+    })
+
+    .then((result) => {
+        if (result.value) {
+            location.href = "/delete-facture-achat?reference_facture="+reference_facture;
+        } 
+        
+        else if (result.dismiss === swal.DismissReason.cancel) {
+            swal.close();
+        }
+    });
+}

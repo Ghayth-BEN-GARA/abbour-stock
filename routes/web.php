@@ -119,5 +119,5 @@
     Route::get('/liste-new-users', [UserController::class, 'ouvrirListeNewUsers']);
     Route::get('/liste-factures-achats', [AchatController::class, 'ouvrirListeFacturesAchats'])->middleware('session_not_open_user');
     Route::get('/facture-achat', [AchatController::class, 'ouvrirFactureAchat'])->middleware('session_not_open_user');
+    Route::get('/delete-facture-achat', [AchatController::class, 'gestionDeleteFacture']);
 ?>
-

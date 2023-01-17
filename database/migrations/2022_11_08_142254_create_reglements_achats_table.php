@@ -20,7 +20,6 @@
                 $table->string('type_reglement_achat')->default('Facture');
                 $table->string('reference_facture_achat', 999);
                 $table->string('matricule_fournisseur' ,999);
-                $table->foreign('reference_facture_achat')->references('reference_facture')->on('factures_achats')->onDelete('cascade')->onUpdate('cascade');
                 $table->foreign('matricule_fournisseur')->references('matricule_fournisseur')->on('fournisseurs')->onDelete('cascade')->onUpdate('cascade');
             });
         }

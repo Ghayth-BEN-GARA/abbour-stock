@@ -8,3 +8,4 @@
 <link rel = "stylesheet" href = "{{asset('css/lineicons.css')}}">
 <link rel = "stylesheet" href = "{{asset('css/pagination.css')}}">
 <link rel = "stylesheet" href = "{{asset('css/materialdesignicons.min.css')}}" />
+<link rel = "stylesheet" href = "{{asset('css/sweetalert2.css')}}" />

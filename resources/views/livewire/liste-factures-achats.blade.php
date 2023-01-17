@@ -59,7 +59,7 @@
                                             <td class = "cell text-end">
                                                 <p>
                                                     <a href = "{{url('facture-achat?reference_facture='.$data->reference_facture)}}" class = "btn app-btn-secondary">Consulter</a>
-                                                    <a href = "#" class = "btn app-btn-secondary">Supprimer</a>
+                                                    <a href = "javascript:void(0)" class = "btn app-btn-secondary" onclick = "questionSupprimerFactureAchat('{{$data->reference_facture}}')">Supprimer</a>
                                                 </p>
                                             </td>
                                         </tr>
