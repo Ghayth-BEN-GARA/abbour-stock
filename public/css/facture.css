@@ -87,58 +87,129 @@ th {
 }
     
   
-  .note {
+.note {
     text-align: center;
-    margin-top: 1rem;
-    font-size: 12px;
-    color: #ADADAD; }
+    margin: 2rem;
+    font-size: 15px;
+    color: #000; 
+    border: 1px solid #F7941E; 
+    padding: 20px;
+    font-weight: 500;
+}
 
-    @media (max-width: 1320px) {
-        .invoice-container .top .date {
-          font-size: 14px; }
-        .invoice-container .top .main {
-          font-size: 32px; }
-        .invoice-container .top .code {
-          font-size: 18px; }
-        .bill-box .text-m {
-          font-size: 14px; }
-        .bill-box .title {
-          font-size: 1.5rem; }
-        .table-bill .total {
-          font-size: 16px; } }
+@media (max-width: 1320px) {
+    .invoice-container .top .date {
+        font-size: 14px; 
+    }
+        
+    .invoice-container .top .main {
+        font-size: 32px; 
+    }
 
-          @media (max-width: 768px) {
-            .invoice-container .top {
-              display: block; }
-              .invoice-container .top .top-left {
-                margin-bottom: 1rem; }
-            .bill-box {
-              display: block; }
-            .bill-box .left, .bill-box .right {
-              max-width: 100%; }
-            .table-bill table, .table-bill tbody, .table-bill tfoot, .table-bill td, .table-bill th, .table-bill tr {
-              display: block; }
-            .table-bill th {
-              display: none; }
-            .table-bill tbody tr {
-              padding: 10px 0px;
-              border-bottom: 1px solid #e5e5e5; }
-              .table-bill tbody tr td:first-child {
-                display: none; }
-            .table-bill td {
-              padding: 5px 0px; }
-            .table-bill .cost {
-              text-align: left; }
-            .table-bill .total {
-              margin-top: 20px; }
-              .table-bill .total td {
-                border-top: 0px; }
-              .table-bill .total .number {
-                text-align: left; } }
+    .invoice-container .top .code {
+        font-size: 18px; 
+    }
+        
+    .bill-box .text-m {
+        font-size: 14px; 
+    }
+
+    .bill-box .title {
+        font-size: 1.5rem; 
+    }
+
+    .table-bill .total {
+        font-size: 16px; 
+    } 
+}
+
+@media (max-width: 768px) {
+    .invoice-container .top {
+        display: block; 
+    }
+              
+    .invoice-container .top .top-left {
+        margin-bottom: 1rem; 
+    }
+            
+    .bill-box {
+        display: block; 
+    }
+            
+    .bill-box .left, .bill-box .right {
+        max-width: 100%; 
+    }
+
+    .table-bill table, .table-bill tbody, .table-bill tfoot, .table-bill td, .table-bill th, .table-bill tr {
+        display: block; 
+    }
+            
+    .table-bill th {
+        display: none; 
+    }
+            
+    .table-bill tbody tr {
+        padding: 10px 0px;
+        border-bottom: 1px solid #e5e5e5; 
+    }
+             
+    .table-bill tbody tr td:first-child {
+        display: none; 
+    }
+   
+    .table-bill td {
+        padding: 5px 0px; 
+    }
+
+    .table-bill .cost {
+        text-align: left; 
+    }
+            
+    .table-bill .total {
+        margin-top: 20px; 
+    }
+              
+    .table-bill .total td {
+        border-top: 0px; 
+    }
+              
+    .table-bill .total .number {
+        text-align: left; 
+    } 
+}
           
-          @media (max-width: 420px) {
-            .actions .btn {
-              width: 100%;
-              margin: 5px 0px; }
-            .header {
-              display: block; } }
+@media (max-width: 420px) {
+    .actions .btn {
+        width: 100%;
+        margin: 5px 0px; 
+    }
+            
+    .header {
+        display: block; 
+    } 
+}
+
+@media print{
+  html *{
+      visibility: hidden;
+  }
+
+  .main-content *{
+      visibility: visible;
+  }
+
+  .actions *{
+    visibility: hidden;
+  }
+
+  .main-content{
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+  }
+
+  table{
+      page-break-inside: avoid;
+  }
+}

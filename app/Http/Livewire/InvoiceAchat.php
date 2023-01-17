@@ -5,6 +5,7 @@
     use App\Models\Fournisseur;
     use App\Models\FactureArticleAchat;
     use App\Models\Article;
+    use App\Models\ReglementAchat;
 
     class InvoiceAchat extends Component{
         public function render(){
@@ -22,6 +23,10 @@
             ->join("articles", "articles.reference_article", "=", "factures_articles_achats.reference_article")
             ->orderBy('articles.designation', 'asc')
             ->get();
+        }
+
+        public function getDetailsReglement($reference_facture){
+            return ReglementAchat::where('reference_facture_achat', '=', $reference_facture)->first();
         }
     }
 ?>

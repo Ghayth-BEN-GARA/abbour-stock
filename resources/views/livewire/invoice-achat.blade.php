@@ -112,8 +112,17 @@
                         </tfoot>
                     </table>
                 </div>
+                <div class = "note">
+                    @if($this->getDetailsReglement($_GET['reference_facture'])->getPayeReglementAchatAttribute() == $this->getDetailsReglement($_GET['reference_facture'])->getNetReglementAchatAttribute())
+                        Le paiement est normalement réglé pour cette facture.
+                    @elseif($this->getDetailsReglement($_GET['reference_facture'])->getPayeReglementAchatAttribute() < $this->getDetailsReglement($_GET['reference_facture'])->getNetReglementAchatAttribute())
+                        La facture n'est pas réglée. Vous devez payer <b>{{number_format($this->getDetailsReglement($_GET['reference_facture'])->getNetReglementAchatAttribute() - $this->getDetailsReglement($_GET['reference_facture'])->getPayeReglementAchatAttribute(), 3)}}</b> pour ce fournisseur.
+                    @else
+                        La facture n'est pas réglée. Le fournisseur devez payer <b>{{number_format($this->getDetailsReglement($_GET['reference_facture'])->getPayerReglementAchatAttribute() - $this->getDetailsReglement($_GET['reference_facture'])->getNetReglementAchatAttribute(), 3)}}</b> pour vous.
+                    @endif
+                </div>
                 <div class = "actions">
-                    <a href = "javascript:void(0)" class = "btn app-btn-primary">Imprimer</a>
+                    <a href = "javascript:window.print()" class = "btn app-btn-primary">Imprimer</a>
                 </div>
             </div>
         </div>

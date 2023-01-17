@@ -282,6 +282,7 @@
                 $this->updatePaiementFactureAchat($reference_facture, $somme_facture_achat);
             }
 
+            $this->updateNetFactureAchat($reference_facture, $somme_facture_achat);
             return redirect('/add-facture-achat')->with('success', "Bravo ! La nouvelle facture d'achat a été enregistrée avec succès.");
         }
 
@@ -296,6 +297,12 @@
         public function updatePaiementFactureAchat($reference_facture, $montant_paye){
             return ReglementAchat::where('reference_facture_achat', '=', $reference_facture)->update([
                 'paye_reglement_achat' => $montant_paye
+            ]);
+        }
+
+        public function updateNetFactureAchat($reference_facture, $montant_paye){
+            return ReglementAchat::where('reference_facture_achat', '=', $reference_facture)->update([
+                'net_reglement_achat' => $montant_paye
             ]);
         }
 
