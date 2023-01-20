@@ -155,7 +155,7 @@
                                                             <strong>Référence</strong>
                                                         </div>
                                                         <div class = "item-data">
-                                                            <input type = "search" name = "reference" id = "reference" class = "form-control" placeholder = "Référence.." onkeypress = "return event.charCode>=48 && event.charCode<=57" oninput = "effacerErreurReference()" required>
+                                                            <input type = "search" name = "reference" id = "reference" class = "form-control" placeholder = "Référence.." onkeypress = "return event.charCode>=48 && event.charCode<=57" oninput = "effacerErreurReference()" value = "{{App\Http\Controllers\AchatController::getLastReferenceArticle() + 1}}" required>
                                                         </div>
                                                     </div>
                                                     <div class = "col-auto col-lg-2">

@@ -190,7 +190,7 @@
             ->where('articles.designation', 'LIKE', $request->designation)->first();
 
             $data = array(
-                'designation' => $article->getDesignationArticleAttribute(),
+                'designation' => $article->getDesignationArticleAttribute()."",
                 'reference' => $article->getReferenceArticleAttribute(),
                 'categorie' => $article->getCategorieArticleAttribute(),
                 'prix' => $article->prix_achat_article

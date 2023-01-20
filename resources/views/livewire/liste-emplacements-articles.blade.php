@@ -10,11 +10,12 @@
                         </span>
                     </div>
                     <div class = "col-md-2">
-						<select class = "form-select" name = "emplacement_artice" id = "emplacement_artice" wire:model = "emplacement_artice" required>
+						<select class = "form-select" name = "type_cherche" id = "type_cherche" wire:model = "type_cherche" required>
 							<option value = "Tout">Tout</option>
-							@foreach(range('A', 'Z') as $i)
-                                <option value = "{{$i}}"> {{$i}}</option>
-                            @endforeach  
+                            <option value = "Désignation">Désignation</option>
+                            <option value = "Emplacement">Emplacement</option>
+                            <option value = "Référence">Référence</option>
+                            <option value = "Stock">Stock</option>
 						</select>
 					</div>
                     <div class = "table-responsive">

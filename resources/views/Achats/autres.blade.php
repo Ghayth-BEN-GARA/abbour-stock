@@ -69,7 +69,7 @@
                                                         <strong>Référence</strong>
                                                     </div>
                                                     <div class = "item-data">
-                                                        <input type = "number" class = "form-control" id = "reference" name = "reference" placeholder = "Entrez la référence d'article.." required>
+                                                        <input type = "number" class = "form-control" id = "reference" name = "reference" placeholder = "Entrez la référence d'article.." value = "{{App\Http\Controllers\AchatController::getLastReferenceArticle() + 1}}" required>
                                                     </div>
                                                 </div>
                                             </div>
