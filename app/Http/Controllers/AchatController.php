@@ -487,5 +487,9 @@
 
             return $reglement_achat->save();
         }
+
+        public function ouvrirListeReglementsAchats(){
+            return view("Reglements_Achats.liste_reglements_achats");
+        }
     }
 ?>

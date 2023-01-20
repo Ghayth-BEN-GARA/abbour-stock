@@ -122,4 +122,5 @@
     Route::get('/delete-facture-achat', [AchatController::class, 'gestionDeleteFacture']);
     Route::get('/creer-reglement-achat-libre', [AchatController::class, 'ouvrirCreerReglementAchatLibre'])->middleware('session_not_open_user');
     Route::post('/create-reglement-achat-libre', [AchatController::class, 'gestionCreerReglementLibre']);
+    Route::get('/liste-reglements-achats', [AchatController::class, 'ouvrirListeReglementsAchats'])->middleware('session_not_open_user');
 ?>
