@@ -113,7 +113,7 @@
                     <div id = "submenu-4" class = "collapse submenu submenu-2" data-bs-parent = "#menu-accordion">
                         <ul class = "submenu-list list-unstyled">
                             <li class = "submenu-item">
-                                <a class = "submenu-link" href = "#">Créer un réglement libre</a>
+                                <a class = "submenu-link" href = "{{url('creer-reglement-achat-libre')}}">Créer un réglement libre</a>
                             </li>
                             <li class = "submenu-item">
                                 <a class = "submenu-link" href = "#">Gérer</a>

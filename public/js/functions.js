@@ -398,3 +398,30 @@ function questionSupprimerFactureAchat(reference_facture) {
         }
     });
 }
+
+function validerFormulaireCreerPaiementLibre() {
+    var montant_payer = document.getElementById('montant_paye').value;
+    var selected_fournisseur = document.getElementById("fournisseur").selectedIndex;
+
+    if(selected_fournisseur == 0){
+        event.preventDefault();
+        document.getElementById('erreur_fournisseur').innerHTML = "Veuillez sélectionner le fournisseur de réglement d'achat..";
+    }
+
+    if(!montant_payer.includes('.')){
+        event.preventDefault();
+        document.getElementById('erreur_reglement_libre').innerHTML = "Veuillez entrer un nouveau payé valide.";
+    }
+
+    else{
+        $('#f-create-reglement').submit();
+    }
+}
+
+function effacerErreurFournisseurReglement() {
+    document.getElementById('erreur_fournisseur').innerHTML = null;
+}
+
+function effacerErreurMontantReglementPayer() {
+    document.getElementById('erreur_reglement_libre').innerHTML = null;
+}

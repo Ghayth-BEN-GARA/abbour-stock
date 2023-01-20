@@ -461,5 +461,31 @@
         public function deleteReglementFactureAchat($reference_facture){
             return ReglementAchat::where('reference_facture_achat', '=', $reference_facture)->delete();
         }
+
+        public function ouvrirCreerReglementAchatLibre(){
+            $fournisseurs = $this->getListeFournisseur();
+            return view('Reglements_Achats.add_reglement_libre', compact("fournisseurs"));
+        }
+
+        public function gestionCreerReglementLibre(Request $request){
+            if($this->creerReglementLibreAchat($request->montant_paye, $request->date_reglement, $request->fournisseur)){
+                return back()->with('success', "Le règlement libre a été créé avec succès. Vous pouvez gérer la liste des réglements à tout moment.");
+            }
+
+            else{
+                return redirect('/erreur');
+            }
+        }
+
+        public function creerReglementLibreAchat($paye, $date_reglement, $fournisseur){
+            $reglement_achat = new ReglementAchat();
+            $reglement_achat->setPayeReglementAchatAttribute($paye);
+            $reglement_achat->setDateReglementAchatAttribute($date_reglement);
+            $reglement_achat->setMatriculeFournisseurAttribute($fournisseur);
+            $reglement_achat->setReferenceFactureAchatAttribute("0/".$fournisseur);
+            $reglement_achat->setTypeReglementAchatAttribute("Libre");
+
+            return $reglement_achat->save();
+        }
     }
 ?>
