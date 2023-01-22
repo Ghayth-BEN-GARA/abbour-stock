@@ -491,5 +491,40 @@
         public function ouvrirListeReglementsAchats(){
             return view("Reglements_Achats.liste_reglements_achats");
         }
+
+        public function ouvrirReglementAchat(Request $request){
+            $fournisseur = $this->getInformationsFournisseur($request->input("matricule_fournisseur"));
+            $net_reglement = $this->getMontantNetReglement($request->input('matricule_fournisseur'));
+            $paye_reglement = $this->getMontantPayeReglement($request->input('matricule_fournisseur'));
+            $dernier_date_reglement = $this->getLastDateCreateReglementFournisseur($request->input('matricule_fournisseur'));
+            $nbr_reglement = $this->getNbrReglementFournisseur($request->input('matricule_fournisseur'));
+            $date_debut_reglement = $this->getDebutDateCreateReglementFournisseur($request->input("matricule_fournisseur"));
+
+            return view("Reglements_Achats.reglement_achats", compact("fournisseur", "net_reglement", "paye_reglement", "dernier_date_reglement", "nbr_reglement", "date_debut_reglement"));
+        }
+
+        public function getInformationsFournisseur($matricule){
+            return Fournisseur::where('matricule_fournisseur', '=', $matricule)->first();
+        }
+
+        public function getMontantNetReglement($matricule){
+            return ReglementAchat::where('matricule_fournisseur', '=', $matricule)->sum('net_reglement_achat');
+        }
+
+        public function getMontantPayeReglement($matricule){
+            return ReglementAchat::where('matricule_fournisseur', '=', $matricule)->sum('paye_reglement_achat');
+        }
+
+        public function getLastDateCreateReglementFournisseur($matricule){
+            return ReglementAchat::where('matricule_fournisseur', '=', $matricule)->orderBy('date_reglement_achat', 'desc')->first()->getDateReglementAchatAttribute();
+        }
+
+        public function getNbrReglementFournisseur($matricule){
+            return ReglementAchat::where('matricule_fournisseur', '=', $matricule)->orderBy('date_reglement_achat', 'desc')->count();
+        }
+
+        public function getDebutDateCreateReglementFournisseur($matricule){
+            return ReglementAchat::where('matricule_fournisseur', '=', $matricule)->orderBy('date_reglement_achat', 'asc')->first()->getDateReglementAchatAttribute();
+        }
     }
 ?>

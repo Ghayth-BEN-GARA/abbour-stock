@@ -1,0 +1,370 @@
+.all_page{
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.avatar {
+    position: relative;
+    display: inline-block; 
+}
+
+.avatar:before {
+    content: "";
+    top: -2px;
+    right: -2px;
+    bottom: -2px;
+    left: -2px;
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(113.35deg, #7978E9 2.58%, #4747A1 97.8%); 
+}
+
+.avatar img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    position: relative;
+    z-index: 2;
+}
+
+.main-wrapper {
+    position: relative;
+    overflow: auto;
+    top: 50px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
+    padding: 2rem 3rem;
+    display: flex; 
+}
+  
+.main-content {
+    flex: 1;
+    margin-right: 4rem;
+    width: 0px; 
+}
+
+.main-content .list-card {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    font-family: 'Roboto Mono', monospace; 
+}
+
+.main-content .list-card .item {
+    width: calc(50% - 1rem);
+    border-radius: 1.25rem;
+    border: 1px solid rgba(91, 99, 169, 0.1);
+}
+
+.main-content .list-card .top {
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between; 
+}
+
+.main-content .list-card .info {
+    display: flex;
+    padding: 1.5rem 2rem;
+    justify-content: space-between; 
+}
+
+.main-content .list-card .card-info {
+    flex: 1; 
+}
+
+.main-content .list-card .card-info .text {
+    color: #90A0B7;
+    font-size: 18px;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.main-content .list-card .card-info .number {
+    font-size: 14px;
+    color: #41477A; 
+}
+
+.main-content .list-card .card-bottom {
+    border-top: 1px solid rgba(91, 99, 169, 0.1);
+    padding: 1.5rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; 
+}
+
+.main-content .list-card .card-bottom .name {
+    color: #41477A;
+    font-weight: bold; 
+}
+
+.main-content .list-card .card-bottom .date {
+    color: #90A0B7;
+    font-weight: bold; 
+}
+
+.main-content .list-card .card-bottom .key {
+    text-transform: uppercase;
+    font-weight: normal;
+    font-size: 10px;
+    margin-bottom: 2px; 
+}
+
+.main-content .list-card .active {
+    background: linear-gradient(113.35deg, #7978E9 2.58%, #4747A1 97.8%);
+    color: #fff;
+    border: 0px; 
+}
+
+.main-content .list-card .active .card-info .text {
+    color: #fff;
+    opacity: .75; 
+}
+
+.main-content .list-card .active .card-info .number {
+    color: #fff;
+    opacity: 0.75; 
+}
+
+.main-content .list-card .active .card-bottom {
+    border-top-color: rgba(255, 255, 255, 0.3); 
+}
+
+.main-content .list-card .active .card-bottom .name {
+    color: #fff;
+    opacity: 0.75; 
+}
+
+.main-content .list-card .active .card-bottom .date {
+    color: #fff; 
+}
+
+.main-content .list-card .active .card-bottom .key {
+    opacity: .7; 
+}
+
+.grid-margin {
+    margin-bottom: 2.5rem;
+}
+
+.card.transparent {
+    background: transparent;
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid #e3e3e3;
+    border-radius: 20px;
+}
+
+.card.card-tale {
+    background: #7DA0FA;
+    color: #ffffff;
+}
+  
+  .card.card-tale:hover {
+    background: #96b2fb;
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+}
+
+.card.card-dark-blue {
+    background: #4747A1;
+    color: #ffffff;
+}
+  
+  .card.card-dark-blue:hover {
+    background: #5050b2;
+}
+
+.card.card-light-blue {
+    background: #7978E9;
+    color: #ffffff;
+  }
+  
+.card.card-light-blue:hover {
+    background: #8f8eed;
+}
+
+.table-content {
+    overflow: 100%; 
+}
+
+.subtitle {
+    font-size: 18px;
+    margin-bottom: 2rem;
+    font-weight: normal;
+    margin-top: 0px; 
+}
+
+.table-result {
+    width: 100%;
+    white-space: nowrap;
+}
+
+.table-result td, .table-result th {
+    padding: 1rem;
+    border-bottom: 1px solid rgba(91, 99, 169, 0.1); 
+}
+
+.table-result td:last-child, .table-result th:last-child {
+    padding-right: 0px; 
+}
+    
+.table-result td:first-child, .table-result th:first-child {
+    padding-left: 0px; 
+}
+
+th{
+    text-transform: uppercase;
+}
+
+.table-result .payment-name {
+    white-space: nowrap;
+}
+
+.table-result .date {
+    color: #6F7399;
+}
+
+.table-result .number {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500; 
+}
+
+.table-result .status {
+    text-transform: uppercase;
+    white-space: nowrap; 
+}
+
+.table-result .status.-payment {
+    color: #F2994A; 
+}
+
+.table-result .status.-refund {
+    color: #000; 
+}
+
+.table-result .more {
+    display: inline-block;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    line-height: 22px;
+    text-align: center;
+    font-size: 12px;
+    background-color: #f2f2f2;
+    color: #d9d9d9;
+    text-decoration: none; 
+}
+
+.table-result .more:hover {
+    background-color: #F2994A;
+    color: #fff; 
+}
+
+.main-sidebar {
+    width: 320px; 
+}
+
+.main-sidebar .box {
+    background: #FFFFFF;
+    box-shadow: 0px 4px 40px rgba(91, 99, 169, 0.3);
+    border-radius: 20px;
+    padding: 2rem;
+}
+
+.main-sidebar .user {
+    text-align: center; 
+}
+
+.main-sidebar .avatar {
+    margin-bottom: 1rem; 
+}
+
+.main-sidebar .avatar img {
+    width: 40px;
+    height: 40px; 
+}
+
+.main-sidebar .user .name {
+    margin-bottom: 0.25rem; 
+}
+
+.text-desc {
+    font-size: 10px;
+    color: #6F7399;
+    font-weight: 300; 
+}
+
+.divider-gray {
+    height: 1px;
+    border-bottom: 1px solid rgba(91, 99, 169, 0.1);
+    margin: 1.5rem 0px; 
+}
+
+.main-sidebar .card-info-box {
+    text-align: center; 
+}
+
+.main-sidebar .card-info-box .number {
+    font-size: 18px;
+    margin: 0.5rem 0px;
+    color: #4747A1;
+    font-weight: bold; 
+}
+
+.box-billing-plan .head {
+    text-align: center;
+    margin-bottom: 1rem; 
+}
+
+.box-billing-plan .head .title {
+    margin-top: 0.5rem; 
+}
+
+.box-billing-plan .note-box {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+    background: rgba(91, 99, 169, 0.1);
+    border-radius: 5px;
+    font-size: 10px;
+    color: #6F7399; 
+}
+
+.box-billing-plan .note-box .inner {
+    display: flex; 
+}
+
+.box-billing-plan .note-box .icon {
+    margin-right: 1rem;
+    font-size: 16px; 
+}
+
+.box-billing-plan .note-box .text-content p {
+    margin-bottom: 0.5rem; 
+}
+
+.box-billing-plan .note-box .text-content p:before {
+    width: 4px;
+    height: 4px;
+    content: "";
+    border-radius: 50%;
+    margin-right: 5px;
+    vertical-align: middle;
+    display: inline-block;
+    background-color: #90A0B7; 
+}
+  
