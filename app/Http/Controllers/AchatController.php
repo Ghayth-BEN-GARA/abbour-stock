@@ -526,5 +526,21 @@
         public function getDebutDateCreateReglementFournisseur($matricule){
             return ReglementAchat::where('matricule_fournisseur', '=', $matricule)->orderBy('date_reglement_achat', 'asc')->first()->getDateReglementAchatAttribute();
         }
+
+        public function gestionModifierReglementAchat(Request $request){
+            if($this->updateReglementAchat($request->id_reglement_achat, $request->paye)){
+                return back()->with("success", $request->id_reglement_achat);
+            }
+
+            else{
+                return back()->with("erreur", $request->id_reglement_achat);
+            }
+        }
+
+        public function updateReglementAchat($id_reglement, $paye){
+            return ReglementAchat::where('id_reglement_achat', '=', $id_reglement)->update([
+                'paye_reglement_achat' => $paye
+            ]);
+        }
     }
 ?>

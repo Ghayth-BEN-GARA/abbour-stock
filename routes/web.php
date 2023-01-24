@@ -124,4 +124,5 @@
     Route::post('/create-reglement-achat-libre', [AchatController::class, 'gestionCreerReglementLibre']);
     Route::get('/liste-reglements-achats', [AchatController::class, 'ouvrirListeReglementsAchats'])->middleware('session_not_open_user');
     Route::get('/reglement-achats', [AchatController::class, 'ouvrirReglementAchat'])->middleware('session_not_open_user');
+    Route::post('/edit-reglement-achat', [AchatController::class, 'gestionModifierReglementAchat']);
 ?>
