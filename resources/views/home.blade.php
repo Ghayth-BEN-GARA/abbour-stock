@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang = "en"> 
     <head>
-        <title>Abbour'Stock Dépôt | Accueil</title> 
+        <title>Abbour'Stock Dépôt | Statistiques</title> 
         @include('Layout.head_app')
     </head> 
     <body class = "app">
@@ -13,8 +13,15 @@
                 @include('Layout.vertical_nav')
             </div>
         </header>
-
-        <footer class = "app-auth-footer">
+        <div class = "app-wrapper">
+            <div class = "app-content pt-3 p-md-3 p-lg-4">
+                <div class = "container-xl">
+                    <h1 class = "app-page-title">Statistiques</h1>
+                    <livewire:liste-statistiques/>
+                </div>
+            </div>
+        </div>
+        <footer class = "app-auth-footer app-auth-footer2">
             @include('Layout.footer')
         </footer>
         @include('Layout.script')
