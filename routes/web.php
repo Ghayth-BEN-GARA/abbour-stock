@@ -9,6 +9,7 @@
     use App\Http\Controllers\AchatController;
     use App\Http\Controllers\StockController;
     use App\Http\Controllers\EmplacementController;
+    use App\Http\Controllers\VenteController;
 
     /*
     |--------------------------------------------------------------------------
@@ -70,7 +71,7 @@
     Route::get('/fournisseur', [FournisseurController::class, 'ouvrirFournisseur'])->middleware('session_not_open_user');
     Route::get('/edit-fournisseur', [FournisseurController::class, 'ouvrirEditFournisseur'])->middleware('session_not_open_user');
     Route::post('/modifier-fournisseur', [FournisseurController::class, 'gestionModifierFournisseur']);
-    Route::get('/add-client', [ClientController::class, 'ouvrirAddClient'])->middleware('session_not_open_user');
+    Route::get('/add-client', [ClientController::class, 'ouvrirAddClient'])->middleware('session_not_exist');
     Route::post('/create-client', [ClientController::class, 'gestionCreerClient']);
     Route::get('/liste-clients', [ClientController::class, 'ouvrirListeClients'])->middleware('session_not_open_user');
     Route::get('/client', [ClientController::class, 'ouvrirClient'])->middleware('session_not_open_user');
@@ -125,4 +126,8 @@
     Route::get('/liste-reglements-achats', [AchatController::class, 'ouvrirListeReglementsAchats'])->middleware('session_not_open_user');
     Route::get('/reglement-achats', [AchatController::class, 'ouvrirReglementAchat'])->middleware('session_not_open_user');
     Route::post('/edit-reglement-achat', [AchatController::class, 'gestionModifierReglementAchat']);
+    Route::get('/caisse', [VenteController::class, 'ouvrirCaisse'])->middleware('session_not_exist');
+    Route::get('/autocomplete-reference-facture-vente', [VenteController::class, 'getArticleSearchByReference']);
+    Route::get('/informations-article-search-reference-vente', [VenteController::class, 'getInformationsArticleByReferenceFactureVente']);
+    Route::get('/calculer-prix-vente-remise', [VenteController::class, 'calculerPrixVenteAvecRemise']);
 ?>

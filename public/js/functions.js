@@ -442,3 +442,209 @@ function validationFormulaireModifierReglementAchat() {
 function effacerErreurMontantPayer() {
     document.getElementById('erreur_paye').innerHTML = null;
 }
+
+function disableSelectClient() {
+    document.getElementById('nom_client').setAttribute('disabled',true);
+}
+
+function enableSelectClient() {
+    document.getElementById('nom_client').removeAttribute('disabled');
+    document.getElementById('nom_client').focus();
+}
+
+function effacerErreurClient() {
+    document.getElementById('erreur_client').innerHTML = null;
+}
+
+function disableMontantAccount() {
+    document.getElementById('montant_account').setAttribute('disabled',true);
+}
+
+function enableMontantAccount() {
+    document.getElementById('montant_account').removeAttribute('disabled');
+    document.getElementById('montant_account').focus();
+}
+
+function effacerErreurMontantAccount() {
+    document.getElementById('erreur_montant').innerHTML = null;
+}
+
+function effacerErreurReferenceArticleVente() {
+    document.getElementById('erreur_reference_article').innerHTML = null;
+}
+
+function effacerErreurQuantiteArticleVente() {
+    document.getElementById('erreur_quantite_article').innerHTML = null;
+}
+
+function effacerErreurRemiseArticleVente() {
+    document.getElementById('erreur_remise_article').innerHTML = null;
+    document.getElementById('erreur_remise_article_non_valide').innerHTML = null;
+}
+
+function searchReferenceArticleVenteAutoComplete() {
+    $('#reference_article_vente').typeahead({
+        source: function(query, process) {
+            return $.get('/autocomplete-reference-facture-vente', { query: query }, function(data) {
+                return process(JSON.parse(data));
+            });
+        },
+
+        updater: function(item) {
+            $.ajax({
+                url: '/informations-article-search-reference-vente',
+                type: "get",
+                cache: true,
+                dataType: 'json',
+                data: { reference: item },
+                success: function(data) {
+                    $('#reference_article_vente').val(item);
+                    $('#designation_article_vente').val(data.designation);
+                    $('#prix_article_vente').val(data.prix_vente);
+                    $('#reference_article_vente').prop('readonly', true);
+                    $('#designation_article_vente').prop('readonly', true);
+                    $('#prix_article_vente').prop('readonly', true);
+                }
+            });
+        }
+    });
+}
+
+function gestionAjouterDesLignesVente() {
+    var reference = document.getElementById('reference_article_vente').value;
+    var designation = document.getElementById('designation_article_vente').value;
+    var quantite = document.getElementById('quantite_article_vente').value;
+    var prix = document.getElementById('prix_article_vente').value;
+    var remise = document.getElementById('remise_article_vente').value;
+    
+    var erreur_reference = document.getElementById('erreur_reference_article');
+    var erreur_designation = document.getElementById('erreur_designation_article');
+    var erreur_quantite = document.getElementById('erreur_quantite_article');
+    var erreur_prix = document.getElementById('erreur_prix_article');
+    var erreur_prix_non_valide = document.getElementById('erreur_prix_article_non_valide');
+    var erreur_remise = document.getElementById('erreur_remise_article');
+    var erreur_remise_non_valide = document.getElementById('erreur_remise_article_non_valide');
+    
+    if(reference.trim() == "" || reference.trim() == "Référence"){
+        erreur_reference.innerHTML = 'Référence obligatoire';
+    }
+
+    else if(designation.trim() == "" || designation.trim() == "Désignation"){
+        erreur_designation.innerHTML = 'Désignation obligatoire';
+    }
+
+    else if(quantite.trim() == "" || quantite.trim() == 0){
+        erreur_quantite.innerHTML = 'Quantité obligatoire';
+    }
+
+    else if(prix.trim() == ""){
+        erreur_prix.innerHTML = 'Prix obligatoire';
+    }
+
+    else if(!prix.trim().includes('.')){
+        erreur_prix_non_valide.innerHTML = 'Prix non valide';
+    }
+
+    else if(remise.trim() == ""){
+        erreur_remise.innerHTML = 'Remise obligatoire';
+    }
+
+    else if(!remise.trim().includes('.')){
+        erreur_remise_non_valide.innerHTML = 'Prix non valide';
+    }
+
+    else{
+        gestionCreerLigneFactureVente();
+    }
+}
+
+function gestionCreerLigneFactureVente() {
+    deleteEmptyLigne();
+    ajouterLigneVente();
+    clearDataVente();
+    enableInputsVente();
+}
+
+function ajouterLigneVente() {
+    var reference = document.getElementById('reference_article_vente').value;
+    var designation = document.getElementById('designation_article_vente').value;
+    var quantite = document.getElementById('quantite_article_vente').value;
+    var prix = document.getElementById('prix_article_vente').value;
+    var remise = document.getElementById('remise_article_vente').value;
+    
+    $.ajax({
+        url: '/calculer-prix-vente-remise',
+        type: "get",
+        cache: true,
+        dataType: 'text',
+        data: { 
+            quantite: quantite,
+            prix:prix,
+            remise:remise    
+        },
+        success: function(data) {
+            $('.table #body_facture_vente').last().after(
+                '<tr>'+
+                    '<td>'+
+                        '<input type = "text" class = "form-control-plaintext" name = "designation_article[]" value = "'+designation+'" readonly required>'+
+                    '</td>'+
+                    '<td>'+
+                        '<input type = "text" class = "form-control-plaintext" name = "reference_article[]" value = "'+reference+'" readonly required>'+
+                    '</td>'+
+                    '<td>'+
+                        '<input type = "number" class = "form-control-plaintext" name = "quantite_article[]" value = "'+quantite+'" required>'+
+                    '</td>'+
+                    '<td>'+
+                        '<input type = "text" class = "form-control-plaintext" name = "prix_article[]" value = "'+prix+'" readonly required>'+
+                    '</td>'+
+                    '<td>'+
+                        '<input type = "text" class = "form-control-plaintext" name = "remise_article[]" value = "'+remise+'" readonly required>'+
+                    '</td>'+
+                    '<td>'+
+                        '<input type = "text" class = "form-control-plaintext" name = "prix_totale_article[]" value = "'+data.trim()+'" readonly required>'+
+                    '</td>'+
+                    '<td>'+
+                        '<button type = "button" class = "btn app-btn-danger" name = "button_delete" onclick = "gestionDeleteLigneVente(this)">Supprimer</button>'+
+                    '</td>'+
+                '</tr>'
+            );
+            $('#button_create_facture_vente').prop('disabled', false);
+        }
+    });
+}
+
+function clearDataVente(){
+    $('#reference_article_vente').val("Référence");
+    $('#designation_article_vente').val("Désignation");
+    $('#quantite_article_vente').val('0');
+    $('#prix_article_vente').val("0.000");
+    $('#remise_article_vente').val("0.000");
+}
+
+function enableInputsVente() {
+    $('#reference_article_vente').prop('readonly', false);
+    $('#quantite_article_vente').prop('readonly', false);
+    $('#remise_article_vente').prop('readonly', false);
+}
+
+function gestionDeleteLigneVente(element) {
+    if($('table tr').length > 2){
+        deleteNotEmptyLigne(element);
+    }
+
+    else if($('table tr').length == 2){
+        deleteNotEmptyLigne(element);
+        createEmptyLigneVente();
+        $('#button_create_facture_vente').prop('disabled', true);
+    }
+}
+
+function createEmptyLigneVente(){
+    $(".table #body_facture_vente").last().after(
+        "<tr id = 'row_vide'>"+
+            "<td colspan = '7' class = 'text-center'>"+
+                "<p>Votre facture de vente est encore vide.</p>"+
+            "</td>"+
+        "</tr>"
+    );
+}

@@ -13,7 +13,8 @@
                 UserSeeder::class,
                 JournalSeeder::class,
                 CategorieSeeder::class,
-                EtatImportationSeeder::class
+                EtatImportationSeeder::class,
+                ClientSeeder::class
             ]);
         }
     }
