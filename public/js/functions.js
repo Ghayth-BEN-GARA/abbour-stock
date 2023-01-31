@@ -457,16 +457,17 @@ function effacerErreurClient() {
 }
 
 function disableMontantAccount() {
-    document.getElementById('montant_account').setAttribute('disabled',true);
+    document.getElementById('montant_account_prix').setAttribute('readonly',true);
+    document.getElementById("erreur_montant_account").innerHTML = null;
 }
 
 function enableMontantAccount() {
-    document.getElementById('montant_account').removeAttribute('disabled');
-    document.getElementById('montant_account').focus();
+    document.getElementById('montant_account_prix').removeAttribute('readonly');
+    document.getElementById('montant_account_prix').focus();
 }
 
 function effacerErreurMontantAccount() {
-    document.getElementById('erreur_montant').innerHTML = null;
+    document.getElementById('erreur_montant_account').innerHTML = null;
 }
 
 function effacerErreurReferenceArticleVente() {
@@ -523,7 +524,6 @@ function gestionAjouterDesLignesVente() {
     var erreur_prix = document.getElementById('erreur_prix_article');
     var erreur_prix_non_valide = document.getElementById('erreur_prix_article_non_valide');
     var erreur_remise = document.getElementById('erreur_remise_article');
-    var erreur_remise_non_valide = document.getElementById('erreur_remise_article_non_valide');
     
     if(reference.trim() == "" || reference.trim() == "Référence"){
         erreur_reference.innerHTML = 'Référence obligatoire';
@@ -549,12 +549,8 @@ function gestionAjouterDesLignesVente() {
         erreur_remise.innerHTML = 'Remise obligatoire';
     }
 
-    else if(!remise.trim().includes('.')){
-        erreur_remise_non_valide.innerHTML = 'Prix non valide';
-    }
-
     else{
-        gestionCreerLigneFactureVente();
+        gestionVerificationQuantiteDansStock();
     }
 }
 
@@ -563,6 +559,7 @@ function gestionCreerLigneFactureVente() {
     ajouterLigneVente();
     clearDataVente();
     enableInputsVente();
+    fermerSwal();
 }
 
 function ajouterLigneVente() {
@@ -589,7 +586,7 @@ function ajouterLigneVente() {
                         '<input type = "text" class = "form-control-plaintext" name = "designation_article[]" value = "'+designation+'" readonly required>'+
                     '</td>'+
                     '<td>'+
-                        '<input type = "text" class = "form-control-plaintext" name = "reference_article[]" value = "'+reference+'" readonly required>'+
+                        '<input type = "text" class = "form-control-plaintext ref_vente" name = "reference_article[]" value = "'+reference+'" readonly required>'+
                     '</td>'+
                     '<td>'+
                         '<input type = "number" class = "form-control-plaintext" name = "quantite_article[]" value = "'+quantite+'" required>'+
@@ -618,7 +615,7 @@ function clearDataVente(){
     $('#designation_article_vente').val("Désignation");
     $('#quantite_article_vente').val('0');
     $('#prix_article_vente').val("0.000");
-    $('#remise_article_vente').val("0.000");
+    $('#remise_article_vente').val("0");
 }
 
 function enableInputsVente() {
@@ -647,4 +644,171 @@ function createEmptyLigneVente(){
             "</td>"+
         "</tr>"
     );
+}
+
+function fermerSwal() {
+    swal.close();
+}
+
+function validerFormulaireCreerFactureVente() {
+    test_client = true;
+    test_livraison = true;
+    test_remise = true;
+
+    if($('#client').is(':checked')){
+        event.preventDefault();
+        var selected_client = document.getElementById("nom_client").selectedIndex;
+
+        if(selected_client == 0){
+            document.getElementById("erreur_client").innerHTML = "Veuillez sélectionner un client";
+            $("html, body").animate({ scrollTop: 30 }, "fast");
+            test_client = false;
+        }
+
+        else{
+            document.getElementById("erreur_client").innerHTML = null;
+            test_client = true;
+        }
+    }
+
+    if($('#non_livre').is(':checked')){
+        event.preventDefault();
+        var montant_account = document.getElementById("montant_account_prix").value;
+
+        if(montant_account.trim() == "Montant" || montant_account.trim() == ""){
+            document.getElementById("erreur_montant_account").innerHTML = "Le montant est obligatoire";
+            $("html, body").animate({ scrollTop: 30 }, "fast");
+            test_livraison = false;
+        }
+        
+        else if(!montant_account.trim().includes('.')){
+            document.getElementById("erreur_montant_account").innerHTML = "Le montant saisi non valide";
+            $("html, body").animate({ scrollTop: 30 }, "fast");
+            test_livraison = false;
+        }
+
+        else{
+            document.getElementById("erreur_montant_account").innerHTML = null;
+            test_livraison = true;
+        }
+    }
+
+    if($('#totale').is(':checked')){
+        event.preventDefault();
+        var montant_remise = document.getElementById("montant_remise").value;
+
+        if(montant_remise == "Remise" || montant_account == ""){
+            document.getElementById("erreur_montant_remise").innerHTML = "Le remise est obligatoire";
+            $('html, body').animate({scrollTop: $('#heure').offset().top}, "fast");
+            test_remise = false;
+        }
+    
+        else{
+            document.getElementById("erreur_montant_remise").innerHTML = null;
+            test_remise = true;
+        }
+    }
+
+    if((test_client == true) && (test_livraison == true) && (test_remise == true)){
+        $('#f-creer-facture-vente')[0].submit();
+    }
+}
+
+function disableMontantRemise() {
+    document.getElementById('montant_remise').setAttribute('readonly',true);
+    document.getElementById("erreur_montant_remise").innerHTML = null;
+}
+
+function enableMontantRemise() {
+    document.getElementById('montant_remise').removeAttribute('readonly');
+    document.getElementById('montant_remise').focus();
+}
+
+function effacerErreurMontantRemise() {
+    document.getElementById("erreur_montant_remise").innerHTML = null;
+}
+
+async function chargement(message) {
+    swal({
+        text: message,
+        allowEscapeKey: false,
+        allowOutsideClick: false,
+        padding: "2em",
+        width: "400px",
+        onOpen: () => {
+            swal.showLoading();
+        }
+    })
+}
+
+function gestionVerificationQuantiteDansStock() {
+    chargement("Vérification d'article en cours..").then(verifierArticleVente());
+}
+
+function verifierArticleVente() {
+    $.ajax({
+        url: '/get-quantite-article-stock',
+        type: "get",
+        cache: true,
+        data: { reference_article: $("#reference_article_vente").val() },
+        success: function(data) {
+            if(data == 0){
+                clearDataVente();
+                enableInputsVente();
+                afficherErreur("L'article demandé n'est pas disponible en stock..");
+            }
+
+            else if(data < $("#quantite_article_vente").val()){
+                clearDataVente();
+                enableInputsVente();
+                afficherErreur("L'article demandé est disponible en stock mais la quantité n'est pas suffisante..");
+            }
+
+            else if($("#quantite_article_vente").val() <= 0){
+                clearDataVente();
+                enableInputsVente();
+                afficherErreur("Veuillez saisir une quantité d'articles valide..");
+            }
+
+            else if(verifierListeReferenceInputs($("#reference_article_vente").val()) > 0){
+                clearDataVente();
+                enableInputsVente();
+                afficherErreur("Vous avez déjà ajouté cet article à la liste des ventes..");
+            }
+
+            else{
+                gestionCreerLigneFactureVente();
+            }
+        }
+    });
+}
+
+function afficherErreur(message) {
+    swal({
+        type: "error",
+        title: "Oups !",
+        html: message,
+        width: 500,
+        padding: '2em',
+        showCancelButton: true,
+        cancelButtonText: "Fermer",
+        focusCancel: false,
+        popup: 'animated fadeInDown faster',
+        showConfirmButton: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+        scrollbarPadding: true,
+        allowOutsideClick: false
+    })
+}
+
+function verifierListeReferenceInputs(reference) {
+    var nbr_reference = 0;
+    $(".ref_vente").each(function() {
+        if(this.value == reference) {
+            nbr_reference++;
+        }
+    });
+
+    return nbr_reference;
 }

@@ -130,4 +130,6 @@
     Route::get('/autocomplete-reference-facture-vente', [VenteController::class, 'getArticleSearchByReference']);
     Route::get('/informations-article-search-reference-vente', [VenteController::class, 'getInformationsArticleByReferenceFactureVente']);
     Route::get('/calculer-prix-vente-remise', [VenteController::class, 'calculerPrixVenteAvecRemise']);
+    Route::post('/creer-facture-vente', [VenteController::class, 'gestionCreerFactureVente']);
+    Route::get('/get-quantite-article-stock', [VenteController::class, 'getQuantiteArticleDansStock']);
 ?>

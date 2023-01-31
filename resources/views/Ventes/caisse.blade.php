@@ -17,7 +17,7 @@
             <div class = "app-content pt-3 p-md-3 p-lg-4">
                 <div class = "container-xl">
                     <h1 class = "app-page-title">Caisse</h1>
-                    <form class = "settings-form" name = "f" id = "f" method = "post" action = "#" onsubmit = "">
+                    <form class = "settings-form" name = "f-creer-facture-vente" id = "f-creer-facture-vente" method = "post" action = "{{url('/creer-facture-vente')}}" onsubmit = "validerFormulaireCreerFactureVente()">
                         @csrf
                         <div class = "row gy-4">
                             <div class = "col-12 col-lg-6">
@@ -89,17 +89,17 @@
                                                             <strong class = "form-check-label">Livré</strong>
                                                         </div>
                                                         <div class = "form-check mb-3 col-lg-6">
-                                                            <input class = "form-check-input" type = "radio" value = "Non Livré" id = "non livre" name = "livraison" onclick = "enableMontantAccount()"/>
+                                                            <input class = "form-check-input" type = "radio" value = "Non Livré" id = "non_livre" name = "livraison" onclick = "enableMontantAccount()"/>
                                                             <strong class = "form-check-label">Non Livré</strong>
                                                         </div>
                                                     </div>
                                                     <div class = "item-data">
-                                                        <input type = "text" class = "form-control" name = "montant_account" id = "montant_account" placeholder = "Entrez le montant payé.." onkeypress = "return (event.charCode>=46 && event.charCode<=57)" oninput = "effacerErreurMontantAccount()" disabled required>
+                                                        <input type = "text" class = "form-control" name = "montant_account_prix" id = "montant_account_prix" placeholder = "Entrez le montant payé.." onkeypress = "return (event.charCode>=46 && event.charCode<=57)" oninput = "effacerErreurMontantAccount()" value = "Montant" readonly required>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <p class = "form-text text-danger" id = "erreur_montant"></p>
+                                        <p class = "form-text text-danger" id = "erreur_montant_account"></p>
                                     </div>
                                 </div>
                             </div>
@@ -163,6 +163,74 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class = "col-12 col-lg-6">
+                                <div class = "app-card app-card-account shadow-sm d-flex flex-column align-items-start">
+                                    <div class = "app-card-header p-3 border-bottom-0">
+                                        <div class = "row align-items-center gx-3">
+                                            <div class = "col-auto">
+                                                <div class = "app-icon-holder">
+                                                    <i class = "lni lni-tag"></i>
+                                                </div>
+                                            </div>
+                                            <div class = "col-auto">
+                                                <h4 class = "app-card-title">Remise</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class = "app-card-body px-4 w-100">
+                                        <div class = "item py-3">
+                                            <div class = "row justify-content-between align-items-center">
+                                                <div class = "col-auto col-lg-12">
+                                                    <div class = "container row item-label">
+                                                        <div class = "form-check mb-3 col-lg-6">
+                                                            <input class = "form-check-input" type = "radio" value = "Remise Totale" id = "totale" name = "type_remise" onclick = "enableMontantRemise()" checked/>
+                                                            <strong class = "form-check-label">Totale</strong>
+                                                        </div>
+                                                        <div class = "form-check mb-3 col-lg-6">
+                                                            <input class = "form-check-input" type = "radio" value = "Remise Par Article" id = "par_article" name = "type_remise" onclick = "disableMontantRemise()"/>
+                                                            <strong class = "form-check-label">Par Article</strong>
+                                                        </div>
+                                                    </div>
+                                                    <div class = "item-data">
+                                                        <input type = "text" class = "form-control" name = "montant_remise" id = "montant_remise" placeholder = "Entrez le remise.." onkeypress = "return (event.charCode>=48 && event.charCode<=57)" oninput = "effacerErreurMontantRemise()" value = "Remise" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <p class = "form-text text-danger" id = "erreur_montant_remise"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class = "col-12 col-lg-6">
+                                <div class = "app-card app-card-account shadow-sm d-flex flex-column align-items-start">
+                                    <div class = "app-card-header p-3 border-bottom-0">
+                                        <div class = "row align-items-center gx-3">
+                                            <div class = "col-auto">
+                                                <div class = "app-icon-holder">
+                                                    <i class = "lni lni-apartment"></i>
+                                                </div>
+                                            </div>
+                                            <div class = "col-auto">
+                                                <h4 class = "app-card-title">Société</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class = "app-card-body px-4 w-100">
+                                        <div class = "item py-3">
+                                            <div class = "row justify-content-between align-items-center">
+                                                <div class = "col-auto col-lg-12">
+                                                    <div class = "item-label">
+                                                        <strong>Société De Vente</strong>
+                                                    </div>
+                                                    <div class = "item-data">
+                                                        <input type = "text" class = "form-control mt-3" name = "societe" id = "societe" placeholder = "Entrez la société de vente.." value = "Abbour'Stock Dépôt" disabled required>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                             <div class = "col-12 col-lg-12">
                                 <div class = "app-card app-card-account shadow-sm d-flex flex-column align-items-start">
                                     <div class = "app-card-header p-3 border-bottom-0">
@@ -177,6 +245,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <div class = "app-card-body px-4 w-100">
                                         <div class = "item py-3">
                                             <div class = "row justify-content-between align-items-center">
@@ -217,7 +286,7 @@
                                                         <strong>Remise</strong>
                                                     </div>
                                                     <div class = "item-data">
-                                                        <input type = "text" name = "remise_article_vente" id = "remise_article_vente" class = "form-control" placeholder = "Prix.." onkeypress = "return (event.charCode>=46 && event.charCode<=57)" value = "0.000" required oninput = "effacerErreurRemiseArticleVente()">
+                                                        <input type = "text" name = "remise_article_vente" id = "remise_article_vente" class = "form-control" placeholder = "Prix.." onkeypress = "return (event.charCode>=48 && event.charCode<=57)" value = "0" required oninput = "effacerErreurRemiseArticleVente()">
                                                     </div>
                                                 </div>
                                                 <div class = "col-auto col-lg-1">
@@ -267,7 +336,6 @@
                                                     </div>
                                                     <div class = "item-data">
                                                         <p class = "text-danger" id = "erreur_remise_article" style = "font-size:12px"></p>
-                                                        <p class = "text-danger" id = "erreur_remise_article_non_valide" style = "font-size:12px"></p>
                                                     </div>
                                                 </div>
                                                 <div class = "col-auto col-lg-1">
