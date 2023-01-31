@@ -459,11 +459,13 @@ function effacerErreurClient() {
 function disableMontantAccount() {
     document.getElementById('montant_account_prix').setAttribute('readonly',true);
     document.getElementById("erreur_montant_account").innerHTML = null;
+    document.getElementById('montant_account_prix').value = "Montant";
 }
 
 function enableMontantAccount() {
     document.getElementById('montant_account_prix').removeAttribute('readonly');
     document.getElementById('montant_account_prix').focus();
+    document.getElementById('montant_account_prix').value = "";
 }
 
 function effacerErreurMontantAccount() {
@@ -717,11 +719,13 @@ function validerFormulaireCreerFactureVente() {
 function disableMontantRemise() {
     document.getElementById('montant_remise').setAttribute('readonly',true);
     document.getElementById("erreur_montant_remise").innerHTML = null;
+    document.getElementById('montant_remise').value = "Remise";
 }
 
 function enableMontantRemise() {
     document.getElementById('montant_remise').removeAttribute('readonly');
     document.getElementById('montant_remise').focus();
+    document.getElementById('montant_remise').value = "";
 }
 
 function effacerErreurMontantRemise() {
@@ -752,28 +756,28 @@ function verifierArticleVente() {
         cache: true,
         data: { reference_article: $("#reference_article_vente").val() },
         success: function(data) {
-            if(data == 0){
-                clearDataVente();
-                enableInputsVente();
+            if(data.trim() == 0){
                 afficherErreur("L'article demandé n'est pas disponible en stock..");
-            }
-
-            else if(data < $("#quantite_article_vente").val()){
                 clearDataVente();
                 enableInputsVente();
+            }
+
+            else if(data.trim() < Number($("#quantite_article_vente").val())){
                 afficherErreur("L'article demandé est disponible en stock mais la quantité n'est pas suffisante..");
-            }
-
-            else if($("#quantite_article_vente").val() <= 0){
                 clearDataVente();
                 enableInputsVente();
+            }
+
+            else if(Number($("#quantite_article_vente").val()) <= 0){
                 afficherErreur("Veuillez saisir une quantité d'articles valide..");
+                clearDataVente();
+                enableInputsVente();
             }
 
             else if(verifierListeReferenceInputs($("#reference_article_vente").val()) > 0){
+                afficherErreur("Vous avez déjà ajouté cet article à la liste des ventes..");
                 clearDataVente();
                 enableInputsVente();
-                afficherErreur("Vous avez déjà ajouté cet article à la liste des ventes..");
             }
 
             else{

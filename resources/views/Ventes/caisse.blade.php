@@ -192,7 +192,7 @@
                                                         </div>
                                                     </div>
                                                     <div class = "item-data">
-                                                        <input type = "text" class = "form-control" name = "montant_remise" id = "montant_remise" placeholder = "Entrez le remise.." onkeypress = "return (event.charCode>=48 && event.charCode<=57)" oninput = "effacerErreurMontantRemise()" value = "Remise" required>
+                                                        <input type = "text" class = "form-control" name = "montant_remise" id = "montant_remise" placeholder = "Entrez le remise.." onkeypress = "return (event.charCode>=48 && event.charCode<=57)" oninput = "effacerErreurMontantRemise()" required>
                                                     </div>
                                                 </div>
                                             </div>
