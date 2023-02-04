@@ -212,4 +212,8 @@ th {
   table{
       page-break-inside: avoid;
   }
+
+    @page {
+        size: landscape
+    }
 }

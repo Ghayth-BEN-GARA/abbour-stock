@@ -79,7 +79,7 @@
             }
 
             if($this->creerReglementVente($somme_facture_vente, $montant, $remise, $this->getLastFactureVenteId(), $client)){
-                return back();
+                return redirect('/facture-vente?reference_facture='.$this->getLastFactureVenteId()); 
             }
  
             else{
@@ -158,6 +158,11 @@
 
         public function updateQuantiteStock($reference_article, $quantite_article){
             return Stock::where('reference_article', '=', $reference_article)->increment('quantite_stock', $quantite_article);
+        }
+
+        public function ouvrirFactureVente(Request $request){
+            $reference_facture = $request->input("reference_facture");
+            return view("Ventes.vente", compact("reference_facture"));
         }
     }
 ?>

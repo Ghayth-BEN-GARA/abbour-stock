@@ -132,4 +132,5 @@
     Route::get('/calculer-prix-vente-remise', [VenteController::class, 'calculerPrixVenteAvecRemise']);
     Route::post('/creer-facture-vente', [VenteController::class, 'gestionCreerFactureVente']);
     Route::get('/get-quantite-article-stock', [VenteController::class, 'getQuantiteArticleDansStock']);
+    Route::get('/facture-vente', [VenteController::class, 'ouvrirFactureVente'])->middleware('session_not_exist');
 ?>
