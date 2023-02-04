@@ -133,4 +133,6 @@
     Route::post('/creer-facture-vente', [VenteController::class, 'gestionCreerFactureVente']);
     Route::get('/get-quantite-article-stock', [VenteController::class, 'getQuantiteArticleDansStock']);
     Route::get('/facture-vente', [VenteController::class, 'ouvrirFactureVente'])->middleware('session_not_exist');
+    Route::get('/liste-factures-ventes', [VenteController::class, 'ouvrirListeFacturesVentes'])->middleware('session_not_exist');
+    Route::get('/delete-facture-vente', [VenteController::class, 'gestionDeleteFacture']);
 ?>

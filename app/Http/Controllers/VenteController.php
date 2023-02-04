@@ -164,5 +164,38 @@
             $reference_facture = $request->input("reference_facture");
             return view("Ventes.vente", compact("reference_facture"));
         }
+
+        public function ouvrirListeFacturesVentes(){
+            return view("Ventes.liste_factures_ventes");
+        }
+
+        public function gestionDeleteFacture(Request $request){
+            $this->gestionAddStock($this->listeArticlesFactureVente($request->input('reference_facture')));
+            $this->deleteReglementFactureVente($request->input('reference_facture'));
+            $this->deleteFactureVente($request->input('reference_facture'));
+            return back()->with('success', "La facture de vente a été supprimer avec succés. Notez bien que vous pouvez créer une autre vente à tout moment.");
+        }
+
+        public function listeArticlesFactureVente($reference_facture){
+            return FactureArticleVente::where('reference_facture', '=', $reference_facture)->get();
+        }
+
+        public function gestionAddStock($articles){
+            foreach ($articles as $data) {
+                $this->addQuantiteToStock($data->getReferenceArticleAttribute(), $data->getQuantiteArticleAttribute());
+            }
+        }
+
+        public function addQuantiteToStock($reference_article, $quantite_article){
+            return Stock::where('reference_article', '=', $reference_article)->increment('quantite_stock', $quantite_article);
+        }
+
+        public function deleteReglementFactureVente($reference_facture){
+            return ReglementVente::where('reference_facture_vente', '=', $reference_facture)->delete();
+        }
+
+        public function deleteFactureVente($reference_facture){
+            return FactureVente::where('reference_facture', $reference_facture)->delete();
+        }
     }
 ?>

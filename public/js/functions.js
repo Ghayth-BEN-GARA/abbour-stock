@@ -816,3 +816,27 @@ function verifierListeReferenceInputs(reference) {
 
     return nbr_reference;
 }
+
+function questionSupprimerFactureVente(reference_facture) {
+    swal({
+        title: "Confirmation",
+        html: "Si vous avez décidé de supprimer cette facture de vente, elle sera définitivement supprimée de votre base de données.",
+        type: 'warning',
+        showConfirmButton: true,
+        showCancelButton: true,
+        confirmButtonColor: '#fb7c1f',
+        confirmButtonText: "Supprimer",
+        cancelButtonText: 'Annuler',
+        padding: 45
+    })
+
+    .then((result) => {
+        if (result.value) {
+            location.href = "/delete-facture-vente?reference_facture="+reference_facture;
+        } 
+        
+        else if (result.dismiss === swal.DismissReason.cancel) {
+            swal.close();
+        }
+    });
+}

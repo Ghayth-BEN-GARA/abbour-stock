@@ -140,7 +140,7 @@
                             <a class = "submenu-link" href = "{{url('/caisse')}}">Caisse</a>
                         </li>
                         <li class = "submenu-item">
-                            <a class = "submenu-link" href = "#">Gérer</a>
+                            <a class = "submenu-link" href = "{{url('/liste-factures-ventes')}}">Gérer</a>
                         </li>
                     </ul>
                 </div>
