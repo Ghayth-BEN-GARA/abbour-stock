@@ -135,4 +135,6 @@
     Route::get('/facture-vente', [VenteController::class, 'ouvrirFactureVente'])->middleware('session_not_exist');
     Route::get('/liste-factures-ventes', [VenteController::class, 'ouvrirListeFacturesVentes'])->middleware('session_not_exist');
     Route::get('/delete-facture-vente', [VenteController::class, 'gestionDeleteFacture']);
+    Route::get('/creer-reglement-vente-libre', [VenteController::class, 'ouvrirCreerReglementVenteLibre'])->middleware('session_not_exist');
+    Route::post('/create-reglement-vente-libre', [VenteController::class, 'gestionCreerReglementLibre']);
 ?>

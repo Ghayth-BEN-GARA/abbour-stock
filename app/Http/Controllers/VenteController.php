@@ -197,5 +197,31 @@
         public function deleteFactureVente($reference_facture){
             return FactureVente::where('reference_facture', $reference_facture)->delete();
         }
+
+        public function ouvrirCreerReglementVenteLibre(){
+            $clients = $this->getListeClientWithoutPassager();
+            return view('Reglements_Ventes.add_reglement_libre', compact("clients"));
+        }
+
+        public function gestionCreerReglementLibre(Request $request){
+            if($this->creerReglementLibreVente($request->montant_paye, $request->date_reglement, $request->client)){
+                return back()->with('success', "Le règlement libre a été créé avec succès. Vous pouvez gérer la liste des réglements à tout moment.");
+            }
+
+            else{
+                return redirect('/erreur');
+            }
+        }
+
+        public function creerReglementLibreVente($paye, $date_reglement, $client){
+            $reglement_vente = new ReglementVente();
+            $reglement_vente->setAccountReglementVenteAttribute($paye);
+            $reglement_vente->setDateReglementVenteAttribute($date_reglement);
+            $reglement_vente->setMatriculeClientAttribute($client);
+            $reglement_vente->setReferenceFactureVenteAttribute($client);
+            $reglement_vente->setTypeReglementVenteAttribute("Libre");
+
+            return $reglement_vente->save();
+        }
     }
 ?>

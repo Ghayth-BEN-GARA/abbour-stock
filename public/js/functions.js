@@ -410,7 +410,7 @@ function validerFormulaireCreerPaiementLibre() {
 
     if(!montant_payer.includes('.')){
         event.preventDefault();
-        document.getElementById('erreur_reglement_libre').innerHTML = "Veuillez entrer un nouveau payé valide.";
+        document.getElementById('erreur_reglement_libre').innerHTML = "Veuillez entrer un nouveau montant payé valide.";
     }
 
     else{
@@ -839,4 +839,27 @@ function questionSupprimerFactureVente(reference_facture) {
             swal.close();
         }
     });
+}
+
+function validerFormulaireCreerPaiementLibreVente() {
+    var montant_payer = document.getElementById('montant_paye').value;
+    var selected_client = document.getElementById("client").selectedIndex;
+
+    if(selected_client == 0){
+        event.preventDefault();
+        document.getElementById('erreur_client').innerHTML = "Veuillez sélectionner le client de réglement de vente..";
+    }
+
+    if(!montant_payer.includes('.')){
+        event.preventDefault();
+        document.getElementById('erreur_reglement_libre').innerHTML = "Veuillez entrer un nouveau montant payé valide.";
+    }
+
+    else{
+        $('#f-create-reglement').submit();
+    }
+}
+
+function effacerErreurClientReglement() {
+    document.getElementById('erreur_client').innerHTML = null;
 }

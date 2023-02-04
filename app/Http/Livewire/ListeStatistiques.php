@@ -8,6 +8,7 @@
     use App\Models\Categorie;
     use App\Models\Article;
     use App\Models\HistoriquePrixArticle;
+    use App\Models\FactureVente;
 
     class ListeStatistiques extends Component{
         public function render(){
@@ -18,8 +19,9 @@
             $nbr_categories = $this->getNbrCategories();
             $nbr_articles = $this->getNbrArticles();
             $nbr_historiques_articles = $this->getNbrHistoriquesArticles();
+            $nbr_ventes = $this->getNbrFacturesVentes();
 
-            return view('livewire.liste-statistiques', compact("nbr_users", "nbr_fournisseurs", "nbr_clients", "nbr_achats", "nbr_categories", "nbr_articles", "nbr_historiques_articles"));
+            return view('livewire.liste-statistiques', compact("nbr_users", "nbr_fournisseurs", "nbr_clients", "nbr_achats", "nbr_categories", "nbr_articles", "nbr_historiques_articles", "nbr_ventes"));
         }
 
         public function getNbrUsers(){
@@ -48,6 +50,10 @@
 
         public function getNbrHistoriquesArticles(){
             return HistoriquePrixArticle::count();
+        }
+
+        public function getNbrFacturesVentes(){
+            return FactureVente::count();
         }
     }
 ?>
