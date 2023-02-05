@@ -160,10 +160,10 @@
                     <div id = "submenu-9" class = "collapse submenu submenu-2" data-bs-parent = "#menu-accordion">
                         <ul class = "submenu-list list-unstyled">
                             <li class = "submenu-item">
-                                <a class = "submenu-link" href = "{{url('/creer-reglement-vente-libre')}}">Créer un réglement vente</a>
+                                <a class = "submenu-link" href = "{{url('/creer-reglement-vente-libre')}}">Créer un réglement libre</a>
                             </li>
                             <li class = "submenu-item">
-                                <a class = "submenu-link" href = "#">Gérer</a>
+                                <a class = "submenu-link" href = "{{url('/liste-reglements-ventes')}}">Gérer</a>
                             </li>
                         </ul>
                     </div>

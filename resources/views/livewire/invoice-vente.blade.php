@@ -150,7 +150,7 @@
                     @if($this->getDetailsReglement($_GET['reference_facture'])->getSommeReglementVenteAttribute() == $this->getDetailsReglement($_GET['reference_facture'])->getAccountReglementVenteAttribute())
                         Le paiement est normalement réglé pour cette facture.
                     @elseif($this->getDetailsReglement($_GET['reference_facture'])->getAccountReglementVenteAttribute() < $this->getDetailsReglement($_GET['reference_facture'])->getSommeReglementVenteAttribute())
-                        La facture n'est pas réglée. Le client devez payer <b>{{number_format($this->getDetailsReglement($_GET['reference_facture'])->getSommeReglementVenteAttribute() - $this->getDetailsReglement($_GET['reference_facture'])->getAccountReglementVenteAttribute(), 3)}}</b> pour vous.
+                        La facture n'est pas réglée. Le client devez payer <b>{{number_format($this->getDetailsReglement($_GET['reference_facture'])->getSommeReglementVenteAttribute() - $this->getDetailsReglement($_GET['reference_facture'])->getAccountReglementVenteAttribute(), 3)}} DT</b> pour vous.
                     @endif
                 </div>
                 <div class = "actions">

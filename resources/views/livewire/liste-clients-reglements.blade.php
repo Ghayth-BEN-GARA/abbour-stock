@@ -4,7 +4,7 @@
             <div class = "app-card app-card-orders-table shadow-sm mb-5">
                 <div class = "app-card-body">
                     <div class = "app-search-form mx-auto mb-2">
-                        <input type = "text" placeholder = "Chercher des fournisseurs.." name = "search" id = "search" class = "form-control search-input" wire:model = "search" required>
+                        <input type = "text" placeholder = "Chercher des clients.." name = "search" id = "search" class = "form-control search-input" wire:model = "search" required>
                         <span class = "btn search-btn btn-primary">
                             <i class = "fas fa-search"></i>
                         </span> 
@@ -13,7 +13,7 @@
                         <table class = "table app-table-hover mb-0 text-left">
                             <thead>
 							    <tr>
-									<th class = "cell">Matricule fiscale</th>
+									<th class = "cell">Matricule</th>
 									<th class = "cell">Nom</th>
 									<th class = "cell">Adresse email</th>
 									<th class = "cell">Numéro mobile</th>
@@ -21,35 +21,36 @@
 								</tr>
 							</thead>
                             <tbody>
-                                @if(!empty($fournisseurs) && ($fournisseurs->count()))
-                                    @foreach($fournisseurs as $data)
+                                @if(!empty($clients) && ($clients->count()))
+                                    @foreach($clients as $data)
                                         <tr>
                                             <td class = "cell">
                                                 <p>
-                                                    {{$data->getMatriculeFournisseurAttribute()}}
+                                                    {{$data->getMatriculeClientAttribute()}}
                                                 </p>
                                             </td>
                                             <td class = "cell">
                                                 <p>
-                                                    {{$data->getFullNameFournisseurAttribute()}}
-                                                </p>
-                                            </td>
-                                            <td class = "cell">
-                                                <p>
-                                                    {{$data->getEmailFournisseurAttribute()}}
-                                                </p>
-                                            </td>
-                                            <td class = "cell">
-                                                <p>
-                                                    (+216) {{$data->getFormattedMobile1FournisseurAttribute()}}
-                                                    @if($data->getMobile2FournisseurAttribute() != 0)
-                                                        / (+216) {{$data->getMobile2FournisseurAttribute()}}
+                                                    @if($data->getMatriculeClientAttribute() == 0)
+                                                        Passager
+                                                    @else
+                                                        {{$data->getPrenomClientAttribute()}} {{$data->getNomClientAttribute()}}
                                                     @endif
+                                                </p>
+                                            </td>
+                                            <td class = "cell">
+                                                <p>
+                                                    {{$data->getEmailClientAttribute()}}
+                                                </p>
+                                            </td>
+                                            <td class = "cell">
+                                                <p>
+                                                    (+216) {{$data->getFormattedMobileClientAttribute()}}
                                                 </p>
                                             </td>
                                             <td class = "cell text-end">
                                                 <p>
-                                                    <a href = "{{url('/reglement-achats?matricule_fournisseur='.$data->getMatriculeFournisseurAttribute())}}" class = "btn app-btn-secondary">Consulter</a>
+                                                    <a href = "#" class = "btn app-btn-secondary">Consulter</a>
                                                 </p>
                                             </td>
                                         </tr>
@@ -57,7 +58,7 @@
                                 @else
                                     <tr>
                                         <td colspan = "5" class = "text-center">
-                                            <span>La liste des fournisseurs est vide.</span>
+                                            <span>La liste des clients est vide.</span>
                                         </td>
                                     </tr>
                                 @endif
@@ -65,7 +66,7 @@
                         </table>
                     </div>
                     <div class = "row text-center">
-                        {{$fournisseurs->links("vendor.pagination.normal_pagination")}}
+                        {{$clients->links("vendor.pagination.normal_pagination")}}
                     </div>
                 </div>
             </div>

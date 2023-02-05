@@ -223,5 +223,9 @@
 
             return $reglement_vente->save();
         }
+
+        public function ouvrirListeReglementsVentes(){
+            return view("Reglements_Ventes.liste_reglements_ventes");
+        }
     }
 ?>
