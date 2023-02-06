@@ -140,4 +140,5 @@
     Route::get('/liste-reglements-ventes', [VenteController::class, 'ouvrirListeReglementsVentes'])->middleware('session_not_exist');
     Route::get('/reglement-ventes', [VenteController::class, 'ouvrirReglementVente'])->middleware('session_not_exist');
     Route::post('/edit-reglement-vente', [VenteController::class, 'gestionModifierReglementVente']);
+    Route::get('/edit-livraison-vente', [VenteController::class, 'gestionModifierLvraisonVente']);
 ?>

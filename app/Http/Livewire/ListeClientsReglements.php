@@ -4,6 +4,7 @@
     use Livewire\WithPagination;
     use Illuminate\Pagination\Paginator;
     use App\Models\Client;
+    use App\Models\ReglementVente;
 
     class ListeClientsReglements extends Component{
         public $search;
@@ -12,12 +13,13 @@
 
         public function render(){
             return view('livewire.liste-clients-reglements', [
-    		    'clients' => Client::where('matricule_client', 'like', '%'.$this->search.'%')
-                ->orWhere('nom_client', 'like', '%'.$this->search.'%')
-                ->orWhere('prenom_client', 'like', '%'.$this->search.'%')
-                ->orWhere('email_client', 'like', '%'.$this->search.'%')
-                ->orderBy('matricule_client', 'asc')
-                ->paginate(10, array('clients.*'))
+    		    'clients' => Client::where('clients.matricule_client', 'like', '%'.$this->search.'%')
+                ->join("reglements_ventes", 'reglements_ventes.matricule_client', '=', 'clients.matricule_client')
+                ->orWhere('clients.nom_client', 'like', '%'.$this->search.'%')
+                ->orWhere('clients.prenom_client', 'like', '%'.$this->search.'%')
+                ->orWhere('clients.email_client', 'like', '%'.$this->search.'%')
+                ->orderBy('clients.matricule_client', 'asc')
+                ->paginate(10, array('clients.*', 'reglements_ventes.*'))
     	    ]);
         }
 

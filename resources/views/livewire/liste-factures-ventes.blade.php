@@ -49,6 +49,9 @@
                                             </td>
                                             <td class = "cell text-end">
                                                 <p>
+                                                    @if($data->livraison_facture != "Livré")
+                                                    <a href = "{{url('edit-livraison-vente?reference_facture='.$data->reference_facture)}}" class = "btn app-btn-secondary">Livré</a>
+                                                    @endif
                                                     <a href = "{{url('facture-vente?reference_facture='.$data->reference_facture)}}" class = "btn app-btn-secondary">Consulter</a>
                                                     <a href = "javascript:void(0)" class = "btn app-btn-secondary" onclick = "questionSupprimerFactureVente('{{$data->reference_facture}}')">Supprimer</a>
                                                 </p>

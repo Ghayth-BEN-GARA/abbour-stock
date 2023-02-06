@@ -278,5 +278,21 @@
                 'account_reglement_vente' => $paye
             ]);
         }
+
+        public function gestionModifierLvraisonVente(Request $request){
+            if($this->updateLivraisonVente($request->reference_facture)){
+                return redirect("/facture-vente?reference_facture=".$request->reference_facture);
+            }
+
+            else{
+                return redirect("/erreur");
+            }
+        }
+
+        public function updateLivraisonVente($reference_facture){
+            return FactureVente::where('reference_facture', '=', $reference_facture)->update([
+                'livraison_facture' => "Livré"
+            ]);
+        }
     }
 ?>
