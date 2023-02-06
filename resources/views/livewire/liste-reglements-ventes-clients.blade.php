@@ -7,7 +7,7 @@
                     <tr>
                         <th>Libellé</th>
                         <th>Date</th>
-                        <th>Net</th>
+                        <th>Somme</th>
                         <th>Payé</th>
                         <th>Reste</th>
                         <th>Type</th>
@@ -20,36 +20,36 @@
                             <tr>
                                 <td>
                                     <div class = "payment-name">
-                                        FACTURE N° {{$data->reference_facture_achat}}
+                                        FACTURE N° {{$data->reference_facture_vente}}
                                     </div>
                                 </td>
                                 <td class = "text-capitalize date">
                                     <?php
                                         setlocale (LC_TIME, 'fr_FR.utf8','fra');
-                                        echo utf8_encode(strftime("%A %d %B %Y",strtotime(strftime($data->date_reglement_achat))))  
+                                        echo utf8_encode(strftime("%A %d %B %Y",strtotime(strftime($data->date_reglement_vente))))  
                                     ?>
                                 </td>
                                 <td>
-                                    <span class = "number">{{number_format($data->net_reglement_achat, 3)}} DT</span>
+                                    <span class = "number">{{number_format($data->somme_reglement_vente, 3)}} DT</span>
                                 </td>
-                                @if(Session::has('success') && $data->id_reglement_achat == session()->get("success"))
+                                @if(Session::has('success') && $data->id_reglement_vente == session()->get("success"))
                                     <td>
-                                        <span class = "number badge bg-success">{{number_format($data->paye_reglement_achat, 3)}} DT</span>
+                                        <span class = "number badge bg-success">{{number_format($data->account_reglement_vente, 3)}} DT</span>
                                     </td>
-                                @elseif(Session::has('erreur') && $data->id_reglement_achat == session()->get("erreur"))
+                                @elseif(Session::has('erreur') && $data->account_reglement_vente == session()->get("erreur"))
                                     <td>
-                                        <span class = "number badge bg-danger">{{number_format($data->paye_reglement_achat, 3)}} DT</span>
+                                        <span class = "number badge bg-danger">{{number_format($data->account_reglement_vente, 3)}} DT</span>
                                     </td>
                                 @else
                                     <td>
-                                        <span class = "number">{{number_format($data->paye_reglement_achat, 3)}} DT</span>
+                                        <span class = "number">{{number_format($data->account_reglement_vente, 3)}} DT</span>
                                     </td>
                                 @endif
                                 <td>
-                                    <span class = "number">{{number_format($data->net_reglement_achat - $data->paye_reglement_achat, 3)}} DT</span>
+                                    <span class = "number">{{number_format($data->somme_reglement_vente - $data->account_reglement_vente, 3)}} DT</span>
                                 </td>
                                 <td>
-                                    @if($data->type_reglement_achat == "Facture")
+                                    @if($data->type_reglement_vente == "Facture")
                                         <div class = "status -payment">
                                             Facture
                                         </div>
@@ -60,7 +60,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <a href = "javascript:void(0)" class = "more ap lni lni-more-alt open_modal" data-bs-toggle = "modal" data-bs-target = "#modifier-reglement-libre" type = "button" data-id-reglement-achat = "{{$data->id_reglement_achat}}" data-paye = "{{$data->paye_reglement_achat}}" data-reference-facture = "{{$data->reference_facture_achat}}"></a>
+                                    <a href = "javascript:void(0)" class = "more ap lni lni-more-alt open_modal" data-bs-toggle = "modal" data-bs-target = "#modifier-reglement-libre" type = "button" data-id-reglement-vente = "{{$data->id_reglement_vente}}" data-paye = "{{$data->account_reglement_vente}}" data-reference-facture = "{{$data->reference_facture_vente}}"></a>
                                 </td>
                             </tr>
                         @endforeach
@@ -92,7 +92,7 @@
                         <h6 class = "mt-1">Modification du réglement</h6>
                     </a>
                 </div>
-                <form action = "{{url('/edit-reglement-achat')}}" class = "ps-3 pe-3" method = "post" name = "f-modification-reglement-libre" id = "f-modification-reglement-libre" onsubmit = "validationFormulaireModifierReglementAchat()">
+                <form action = "{{url('/edit-reglement-vente')}}" class = "ps-3 pe-3" method = "post" name = "f-modification-reglement-libre" id = "f-modification-reglement-libre" onsubmit = "validationFormulaireModifierReglementVente()">
                     @csrf
                     <div class = "item border-bottom py-3">
                         <div class = "row justify-content-between align-items-center">
@@ -118,23 +118,24 @@
                     <div class = "item py-2 mx-auto text-center">
                         <button type = "submit" class = "btn app-btn-primary">Modifier le réglement</button>
                     </div>
-                    <input type = "hidden" class = "form-control" id = "id_reglement_achat" name = "id_reglement_achat" placeholder = "Entrez l'identifiant de réglement d'achat.." readonly required>
+                    <input type = "hidden" class = "form-control" id = "id_reglement_vente" name = "id_reglement_vente" placeholder = "Entrez l'identifiant de réglement de vente.." readonly required>
                 </form>
             </div>
         </div>
     </div>
 </div>
+
 <script src = "{{asset('js/jquery.js')}}"></script>
 <script> 
     $(function () {
         $(".open_modal").click(function () {
             var reference_facture = $(this).data('reference-facture');
             var paye = $(this).data('paye');
-            var id_reglement = $(this).data('id-reglement-achat');
+            var id_reglement = $(this).data('id-reglement-vente');
 
             $("#reference_facture").val(reference_facture);
             $("#paye").val(paye);
-            $("#id_reglement_achat").val(id_reglement);
+            $("#id_reglement_vente").val(id_reglement);
             $('.modal').appendTo("body") 
         })
     });

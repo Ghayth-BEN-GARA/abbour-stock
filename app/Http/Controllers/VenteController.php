@@ -227,5 +227,56 @@
         public function ouvrirListeReglementsVentes(){
             return view("Reglements_Ventes.liste_reglements_ventes");
         }
+
+        public function ouvrirReglementVente(Request $request){
+            $client = $this->getInformationsClient($request->input("matricule_client"));
+            $somme_reglement = $this->getSommeReglement($request->input("matricule_client"));
+            $account_reglement = $this->getAccountReglement($request->input("matricule_client"));
+            $dernier_date_reglement = $this->getLastDateCreateReglementClient($request->input('matricule_client'));
+            $nbr_reglement = $this->getNbrReglementClient($request->input('matricule_client'));
+            $date_debut_reglement = $this->getDebutDateCreateReglementClient($request->input("matricule_client"));
+        
+            return view("Reglements_Ventes.reglement_ventes", compact("client", "somme_reglement", "account_reglement", "dernier_date_reglement", "nbr_reglement", "date_debut_reglement"));
+        }
+
+        public function getInformationsClient($matricule){
+            return Client::where('matricule_client', '=', $matricule)->first();
+        }
+
+        public function getSommeReglement($matricule){
+            return ReglementVente::where('matricule_client', '=', $matricule)->sum('somme_reglement_vente');
+        }
+
+        public function getAccountReglement($matricule){
+            return ReglementVente::where('matricule_client', '=', $matricule)->sum('account_reglement_vente');
+        }
+
+        public function getLastDateCreateReglementClient($matricule){
+            return ReglementVente::where('matricule_client', '=', $matricule)->orderBy('date_reglement_vente', 'desc')->first()->getDateReglementVenteAttribute();
+        }
+
+        public function getNbrReglementClient($matricule){
+            return ReglementVente::where('matricule_client', '=', $matricule)->count();
+        }
+
+        public function getDebutDateCreateReglementClient($matricule){
+            return ReglementVente::where('matricule_client', '=', $matricule)->orderBy('date_reglement_vente', 'asc')->first()->getDateReglementVenteAttribute();
+        }
+
+        public function gestionModifierReglementVente(Request $request){
+            if($this->updateReglementVente($request->id_reglement_vente, $request->paye)){
+                return back()->with("success", $request->id_reglement_vente);
+            }
+
+            else{
+                return back()->with("erreur", $request->id_reglement_vente);
+            }
+        }
+
+        public function updateReglementVente($id_reglement, $paye){
+            return ReglementVente::where('id_reglement_vente', '=', $id_reglement)->update([
+                'account_reglement_vente' => $paye
+            ]);
+        }
     }
 ?>

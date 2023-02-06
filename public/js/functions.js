@@ -863,3 +863,16 @@ function validerFormulaireCreerPaiementLibreVente() {
 function effacerErreurClientReglement() {
     document.getElementById('erreur_client').innerHTML = null;
 }
+
+function validationFormulaireModifierReglementVente() {
+    var paye = document.getElementById('paye').value;
+
+    if(!paye.includes('.')){
+        event.preventDefault();
+        document.getElementById('erreur_paye').innerHTML = "Veuillez entrer un nouveau montant payé valide.";
+    }
+
+    else{
+        $('#f-modification-reglement-libre').submit();
+    }
+}
