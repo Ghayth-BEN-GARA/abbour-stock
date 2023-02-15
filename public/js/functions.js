@@ -768,11 +768,11 @@ function verifierArticleVente() {
                 enableInputsVente();
             }
 
-            else if(Number($("#quantite_article_vente").val()) <= 0){
+            /*else if(Number($("#quantite_article_vente").val()) <= 0){
                 afficherErreur("Veuillez saisir une quantité d'articles valide..");
                 clearDataVente();
                 enableInputsVente();
-            }
+            }*/
 
             else if(verifierListeReferenceInputs($("#reference_article_vente").val()) > 0){
                 afficherErreur("Vous avez déjà ajouté cet article à la liste des ventes..");

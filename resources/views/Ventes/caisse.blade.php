@@ -270,7 +270,7 @@
                                                         <strong>Quantité</strong>
                                                     </div>
                                                     <div class = "item-data">
-                                                        <input type = "number" name = "quantite_article_vente" id = "quantite_article_vente" class = "form-control" placeholder = "Quantité.." onkeypress = "return event.charCode>=48 && event.charCode<=57" value = "0" oninput = "effacerErreurQuantiteArticleVente()" required>
+                                                        <input type = "number" name = "quantite_article_vente" id = "quantite_article_vente" class = "form-control" placeholder = "Quantité.." value = "0" oninput = "effacerErreurQuantiteArticleVente()" required>
                                                     </div>
                                                 </div>
                                                 <div class = "col-auto col-lg-2">
