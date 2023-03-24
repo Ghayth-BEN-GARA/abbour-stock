@@ -5,6 +5,7 @@
     use App\Models\Article;
     use App\Models\Stock;
     use App\Models\Categorie;
+    use App\Models\FactureArticleAchat;
     use PhpOffice\PhpSpreadsheet\Spreadsheet;
     use PhpOffice\PhpSpreadsheet\Reader\Exception;
     use PhpOffice\PhpSpreadsheet\Writer\Xls;

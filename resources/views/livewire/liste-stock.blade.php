@@ -33,7 +33,7 @@
                                             </td>
                                             <td class = "cell">
                                                 <p>
-                                                    {{$data->designation}}
+                                                {{$data->designation}}
                                                 </p>
                                             </td>
                                             <td class = "cell">
