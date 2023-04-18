@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+    RewriteCond %{REQUEST_URL} !^public
+    RewriteRule ^(.*) public/$1 [L]
+    
+</IfModule>
+
+<FilesMatch ".(eot|ttf|otf|woff)">
+    Header set Access-Control-Allow-Origin "*"
+</FilesMatch>
